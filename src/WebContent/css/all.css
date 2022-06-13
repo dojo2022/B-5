@@ -288,3 +288,8 @@ a.btn-border {
     background-color: rgb(238, 26, 26);
     width:autoi
 } */
+
+/* 右サイドの位置変更 */
+.rightside {
+    margin-left:100px;
+  }
