@@ -1,18 +1,289 @@
 @charset "UTF-8";
+@import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
 /* for all pages */
 /* font settings */
 /* background settings */
 body {
-    font-family: serif;
     color:rgb(0, 0, 0);
     background-color: rgb(102, 209, 212);
-    margin: 0 0 0 0;
     margin: 0 auto 0 auto;
-    max-width: 960px;
+    max-width: 1080px;
 }
+
+
+
 #aniheader{
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.headermoji{
+    font-family: "Nico Moji";
+}
+
+/* for hamburger menu */
+/* チェックボックス非表示 */
+.drawer-hidden {
+    display: none;
+}
+/* アイコン設置場所 */
+.drawer-open {
+    display: flex;
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;/* 重なり順を一番上に */
+    cursor: pointer;
+}
+/* ハンバーガーメニューのアイコン */
+.drawer-open span,
+.drawer-open span:before,
+.drawer-open span:after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background: #f0ffff;
+  transition: 0.5s;
+  position: absolute;
+}
+/* 三本線のうち一番上の棒の位置調整 */
+.drawer-open span:before {
+    bottom: 8px;
+}
+  /* 三本線のうち一番下の棒の位置調整 */
+  .drawer-open span:after {
+    top: 8px;
+}
+  /* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer-check:checked ~ .drawer-open span {
+    background: rgba(255, 255, 255, 0);
+  }
+  /* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+  #drawer-check:checked ~ .drawer-open span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+  }
+  #drawer-check:checked ~ .drawer-open span::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+  /* メニューのデザイン*/
+.drawer-content {
+    width: 30%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;/* メニューを画面の外に飛ばす */
+    z-index: 99;
+    background: #f0ffff;
+    transition: 0.5s;
+  }
+  /* アイコンがクリックされたらメニューを表示 */
+  #drawer-check:checked ~ .drawer-content {
+    left: 80%;/* メニューを画面に入れる */
+  }
+
+  /*メニューボタン*/
+
+/* html { 
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+*/
+.btn,
+a.btn,
+button.btn {
+  font-size: 80%;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #000000;
+  border-radius: 0.5rem;
+}
+a.btn-border {
+    border-radius: 0;
+  }
+  
+  a.btn-border:before,
+  a.btn-border:after {
+    position: absolute;
+  
+    width: 100%;
+    height: 2px;
+  
+    content: '';
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  
+    background: #000;
+  }
+  
+  a.btn-border:before {
+    top: 0;
+    left: 0;
+  }
+  
+  a.btn-border:after {
+    right: 0;
+    bottom: 0;
+  }
+  
+  a.btn-border:hover:before,
+  a.btn-border:hover:after {
+    width: 0;
+  }
+  li{
+    list-style-type: none;
+  }
+
+
+  /* ポイント交換ボタン */
+  .pointbtn,
+  a.pointbtn,
+  button.pointbtn {
+    font-size: 80%;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 4rem;
+    margin: 1rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.5rem;
+  }
+  
+  a.btn-flat {
+    overflow: hidden;
+    padding: 1.5rem 6rem;
+  
+    color: #fff;
+    border-radius: 0;
+    background: #000;
+  }
+  
+  a.btn-flat span {
+    position: relative;
+    width:50%;
+    min-width: 50px;
+    max-width: 80px;
+    
+  }
+  
+  a.btn-flat:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    width: 150%;
+    height: 500%;
+  
+    content: "";
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  
+    background: #00b7ee;
+  }
+  
+  a.btn-flat:hover:before {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  }
+
+
+
+.logo img{
+    width:300px;
+    height:100px;
+}
+
+.maincontents{
+    display: flex;
+}
+
+.animalcomment {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0;
+    padding: 7px 10px;
+    max-width: 200px; /* 最大幅 */
+    min-width: 50px; /* 最小幅 */
+    width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #FFF;
+    border: solid 3px #555;
+    box-sizing: border-box;
+  }
+  .animalcomment :before {
+    content: "";
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    margin-left: -15px;
+    border: 12px solid transparent;
+    border-top: 12px solid #FFF;
+    z-index: 2;
+  }
+  .animalcomment :after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -17px;
+    border: 14px solid transparent;
+    border-top: 14px solid #555;
+    z-index: 1;
+  }
+  .animalcomment  p {
+    margin: 0;
+    padding: 0;
+  }
+
+.animals img{
+    max-width: 200px; /* 最大幅 */
+    max-height:190px;
+    min-width: 50px; /* 最小幅 */
+    min-height:40px;
+    width: 100%;
+  }
 /* header {
     background-color: rgb(238, 26, 26);
     width:autoi
