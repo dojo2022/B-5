@@ -1,1 +1,33 @@
 @charset "UTF-8";
+/* 日記一覧のリスト表示 */
+.start_list {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  height: 80px;
+  overflow: auto;		/*はみ出した場合は、スクロールバーを表示する*/
+  margin: 3px auto;
+  padding: 60px;
+  border: solid 1px  black;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+
+}
+
+.start_list th {
+  background-color:rgb(255, 255, 255);
+   border: solid 1px  black;
+}
+.start_list td {
+border: solid 1px  black;
+}
+
+#next-prev-button {
+  text-align: center;
+}
+
+/* 右サイドの位置変更 */
+.rightside {
+  margin-left:100px;
+}
