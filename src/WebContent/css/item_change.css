@@ -1,1 +1,27 @@
 @charset "UTF-8";
+
+/* 全体と同じ幅を使用する */
+.main{
+background-color: aliceblue;
+}
+/* アイテムリストの画像の表示サイズを統一 */
+.bg_img{
+    table-layout: fixed;
+    width: 200px;
+}
+/* アイテムリストの中にスクロールバーを作成 */
+.table-content {
+    overflow-y: scroll;
+    height: 180px;
+  }
+/* 自動で折り返しさせない */
+.td-list {
+    white-space: nowrap;
+  }
+
+  /* テーブルのヘッダーを固定 */
+  .header{
+	position: sticky;
+	top: 0;
+	background-color: #13747D;
+}
