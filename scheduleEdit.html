@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>アニカレ</title>
+  <link rel= "stylesheet" href="src/WebContent/css/all.css">
   <link rel= "stylesheet" href="src/WebContent/css/schedule_edit.css">
   <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
 </head>
@@ -36,7 +37,7 @@
               </div>
         </p>
       <!--タイトル-->
-      <p class=""><h1 class="logo"><a href =""><img src="src/WebContent/img/anilogo.jpg" alt="アニカレロゴ"></a></h1></p>
+      <p class=""><h1 class="logo"><a href =""><img src="src/WebContent/img/logo.png" alt="アニカレロゴ"></a></h1></p>
       
       
       <!--ポイント交換-->  
@@ -77,23 +78,73 @@
         <div class="edit">
             <div class="scheduleedit">
                 <!-- 予定編集 -->
-                <h2>予定追加</h2>
-                <a href="" class="editbtn btn--yellow btn--cubic">戻る</a>
-                <a href="" class="editbtn btn--yellow btn--cubic">削除</a>
-                <a href="" class="editbtn btn--yellow btn--cubic">保存</a>
+                <h2>今日の予定</h2>
+                <form method="" action="/Servlet">
+                <table>
+                  <tr>
+                    <td><input type="" class="" name="stamp"></td>
+                    <td><input type="text" class="" name="title" placeholder="タイトルを入力"></td>
+                  </tr>
+                  <tr>
+                    <td><input type="" class="" name="starttime"></td>
+                    <td><input type="" class="" name="endtime"></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="" name="place"></td>
+                  </tr>
+                  <tr>
+                    <td>メモ</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><textarea name="memo"></textarea></td>
+                  </tr>
+                </table>
+                  <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
+                  <div class=""><input class="" type="submit" name="DELETE" value="削除"></div>
+                  <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                </form>
             </div>
             <div class="todoedit">
                 <!-- ToDo編集 -->
-                <h2>ToDo編集</h2>
-                <a href="" class="editbtn btn--yellow btn--cubic">戻る</a>
-                <a href="" class="editbtn btn--yellow btn--cubic">削除</a>
-                <a href="" class="editbtn btn--yellow btn--cubic">保存</a>
+                <h2>ToDo</h2>
+                <form method="POST" action="/Servlet">
+                  <table>
+                    <tr>
+                      <td><input type="checkbox" id="" name="checkbox" value="missioncomplete"></td>
+                      <td><input type="text" class="" name="task" placeholder="タスク名を入力"></td>
+                    </tr>
+                    <tr>
+                      <td><input type="" class="" name="deadline"></td>
+                    </tr>
+                    <tr>
+                      <td>メモ</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><textarea name="memo"></textarea></td>
+                    </tr>
+                  </table>
+                    <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
+                    <div class=""><input class="" type="submit" name="DELETE" value="削除"></div>
+                    <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                </form>
             </div>
         </div>
          
 
          <!-- 日記記入 -->
          <h2>今日の記録</h2>
+         <form method="POST" action="/Servlet">
+          <table>
+            <tr>
+              <td><input type="text" class="" name="diarytitle" placeholder="タイトルを入力"></td>
+            </tr>
+            <tr>
+              <td><textarea name="memo"></textarea></td>
+            </tr>
+          </table>
+            <div class=""><input class="" type="submit" name="DELETE" value="リセット"></div>
+            <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+        </form>
       </div>
     </div>
     
