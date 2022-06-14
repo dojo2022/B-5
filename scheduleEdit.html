@@ -80,52 +80,74 @@
                 <!-- 予定編集 -->
                 <h2>今日の予定</h2>
                 <form method="" action="/Servlet">
-                <table>
-                  <tr>
-                    <td><input type="" class="" name="stamp"></td>
-                    <td><input type="text" class="" name="title" placeholder="タイトルを入力"></td>
-                  </tr>
-                  <tr>
-                    <td><input type="" class="" name="starttime"></td>
-                    <td><input type="" class="" name="endtime"></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" class="" name="place"></td>
-                  </tr>
-                  <tr>
-                    <td>メモ</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><textarea name="memo"></textarea></td>
-                  </tr>
-                </table>
-                  <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
-                  <div class=""><input class="" type="submit" name="DELETE" value="削除"></div>
-                  <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                  <details>
+                    <summary>🍚ランチ</summary>
+                    <table>
+                      <tr>
+                        <td><input type="" class="" name="stamp"></td>
+                        <td><input type="text" class="" name="title" placeholder="タイトルを入力"></td>
+                      </tr>
+                      <tr>
+                        <td><input type="" class="" name="starttime"></td>
+                        <td><input type="" class="" name="endtime"></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" class="" name="place"></td>
+                      </tr>
+                      <tr>
+                        <td>メモ</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><textarea name="memo"></textarea></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
+                        </td>
+                        <td>
+                          <div class=""><input class="" type="submit" name="DELETE" value="削除"></div>
+                        </td>
+                        <td> 
+                          <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                        </td> 
+                      </tr>
+                    </table>
+                  </details>
                 </form>
             </div>
             <div class="todoedit">
                 <!-- ToDo編集 -->
                 <h2>ToDo</h2>
                 <form method="POST" action="/Servlet">
-                  <table>
-                    <tr>
-                      <td><input type="checkbox" id="" name="checkbox" value="missioncomplete"></td>
-                      <td><input type="text" class="" name="task" placeholder="タスク名を入力"></td>
-                    </tr>
-                    <tr>
-                      <td><input type="" class="" name="deadline"></td>
-                    </tr>
-                    <tr>
-                      <td>メモ</td>
-                    </tr>
-                    <tr>
-                      <td colspan="2"><textarea name="memo"></textarea></td>
-                    </tr>
-                  </table>
-                    <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
-                    <div class=""><input class="" type="submit" name="DELETE" value="削除"></div>
-                    <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                  <details>
+                    <summary><input type="checkbox" id="" name="checkbox" value="missioncomplete">配属希望</summary>
+                      <table>
+                        <tr>
+                          <td><input type="checkbox" id="" name="checkbox" value="missioncomplete"></td>
+                          <td><input type="text" class="" name="task" placeholder="タスク名を入力"></td>
+                        </tr>
+                        <tr>
+                          <td><input type="" class="" name="deadline"></td>
+                        </tr>
+                        <tr>
+                          <td>メモ</td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><textarea name="memo"></textarea></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
+                          </td>
+                          <td>
+                            <div class=""><input class="" type="submit" name="DELETE" value="削除"></div>
+                          </td>
+                          <td> 
+                            <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                          </td> 
+                        </tr>
+                      </table>
+                  </details>
                 </form>
             </div>
         </div>
