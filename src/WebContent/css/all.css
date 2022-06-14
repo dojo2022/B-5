@@ -188,14 +188,15 @@ a.btn-border {
     border-radius: 0.5rem;
   }
   
-  a.btn-flat {
-    overflow: hidden;
-    padding: 1.5rem 6rem;
-  
-    color: #fff;
-    border-radius: 0;
-    background: #000;
-  }
+ /* 黒い背景の大きさ変える */
+ a.btn-flat {
+  overflow: hidden;
+  padding: 0.7rem 2rem;
+
+  color: #fff;
+  border-radius: 0;
+  background: #000;
+}
   
   a.btn-flat span {
     position: relative;
