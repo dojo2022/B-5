@@ -38,11 +38,13 @@ public class NewAccountServlet extends HttpServlet {
 		// 登録処理を行う
 		UsersDAO uDao = new UsersDAO();
 		if (uDao.insert(new Users( user_name, mail, login_pw))) {	// 登録成功
-
+			System.out.println("true");
 		}
 		else {												// 登録失敗
+			System.out.println("false");
 
 		}
+
 	}
 
 }
