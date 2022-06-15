@@ -2,11 +2,11 @@ package model;
 import java.io.Serializable;
 
 public class Points implements Serializable{
-	private String id;
+	private int id;
 	private String user_id;
-	private String point_value;
+	private int point_value;
 
-	public Points(String id, String user_id, String point_value) {
+	public Points(int id, String user_id, int point_value) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
@@ -14,16 +14,16 @@ public class Points implements Serializable{
 	}
 	//引数がないコンストラクタ（デフォルトコンストラクタ）
 	public Points() {
-		this.id = "";
+		this.id = 0;
 		this.user_id = "";
-		this.point_value ="";
+		this.point_value =0;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -35,11 +35,11 @@ public class Points implements Serializable{
 		this.user_id = user_id;
 	}
 
-	public String getPoint_value() {
+	public int getPoint_value() {
 		return point_value;
 	}
 
-	public void setPoint_value(String point_value) {
+	public void setPoint_value(int point_value) {
 		this.point_value= point_value;
 	}
 }
