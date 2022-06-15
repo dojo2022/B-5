@@ -4,8 +4,40 @@
   .edit{
     display: flex;
   }
-  .scheduleedit{
-    border-style: solod;
-    border-radius: 5px;
+
+  table{
+    /* 予定とToDoと日記のところを分ける */
+    border: solid 3px;
+    border-collapse:  collapse;     /* セルの線を重ねる */
+    border-color:darkorange;
+    padding: 5px;
+    margin: 5px;
+    table-layout: fixed;
+    
   }
-  
+  input[type="text"], textarea{
+    margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  input[type="text"]{
+    height:10px;
+  }
+  .titlefont{
+    font-size:18px;
+    height:10px;
+  }
+  textarea{ 
+    /* 日記のメモ欄は別のものを作る */
+    width: 22rem;
+    height: 5rem;
+  }
+  tr{
+    height:10px;
+  }
