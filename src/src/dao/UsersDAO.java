@@ -112,8 +112,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into diary (user_name,mail, login_pw"
-					+ "from users ;) values (?, ? ,? )";
+			String sql = "insert into users (user_name,mail, login_pw) values (?, ? ,? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
