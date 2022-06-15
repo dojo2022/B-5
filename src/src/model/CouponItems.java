@@ -16,6 +16,15 @@ public class CouponItems implements Serializable {
 		this.coupon_id = coupon_id;
 		this.coupon_num = coupon_num;
 	}
+
+	//登録用コンストラクタ
+	public CouponItems(String user_id, String coupon_id, int coupon_num) {
+		super();
+		this.user_id = user_id;
+		this.coupon_id = coupon_id;
+		this.coupon_num = coupon_num;
+	}
+
 	//引数がないコンストラクタ
 	public CouponItems() {
 		super();

@@ -15,6 +15,13 @@ public class KakugenItems implements Serializable {
 		this.kakugen_id = kakugen_id;
 	}
 
+	//登録用コンストラクタ
+	public KakugenItems(String user_id, String kakugen_id) {
+		super();
+		this.user_id = user_id;
+		this.kakugen_id = kakugen_id;
+	}
+
 	//引数がないコンストラクタ
 	public KakugenItems() {
 		super();

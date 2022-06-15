@@ -15,13 +15,20 @@ public class CharacterItems implements Serializable {
 		this.character_id = character_id;
 	}
 
+	//登録用コンストラクタ
+	public CharacterItems(String user_id, String character_id) {
+		super();
+		this.user_id = user_id;
+		this.character_id = character_id;
+	}
+
 	//引数がないコンストラクタ
-		public CharacterItems() {
-			super();
-			this.id = 0;
-			this.user_id = "";
-			this.character_id = "";
-		}
+	public CharacterItems() {
+		super();
+		this.id = 0;
+		this.user_id = "";
+		this.character_id = "";
+	}
 
 	//ゲッターセッター
 	public int getId() {
