@@ -18,6 +18,14 @@ public class Users {
 
 	}
 
+	public Users( String user_id, String user_name, String mail, String login_pw) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.mail = mail;
+		this.login_pw = login_pw;
+
+	}
 	//引数3つのコンストラクタ
 	public Users(String user_name, String mail, String login_pw) {
 		super();

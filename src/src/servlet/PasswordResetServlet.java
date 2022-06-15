@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UsersDAO;
+import model.Users;
 /**
  * Servlet implementation class PasswordResetServlet
  */
@@ -26,14 +28,24 @@ public class PasswordResetServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//リクエストパラメーターを取得する
+		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-
-		int id = Integer.parseInt(request.getParameter("id"));
-		String user_id = request.getParameter("user_id");
-		String user_name = request.getParameter("user_name");
 		String mail = request.getParameter("mail");
-		String login_pw = request.getParameter("login_pw");
+		UsersDAO uDao = new UsersDAO();
+		//検索処理を行う
+		List<Users> cardList = uDao.select(new Users("", "", mail, ""));
+
+		request.setAttribute("cardList", cardList);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
+		dispatcher.forward(request, response);
+//		//リクエストスコープに確認
+//		request.setAttribute("cardList", cardList);
+//
+
+
+
+
 
 	}
 

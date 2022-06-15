@@ -18,6 +18,15 @@ public class Diaries implements Serializable {
 		this.diary_content = diary_content;
 
 	}
+	//4つのコンストラクタ
+	public Diaries( String user_id, String diary_date, String diary_title, String diary_content) {
+		super();
+		this.user_id = user_id;
+		this.diary_date = diary_date;
+		this.diary_title = diary_title;
+		this.diary_content = diary_content;
+
+	}
 		public Diaries() {
 			super();
 			this.id = 0;
