@@ -38,12 +38,12 @@ public class LoginServelet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("ID");
-		String pw = request.getParameter("PW");
+		String user_name= request.getParameter("ID");
+		String login = request.getParameter("PW");
 
 		// ログイン処理を行う
-		UsersDAO iDao = new UsersDAO();
-		if (iDao.isLoginOK(new Users("", "", user_name, "", login_pw ))) {	// ログイン成功
+		UsersDAO uDao = new UsersDAO();
+		if (uDao.isLoginOK(new Users("", "", user_name, "", login_pw ))) {	// ログイン成功
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
 			session.setAttribute("id", new LoginUser(id));
@@ -51,13 +51,10 @@ public class LoginServelet extends HttpServlet {
 			response.sendRedirect("/anikare/ToppageServlet");
 		}
 		else {									// ログイン失敗
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			request.setAttribute("result",
-			new Result("ログイン失敗！", "IDまたはPWに間違いがあります。", "/simpleBC/LoginServlet"));
 
 		}
 	}
 
-	}
+}
 
 }
