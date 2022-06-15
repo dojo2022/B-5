@@ -1,1 +1,10 @@
 @charset "UTF-8";
+
+table{
+    border: solid 3px;
+    border-collapse:  collapse;     /* ƒZƒ‹‚Ìü‚ğd‚Ë‚é */
+    border-color:darkorange;
+    padding: 5px;
+    margin: 5px;
+    table-layout: fixed;
+  }
