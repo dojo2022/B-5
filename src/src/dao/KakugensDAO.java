@@ -29,7 +29,7 @@ public class KakugensDAO {
 			/*			String sql = "select id, kakugen, genre_name, genre, kakugen_id, kakugen_point"
 								+ "from Kakugens WHERE id LIKE ? AND kakugen LIKE ? AND genre_name LIKE ? AND genre LIKE ? "
 								+ "AND kakugen_id LIKE ? AND kakugen_point LIKE ? ORDER BY id";*/
-			String sql = "select id,kakugen, kakugen_name, genre_name, genre, kakugen_id, kakugen_poin from Kakugens";
+			String sql = "select * from Kakugens ORDER BY id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 
