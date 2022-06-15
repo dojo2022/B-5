@@ -22,8 +22,10 @@
 }
 
 .start_list th {
-  background-color:rgb(255, 255, 255);
+  background-color:rgb(252, 252, 252);
    border: solid 1px  black;
+   position: sticky;
+   top: 0;
 }
 .start_list td {
 border: solid 1px  black;
@@ -38,3 +40,12 @@ border: solid 1px  black;
   bottom: 0%;
 }
 
+/* .fixed1{
+	position: sticky;
+	top: 0;
+	background-color: black;
+		&:before{
+		content: "";
+		position: absolute;
+		}
+} */
