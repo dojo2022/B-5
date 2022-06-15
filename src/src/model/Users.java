@@ -7,6 +7,7 @@ public class Users {
 	private String mail;
 	private String login_pw;
 
+
 	public Users(int id, String user_id, String user_name, String mail, String login_pw) {
 		super();
 		this.id = id;
@@ -17,6 +18,21 @@ public class Users {
 
 	}
 
+	//引数3つのコンストラクタ
+	public Users(String user_name, String mail, String login_pw) {
+		super();
+		this.user_name = user_name;
+		this.mail = mail;
+		this.login_pw = login_pw;
+
+	}
+	//引数2つのコンストラクタ
+	public Users(String mail, String login_pw) {
+		super();
+		this.mail = mail;
+		this.login_pw = login_pw;
+
+	}
 	public Users() {
 		super();
 		this.id = 0;
@@ -26,6 +42,7 @@ public class Users {
 		this.login_pw = "";
 
 	}
+
 
 	public int getId() {
 		return id;
