@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class Characters implements Serializable{
 
 		private int id;
-		private int user_id;
+		private String user_id;
 		private String character_name;
 		private String character_status;
 		private String character_image;
 		private int character_point;
 		private String character_id;
 
-		public Characters(int id, int user_id, String character_name, String character_status,
+		public Characters(int id, String user_id, String character_name, String character_status,
 				String character_image, int character_point, String character_id) {
 			super();
 			this.id = id;
@@ -27,7 +27,7 @@ public class Characters implements Serializable{
 		public Characters() {
 			super();
 			this.id = 0;
-			this.user_id = 0;
+			this.user_id = "";
 			this.character_name = "";
 			this.character_status = "";
 			this.character_image = "";
@@ -43,11 +43,11 @@ public class Characters implements Serializable{
 			this.id = id;
 		}
 
-		public int getUser_id() {
+		public String getUser_id() {
 			return user_id;
 		}
 
-		public void setUser_id(int user_id) {
+		public void setUser_id(String user_id) {
 			this.user_id = user_id;
 		}
 

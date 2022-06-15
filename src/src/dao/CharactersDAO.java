@@ -35,7 +35,7 @@ public class CharactersDAO {
 				while (rs.next()) {
 					Characters card = new Characters(
 					rs.getInt("id"),
-					rs.getInt("user_id"),
+					rs.getString("user_id"),
 					rs.getString("character_name"),
 					rs.getString("character_status"),
 					rs.getString("character_image"),
