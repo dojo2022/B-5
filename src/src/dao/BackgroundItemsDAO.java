@@ -30,7 +30,7 @@ public class BackgroundItemsDAO {
 
 			//SQL文を完成させる
 			if (param.getId() != 0) {
-				pStmt.setInt(1, 0 + param.getId() + 0);
+				pStmt.setInt(1, param.getId());
 			}
 			else {
 				pStmt.setInt(1, 0);

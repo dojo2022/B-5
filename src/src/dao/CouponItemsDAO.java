@@ -30,7 +30,7 @@ public class CouponItemsDAO {
 
 				//SQL文を完成させる
 				if (param.getId() != 0) {
-					pStmt.setInt(1, 0 + param.getId() + 0);
+					pStmt.setInt(1, param.getId());
 				}
 				else {
 					pStmt.setInt(1, 0);
@@ -48,7 +48,7 @@ public class CouponItemsDAO {
 					pStmt.setString(3, "%");
 				}
 				if (param.getCoupon_num() != 0) {
-					pStmt.setInt(4, 0 + param.getCoupon_num() + 0);
+					pStmt.setInt(4, param.getCoupon_num());
 				}
 				else {
 					pStmt.setInt(4, 0);
