@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Characters implements Serializable{
 
-		private String id;
-		private String user_id;
+		private int id;
+		private int user_id;
 		private String character_name;
 		private String character_status;
 		private String character_image;
-		private String character_point;
+		private int character_point;
 		private String character_id;
 
-		public Characters(String id, String user_id, String character_name, String character_status,
-				String character_image, String character_point, String character_id) {
+		public Characters(int id, int user_id, String character_name, String character_status,
+				String character_image, int character_point, String character_id) {
 			super();
 			this.id = id;
 			this.user_id = user_id;
@@ -26,28 +26,28 @@ public class Characters implements Serializable{
 
 		public Characters() {
 			super();
-			this.id = "";
-			this.user_id = "";
+			this.id = 0;
+			this.user_id = 0;
 			this.character_name = "";
 			this.character_status = "";
 			this.character_image = "";
-			this.character_point = "";
+			this.character_point = 0;
 			this.character_id = "";
 		}
 
-		public String getId() {
+		public int getId() {
 			return id;
 		}
 
-		public void setId(String id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 
-		public String getUser_id() {
+		public int getUser_id() {
 			return user_id;
 		}
 
-		public void setUser_id(String user_id) {
+		public void setUser_id(int user_id) {
 			this.user_id = user_id;
 		}
 
@@ -75,11 +75,11 @@ public class Characters implements Serializable{
 			this.character_image = character_image;
 		}
 
-		public String getCharacter_point() {
+		public int getCharacter_point() {
 			return character_point;
 		}
 
-		public void setCharacter_point(String character_point) {
+		public void setCharacter_point(int character_point) {
 			this.character_point = character_point;
 		}
 

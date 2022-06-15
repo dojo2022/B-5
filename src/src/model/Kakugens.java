@@ -3,15 +3,15 @@ package model;
 import java.io.Serializable;
 
 public class Kakugens implements Serializable{
-	private String id;
+	private int id;
 	private String kakugen;
 	private String genre_name;
 	private String genre;
 	private String kakugen_id;
-	private String kakugen_point;
+	private int kakugen_point;
 
-	public Kakugens(String id, String kakugen, String kakugen_name, String genre_name, String genre,
-			String kakugen_id, String kakugen_point) {
+	public Kakugens(int id, String kakugen, String genre_name, String genre,
+			String kakugen_id, int kakugen_point) {
 		this.id = id;
 		this.kakugen= kakugen;
 		this.genre_name= genre_name;
@@ -22,19 +22,19 @@ public class Kakugens implements Serializable{
 	}
 
 	public Kakugens() {
-		this.id = "";
+		this.id = 0;
 		this.kakugen= "";
 		this.genre_name= "";
 		this.genre = "";
 		this.kakugen_id= "";
-		this.kakugen_point= "";
+		this.kakugen_point= 0;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -70,11 +70,11 @@ public class Kakugens implements Serializable{
 		this.kakugen_id = kakugen_id;
 	}
 
-	public String getKakugen_point() {
+	public int getKakugen_point() {
 		return kakugen_point;
 	}
 
-	public void setKakugen_point(String kakugen_point) {
+	public void setKakugen_point(int kakugen_point) {
 		this.kakugen_point = kakugen_point;
 	}
 
