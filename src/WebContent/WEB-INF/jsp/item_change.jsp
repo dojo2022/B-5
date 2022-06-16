@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ポイント交換所|アニカレ</title>
-<link rel="stylesheet" href="src/WebContent/css/all.css">
-<link rel="stylesheet" href="src/WebContent/css/item_change.css">
+<link rel="stylesheet" href="/anikare/css/all.css">
+<link rel="stylesheet" href="/anikare/css/item_change.css">
 <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
 	rel="stylesheet">
 </head>
@@ -95,16 +95,16 @@
 								</tr>
 								<tr>
 									<!-- 後で暮らす指定して一括で画像サイズを固定 -->
-									<td><img src="src/WebContent/img/city.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/sea.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/mountain.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/city.jpg" width="200"></td>
+									<td><img src="/anikare/img/city.jpg" width="200"></td>
+									<td><img src="/anikare/img/sea.jpg" width="200"></td>
+									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
+									<td><img src="/anikare/img/city.jpg" width="200"></td>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/city.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/sea.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/mountain.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/city.jpg" width="200"></td>
+									<td><img src="/anikare/img/city.jpg" width="200"></td>
+									<td><img src="/anikare/img/sea.jpg" width="200"></td>
+									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
+									<td><img src="/anikare/img/city.jpg" width="200"></td>
 								</tr>
 							</table>
 						</div>
@@ -115,16 +115,16 @@
 									<th class="header" colspan="4">格言</th>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
 								</tr>
 							</table>
 						</div>
@@ -135,23 +135,23 @@
 									<th class="header" colspan="4">キャラクター</th>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
-									<td><img src="src/WebContent/img/character.jpg"
+									<td><img src="/anikare/img/character.jpg"
 										width="200"></td>
 								</tr>
 							</table>
@@ -163,16 +163,16 @@
 									<th class="header" colspan="4">クーポン</th>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
 								</tr>
 								<tr>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
-									<td><img src="src/WebContent/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
 								</tr>
 							</table>
 						</div>
