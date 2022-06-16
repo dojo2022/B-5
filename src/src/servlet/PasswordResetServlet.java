@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UsersDAO;
+import model.Res;
 import model.Users;
 /**
  * Servlet implementation class PasswordResetServlet
@@ -33,13 +34,29 @@ public class PasswordResetServlet extends HttpServlet {
 		String mail = request.getParameter("mail");
 		UsersDAO uDao = new UsersDAO();
 		//検索処理を行う
-		List<Users> cardList = uDao.select(new Users("", "", mail, ""));
+/*		List<Users> cardList = uDao.select(new Users( mail));
+*/
+		if (uDao.isMailOK(new Users(mail))) {	// ログイン成功
+			// セッションスコープにIDを格納する
+			HttpSession session = request.getSession();
+			session.setAttribute("res", new Res("ok"));
 
-		request.setAttribute("cardList", cardList);
+			//フォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
+			dispatcher.forward(request, response);
+/*			// メニューサーブレットにリダイレクトする
+			response.sendRedirect("/simpleBC/MenuServlet");
+*/		}
+		else {									// ログイン失敗
+			HttpSession session = request.getSession();
+			session.setAttribute("res", new Res("miss"));
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
-		dispatcher.forward(request, response);
-//		//リクエストスコープに確認
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
+//		//リクエストスコープに保存
 //		request.setAttribute("cardList", cardList);
 //
 
@@ -49,4 +66,4 @@ public class PasswordResetServlet extends HttpServlet {
 
 	}
 
-}
+

@@ -315,6 +315,57 @@ public class UsersDAO {
 		// 結果を返す
 		return loginResult;
 	}
+
+
+public boolean isMailOK(Users Users) {
+	Connection conn = null;
+	boolean MailResult = false;
+
+	try {
+		// JDBCドライバを読み込む
+		Class.forName("org.h2.Driver");
+
+		// データベースに接続する
+		conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+		// SELECT文を準備する
+		String sql = "select mail  from Users where mail = ? ";
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setString(1, Users.getMail());
+
+		// SELECT文を実行し、結果表を取得する
+		ResultSet rs = pStmt.executeQuery();
+
+		// メアドが一致するユーザーがいたかどうかをチェックする
+		rs.next();
+		if (rs.getInt("mail") == 1) {
+			MailResult = true;
+		}
+	}
+	catch (SQLException e) {
+		e.printStackTrace();
+		MailResult = false;
+	}
+	catch (ClassNotFoundException e) {
+		e.printStackTrace();
+		MailResult = false;
+	}
+	finally {
+		// データベースを切断
+		if (conn != null) {
+			try {
+				conn.close();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				MailResult = false;
+			}
+		}
+	}
+
+	// 結果を返す
+	return MailResult;
+}
 }
 
 

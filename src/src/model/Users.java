@@ -41,6 +41,13 @@ public class Users {
 		this.login_pw = login_pw;
 
 	}
+
+	//引数1つのコンストラクタ
+		public Users(String mail) {
+			super();
+			this.mail = mail;
+
+		}
 	public Users() {
 		super();
 		this.id = 0;
