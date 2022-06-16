@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UsersDAO;
+import model.Users;
+
 /**
  * Servlet implementation class MypageServlet
  */
@@ -37,6 +40,20 @@ public class MypageServlet extends HttpServlet {
 //			response.sendRedirect("/simpleBC/LoginServlet");
 //			return;
 //		}
+		// リクエストパラメータを取得する
+				request.setCharacterEncoding("UTF-8");
+				String user_name = request.getParameter("user_name");
+				String login_pw = request.getParameter("login_pw");
+
+				// 更新処理を行う
+				UsersDAO uDao = new UsersDAO();
+				if (uDao.update(new Users( user_name, ""))) {	// 登録成功
+					System.out.println("true");
+				}
+				else {												// 登録失敗
+					System.out.println("false");
+
+				}
 	}
 
 }

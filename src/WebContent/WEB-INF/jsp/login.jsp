@@ -30,7 +30,7 @@
 			<div class="main">
 				<h2>ログイン</h2>
 				<div>
-					<form method="post" action="/anikare/LoginServlet" id="form">
+					<form method="POST" action="/anikare/LoginServlet" id="form">
 						<label for="Mail">メールアドレス<br> <input type="text"
 							name="mail" placeholder="メールアドレス"></label><br>
 						<label for="login_pw">Password<br> <input type="password"
