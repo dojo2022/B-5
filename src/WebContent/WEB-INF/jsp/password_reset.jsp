@@ -28,11 +28,12 @@
 				<p>※登録されているメールアドレスを入力してください。</p>
 				<p>ログイン用の仮PWを発行致します。</p>
 				<input type="submit" name="submit" value="確認">
-					<!-- onclick="return clickkakunin()" -->
-					 <input type="reset"
-					name="reset" value="クリア">
+				<!-- onclick="return clickkakunin()" -->
+				<input type="reset" name="reset" value="クリア">
 			</form>
+			<a href="/anikare/LoginServlet" >※ログインページはこちら</a>
 		</div>
+
 	</main>
 	<footer class="footer">
 		<p>&copy;Copyright AnimalCalender All rights reserved.</p>
@@ -42,18 +43,51 @@
 		'use strict'
 		//更新確認
 		/* function clickkakunin(){ */
-			if("${res}" == "ok"){
-				var clicked = window.confirm('再設定用のパスワードはこちらです');
 
+			let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			let rand_str = '';
+			for ( var i = 0; i < 8; i++ ) {
+				rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
+			}
+			function randomInt(num){
+				  var rand = Math.floor(Math.random() * num);
+
+				  return rand;
+				}
+			let random_pw=randomInt(100) +rand_str +randomInt(100)
+			if("${res}" == "ok"){
+				var clicked = window.confirm('再設定用のパスワードはこちらです['+random_pw+']');
+				
+				function postForm(value) {
+					 
+				    var form = document.createElement('form');
+				    var request = document.createElement('input');
+				 
+				    form.method = 'POST';
+				    form.action = '/anikare/PasswordResetServlet';
+				 
+				    request.type = 'hidden'; //入力フォームが表示されないように
+				    request.name = 'text';
+				    request.value = value;
+				 
+				    form.appendChild(request);
+				    document.body.appendChild(form);
+				 
+				    form.submit();
+				    
+				    postForm(random_pw)
+				 
+				}
 			}
 			else if("${res}" == "miss")
 				{
 				var clicked = window.confirm('間違いがあります');
 
-
 			}else{
 				console.log("empty");
 			}
+
+
 
 /* } */
 	</script>
