@@ -42,7 +42,7 @@
 		'use strict'
 		//更新確認
 		function clickkakunin(){
-			if("${res.title}" = ok){
+			if(${res.title} == ok){
 				var clicked = window.confirm('再設定用のパスワードはこちらです');
 				if(clicked == true){
 					return true;
@@ -50,7 +50,7 @@
 					return false;
 				}
 			}
-			else if("${res.title}" ="miss")
+			else if(${res.title} == miss)
 				{var clicked = window.confirm('間違いがあります');
 				if(clicked == true){
 					return true;

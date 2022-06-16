@@ -120,17 +120,17 @@ public class UsersDAO {
 			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
 				pStmt.setString(1, card.getUser_name());
 			} else {
-				pStmt.setString(1, "");
+				pStmt.setString(1, null);
 			}
 			if (card.getMail() != null && !card.getMail().equals("")) {
 				pStmt.setString(2, card.getMail());
 			} else {
-				pStmt.setString(2, "");
+				pStmt.setString(2, null);
 			}
 			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
 				pStmt.setString(3, card.getLogin_pw());
 			} else {
-				pStmt.setString(3, "");
+				pStmt.setString(3, null);
 			}
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
