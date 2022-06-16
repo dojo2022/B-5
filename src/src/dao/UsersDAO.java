@@ -136,6 +136,15 @@ public class UsersDAO {
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
+			//user_idの登録
+			sql = "UPDATE Users SET  user_id=(SELECT CONCAT('u',id) FROM Users WHERE user_id IS NULL) WHERE user_id IS NULL;";
+			pStmt = conn.prepareStatement(sql);
+			// SQL文を実行する
+						if (pStmt.executeUpdate() == 1) {
+							result = true;
+						}
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
