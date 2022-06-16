@@ -277,7 +277,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SELECT文を準備する
-			String sql = "select mail, login_pw  from Users where mail = ? and login_pw = ?";
+			String sql = "select count(*)  from Users where mail = ? and login_pw = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, Users.getMail());
 			pStmt.setString(2, Users.getLogin_pw());
@@ -287,7 +287,7 @@ public class UsersDAO {
 
 			// メアドとパスワードが一致するユーザーがいたかどうかをチェックする
 			rs.next();
-			if (rs.getInt("mail, login_pw") == 1) {
+			if (rs.getInt("count(*)") == 1) {
 				loginResult = true;
 			}
 		}

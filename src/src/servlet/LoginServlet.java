@@ -42,23 +42,24 @@ public class LoginServlet extends HttpServlet {
 
 		// ログイン処理を行う
 		UsersDAO uDao = new UsersDAO();
-		if (uDao.isLoginOK(new Users(0,"","",mail, login_pw ))) {	// ログイン成功 これ以降がいまいちわかっていない
+		if (uDao.isLoginOK(new Users(mail, login_pw ))) {	// ログイン成功 これ以降がいまいちわかっていない
 //			// セッションスコープにIDを格納する
 //		    HttpSession session = request.getSession();
 //			session.setAttribute("id", new LoginUser(mail));
 ////			 メニューサーブレットにリダイレクトする
 			response.sendRedirect("/anikare/ToppageServlet");
+			System.out.println("true");
 		}
-		else {									// ログイン失敗
+//		else {									// ログイン失敗
 //			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
 //			request.setAttribute("result",
 //			new Result("ログイン失敗！", "IDまたはPWに間違いがあります。", "/simpleBC/LoginServlet"));
 //
 //			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+//		dispatcher.forward(request, response);
 
-		}
+//		}
 	}
 
 }
