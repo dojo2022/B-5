@@ -114,36 +114,32 @@ public class DiariesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into diary (id, user_id, diary_date,diary_title, diary_content"
-					+ "from diaries ;) values (?, ?, ?, ? ,? )";
+			String sql = "insert into diary (user_id, diary_date,diary_title, diary_content"
+					+ "from diaries ;) values ( ?, ?, ? ,? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (card.getId() != 0 ) {
-				pStmt.setInt(1, card.getId());
-			}
-			else {
-				pStmt.setInt(1, 0);
-			}
+
+
 			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(2, card.getUser_id());
+				pStmt.setString(1, card.getUser_id());
+			} else {
+				pStmt.setString(1, "");
+			}
+			if (card.getDiary_date() != null && !card.getDiary_date().equals("")) {
+				pStmt.setString(2, card.getDiary_date());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getDiary_date() != null && !card.getDiary_date().equals("")) {
-				pStmt.setString(3, card.getDiary_date());
+			if (card.getDiary_title() != null && !card.getDiary_title().equals("")) {
+				pStmt.setString(3, card.getDiary_title());
 			} else {
 				pStmt.setString(3, "");
 			}
-			if (card.getDiary_title() != null && !card.getDiary_title().equals("")) {
-				pStmt.setString(4, card.getDiary_title());
+			if (card.getDiary_content() != null && !card.getDiary_content().equals("")) {
+				pStmt.setString(4, card.getDiary_content());
 			} else {
 				pStmt.setString(4, "");
-			}
-			if (card.getDiary_content() != null && !card.getDiary_content().equals("")) {
-				pStmt.setString(5, card.getDiary_content());
-			} else {
-				pStmt.setString(5, "");
 			}
 
 			// SQL文を実行する
@@ -182,7 +178,7 @@ public class DiariesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update diaries set user_id=?, diary_date=?, diary_title=?, diary_content=? where id=? ";
+			String sql = "update diaries set user_id=?, diary_date=?, diary_title=?, diary_content=? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -208,7 +204,7 @@ public class DiariesDAO {
 				pStmt.setString(4, "");
 
 			}
-			pStmt.setInt(5, card.getId());
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;

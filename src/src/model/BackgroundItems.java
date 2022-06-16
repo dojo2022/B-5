@@ -16,6 +16,13 @@ public class BackgroundItems implements Serializable {
 		this.background_id = background_id;
 	}
 
+	//登録用コンストラクタ
+	public BackgroundItems(String user_id, String background_id) {
+		super();
+		this.user_id = user_id;
+		this.background_id = background_id;
+	}
+
 	//引数がないコンストラクタ
 	public BackgroundItems() {
 		super();

@@ -112,40 +112,39 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into diary (id, user_id, diary_date,diary_title, diary_content"
-					+ "from diaries ;) values (?, ?, ?, ? ,? )";
+			String sql = "insert into users (user_name,mail, login_pw) values (?, ? ,? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if(card.getId() != 0) {
-				pStmt.setInt(1, card.getId() );
+
+			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
+				pStmt.setString(1, card.getUser_name());
 			} else {
-				pStmt.setInt(1, 0);
+				pStmt.setString(1, "");
 			}
-			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(2, card.getUser_id());
+			if (card.getMail() != null && !card.getMail().equals("")) {
+				pStmt.setString(2, card.getMail());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
-				pStmt.setString(3, card.getUser_name());
+			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
+				pStmt.setString(3, card.getLogin_pw());
 			} else {
 				pStmt.setString(3, "");
-			}
-			if (card.getMail() != null && !card.getMail().equals("")) {
-				pStmt.setString(4, card.getMail());
-			} else {
-				pStmt.setString(4, "");
-			}
-			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
-				pStmt.setString(5, card.getLogin_pw());
-			} else {
-				pStmt.setString(5, "");
 			}
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
+			//user_idの登録
+			sql = "UPDATE Users SET  user_id=(SELECT CONCAT('u',id) FROM Users WHERE user_id IS NULL) WHERE user_id IS NULL;";
+			pStmt = conn.prepareStatement(sql);
+			// SQL文を実行する
+						if (pStmt.executeUpdate() == 1) {
+							result = true;
+						}
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -178,33 +177,29 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update BC set user_id=?, diary_date=?, diary_title=?, diary_content=? where id=? ";
+			String sql = "update Users set user_name=?, mail=?, login_pw=? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 
-			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(1, card.getUser_id() );
+
+			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
+				pStmt.setString(1, card.getUser_name());
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
-				pStmt.setString(2, card.getUser_name());
+			if (card.getMail() != null && !card.getMail().equals("")) {
+				pStmt.setString(2, card.getMail());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getMail() != null && !card.getMail().equals("")) {
-				pStmt.setString(3, card.getMail());
+			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
+				pStmt.setString(3, card.getLogin_pw());
 			} else {
 				pStmt.setString(3, "");
-			}
-			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
-				pStmt.setString(4, card.getLogin_pw());
-			} else {
-				pStmt.setString(4, "");
 
 			}
-			pStmt.setInt(5, card.getId());
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
@@ -241,7 +236,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from BC where Id=?";
+			String sql = "delete from Users where Id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -270,6 +265,56 @@ public class UsersDAO {
 		return result;
 	}
 
+	public boolean isLoginOK(Users Users) {
+		Connection conn = null;
+		boolean loginResult = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SELECT文を準備する
+			String sql = "select mail, login_pw  from Users where mail = ? and login_pw = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, Users.getMail());
+			pStmt.setString(2, Users.getLogin_pw());
+
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// メアドとパスワードが一致するユーザーがいたかどうかをチェックする
+			rs.next();
+			if (rs.getInt("mail, login_pw") == 1) {
+				loginResult = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			loginResult = false;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			loginResult = false;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					loginResult = false;
+				}
+			}
+		}
+
+		// 結果を返す
+		return loginResult;
+	}
 }
 
 
