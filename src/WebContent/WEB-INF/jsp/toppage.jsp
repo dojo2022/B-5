@@ -1,98 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
- <head>
-<link rel="stylesheet" href="WebContent/css/all.css">
-<script src="./test.js" defer></script>
-  <style type="text/css"></style>
+<head>
+<link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
+
+ <link rel="stylesheet" type="text/css" href="/anikare/css/toppage.css">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="wrapper">
-  <header>
-    <div id="aniheader">
-        <!--日付表示-->
-          <p class="headermoji"><span id="time"></span></p>
+	<div class="wrapper">
+		<header>
+			<div id="aniheader">
+				<!--日付表示-->
+				<p class="headermoji">
+					<span id="time"></span>
+				</p>
 
 
-        <!--- メニューバー --->
-        <p class="">
-            <div class="drawer">
-            <!-- ハンバーガーメニュー表示・非表示切り替え -->
-            <input type="checkbox" id="drawer-check" class="drawer-hidden" >
-            <!-- ハンバーガーアイコン -->
-            <label for="drawer-check" class="drawer-open"><span></span></label>
-                <nav class="drawer-content">
+				<!--- メニューバー --->
+				<p class="">
+				<div class="drawer">
+					<!-- ハンバーガーメニュー表示・非表示切り替え -->
+					<input type="checkbox" id="drawer-check" class="drawer-hidden">
+					<!-- ハンバーガーアイコン -->
+					<label for="drawer-check" class="drawer-open"><span></span></label>
+					<nav class="drawer-content">
 
-                     <ul class=" drawar-list">
-                       <li><a href="" class="btn btn-border">トップページ　</a></li>
-                       <li><a href="" class="btn btn-border">予定・ＴｏＤｏ</a></li>
-                       <li><a href="" class="btn btn-border">　今日の予定　</a></li>
-                       <li><a href="" class="btn btn-border">　日記　一覧　</a></li>
-                       <li><a href="" class="btn btn-border">ポイント　交換</a></li>
-                       <li><a href="" class="btn btn-border">　マイページ　</a></li>
-                       <li><a href="" class="btn btn-border">　ログアウト　</a></li>
-
-
-      </ul>
-                </nav>
-              </div>
-        </p>
-      <!--タイトル-->
-      <p class=""><h1 class="logo"><a href =""><img src="src/WebContent/img/logo.png" alt="アニカレロゴ"></a></h1></p>
+						<ul class=" drawar-list">
+							<li><a href="" class="btn btn-border">トップページ </a></li>
+							<li><a href="" class="btn btn-border">予定・ＴｏＤｏ</a></li>
+							<li><a href="" class="btn btn-border"> 今日の予定 </a></li>
+							<li><a href="" class="btn btn-border"> 日記 一覧 </a></li>
+							<li><a href="" class="btn btn-border">ポイント 交換</a></li>
+							<li><a href="" class="btn btn-border"> マイページ </a></li>
+							<li><a href="" class="btn btn-border"> ログアウト </a></li>
 
 
-      <!--ポイント交換-->
-        <!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
-      <!-- ポイントデータベースから引っ張ってくる -->
+						</ul>
+					</nav>
+				</div>
 
-        <a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-      <p class="headermoji">ポイント</p>
-
-    </div>
-  </header>
-
-
-  <main>
-    <div class="maincontents">
-      <div class="leftside">
-          <!--キャラの吹き出し-->
-        <div class="animalcomment">
-          <img scr="ma"><img scr="ma">
-
-          <!-- ToDo -->
-
-          <!-- 今日の予定 -->
-          <p>今日はランチ！</p>
-          <!-- 今日の格言 -->
-          <p>あああああああああああああああああああああああああああ</p>
-        </div>
-
-        <!--- キャラクター --->
-        <div class="animals">
-          <img src="src/WebContent/img/animal_zou.png">
-          <!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
-        </div>
-      </div>
-      <div class="rightside">
-      <!--- カレンダー --->
-        <div class="main">
-          <h1 id="header"></h1>
-
-          <!--- ボタン　月移動 --->
-          <div id="next-prev-button">
-              <button id="prev" onclick="prev()">＜</button>
-              <button id="next" onclick="next()">＞</button>
-          </div>
+				<!--タイトル-->
+				<p class="">
+				<h1 class="logo">
+					<a href=""><img src="img/logo.png" alt="アニカレロゴ"></a>
+				</h1>
 
 
-          <!--- カレンダー　--->
-          <div id="calendar"></div>
-          <p>カレンダー</p>
-          <script src=""></script>
+				<!--ポイント交換-->
+				<!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
+				<!-- ポイントデータベースから引っ張ってくる -->
+
+				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
+				<p class="headermoji">ポイント</p>
+
+			</div>
+		</header>
+
+
+
+			<div class="maincontents">
+				<div class="leftside">
+					<!--キャラの吹き出し-->
+					<div class="animalcomment">
+
+
+						<!-- ToDo -->
+
+						<!-- 今日の予定 -->
+						<p>今日はランチ！</p>
+						<!-- 今日の格言 -->
+						<p>あああああああああああああああああああああああああああ</p>
+					</div>
+
+					<!--- キャラクター --->
+					<div class="animals">
+						<img src="img/animal_zou.png">
+						<!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
+					</div>
+				</div>
+
+				<div class="rightside">
+
+					<!--- カレンダー　--->
+						<p>カレンダー</p>
+						<button id="prev" type="button">前の月</button>
+						<button id="next" type="button">次の月</button>
+					<div id="calendar"></div>
+				</div>
+					</div>
+
+					</div>
+
+
+		<footer> </footer>
 <script>
 const weeks = ['日', '月', '火', '水', '木', '金', '土']
 const date = new Date()
@@ -184,48 +188,18 @@ function moveCalendar(e) {
     showCalendar(year, month)
 }
 
-$(document).ready(function(){
-    $('.confirm_buttton').click(function(){
-        if(!confirm('日付は'+e.target.dataset.date + 'ですか？')){
-            return false;
-        }else{
-            location.href = 'schedule.jsp';
-        }
-    });
-});
+document.querySelector('#prev').addEventListener('click', moveCalendar)
+document.querySelector('#next').addEventListener('click', moveCalendar)
+
+document.addEventListener("click", function(e) {
+    if(e.target.classList.contains("calendar_td")) {
+        alert('クリックした日付は' + e.target.dataset.date + 'です')
+    }
+})
+
+showCalendar(year, month)
 </script>
-…
-<button type="submit" id="confirm">入力内容を確認する</button>
-        </div>
-      </div>
-    </div>
 
-</main>
-<footer>
-
-</footer>
-<script>
-  'use strict'
-  function recalc(){
-  let dayOfWeek = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
-  const now=new Date();
-  const month = now.getMonth()+1;
-  const date = now.getDate();
-  const day = now.getDay();
-
-
-  document.getElementById('time').textContent = month + '/' + date + ''
-  + '(' + dayOfWeek[now.getDay()] + ')';
-  refresh();
-  }
-
-  function refresh() {
-  setTimeout(recalc, 1000);
-  }
-recalc();
-
-
-</script>
-</div>
 </body>
 </html>
+
