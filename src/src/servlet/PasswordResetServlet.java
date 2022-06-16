@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UsersDAO;
-import model.Res;
 import model.Users;
 /**
  * Servlet implementation class PasswordResetServlet
@@ -23,6 +22,8 @@ public class PasswordResetServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// パスワード再設定用ページにフォワードする
+		HttpSession session = request.getSession();
+		session.setAttribute("res", "get");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -31,7 +32,7 @@ public class PasswordResetServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String mail = request.getParameter("mail");
+		String mail = request.getParameter("Mail");
 		UsersDAO uDao = new UsersDAO();
 		//検索処理を行う
 /*		List<Users> cardList = uDao.select(new Users( mail));
@@ -39,22 +40,18 @@ public class PasswordResetServlet extends HttpServlet {
 		if (uDao.isMailOK(new Users(mail))) {	// ログイン成功
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
-			session.setAttribute("res", new Res("ok"));
+			session.setAttribute("res", "ok");
 
-			//フォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
-			dispatcher.forward(request, response);
-/*			// メニューサーブレットにリダイレクトする
-			response.sendRedirect("/simpleBC/MenuServlet");
-*/		}
+		}
 		else {									// ログイン失敗
 			HttpSession session = request.getSession();
-			session.setAttribute("res", new Res("miss"));
+			session.setAttribute("res", "miss");
 
-			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
-			dispatcher.forward(request, response);
+
 		}
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
+		dispatcher.forward(request, response);
 	}
 //		//リクエストスコープに保存
 //		request.setAttribute("cardList", cardList);

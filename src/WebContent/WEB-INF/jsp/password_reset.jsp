@@ -27,13 +27,13 @@
 					name="Mail" placeholder="メールアドレス"></label><br>
 				<p>※登録されているメールアドレスを入力してください。</p>
 				<p>ログイン用の仮PWを発行致します。</p>
-				<input type="submit" name="submit" value="確認"
-					onclick="return clickkakunin()"> <input type="reset"
+				<input type="submit" name="submit" value="確認">
+					<!-- onclick="return clickkakunin()" -->
+					 <input type="reset"
 					name="reset" value="クリア">
 			</form>
 		</div>
 	</main>
-	${res.title}
 	<footer class="footer">
 		<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 		<!-- 要相談 -->
@@ -41,26 +41,21 @@
 	<script>
 		'use strict'
 		//更新確認
-		function clickkakunin(){
-			if(${res.title} == ok){
+		/* function clickkakunin(){ */
+			if("${res}" == "ok"){
 				var clicked = window.confirm('再設定用のパスワードはこちらです');
-				if(clicked == true){
-					return true;
-				}else{
-					return false;
-				}
+
 			}
-			else if(${res.title} == miss)
-				{var clicked = window.confirm('間違いがあります');
-				if(clicked == true){
-					return true;
-				}else{
-					return false;
-				}
+			else if("${res}" == "miss")
+				{
+				var clicked = window.confirm('間違いがあります');
 
-				}
 
-}
+			}else{
+				console.log("empty");
+			}
+
+/* } */
 	</script>
 
 </body>

@@ -329,7 +329,7 @@ public boolean isMailOK(Users Users) {
 		conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 		// SELECT文を準備する
-		String sql = "select mail  from Users where mail = ? ";
+		String sql = "select count(mail)  from Users where mail = ? ";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setString(1, Users.getMail());
 
@@ -338,7 +338,7 @@ public boolean isMailOK(Users Users) {
 
 		// メアドが一致するユーザーがいたかどうかをチェックする
 		rs.next();
-		if (rs.getInt("mail") == 1) {
+		if (rs.getInt("count(mail)") == 1) {
 			MailResult = true;
 		}
 	}
