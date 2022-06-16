@@ -1,27 +1,19 @@
 package dao;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Schedule;
-
-
 /**
  * Servlet implementation class SchedulesDAO
  */
 @WebServlet("/SchedulesDAO")
 public class SchedulesDAO extends HttpServlet {
-
-
-	public List<Schedule> select(Schedule param) {
-		Connection conn = null;
-		List<Schedule> cardList = new ArrayList<Schedule>();
-
+	private static final long serialVersionUID = 1L;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
