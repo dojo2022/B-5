@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,6 +31,7 @@ public class MypageServlet extends HttpServlet {
 		// 個人ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 
@@ -47,6 +49,13 @@ public class MypageServlet extends HttpServlet {
 
 				// 更新処理を行う
 				UsersDAO uDao = new UsersDAO();
+				// 検索処理を行う
+
+				List<Users> cardList = uDao.select(new Users(1, "", "", "", ""));
+
+				// 検索結果をリクエストスコープに格納する
+				request.setAttribute("cardList", cardList);
+
 				if (uDao.update(new Users( user_name, ""))) {	// 登録成功
 					System.out.println("true");
 				}

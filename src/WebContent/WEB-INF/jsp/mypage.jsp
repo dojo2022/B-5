@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 </head>
 <body>
+
 	<div class="wrapper">
 		<header>
 			<div id="aniheader">
@@ -29,15 +30,16 @@
 					<nav class="drawer-content">
 
 						<ul class=" drawar-list">
-							<li><a href="/anikare/ToppageServlet"
-								class="btn btn-border">トップページ </a></li>
-							<li><a href="/anikare/ScheduleAddServlet" class="btn btn-border">予定・ＴｏＤｏ</a></li>
+							<li><a href="/anikare/ToppageServlet" class="btn btn-border">トップページ
+							</a></li>
+							<li><a href="/anikare/ScheduleAddServlet"
+								class="btn btn-border">予定・ＴｏＤｏ</a></li>
 							<li><a href="/anikare/ScheduleEditServlet"
 								class="btn btn-border"> 今日の予定 </a></li>
 							<li><a href="/anikare/DiaryServlet" class="btn btn-border">
 									日記 一覧 </a></li>
-							<li><a href="/anikare/ItemChangeServlet" class="btn btn-border">ポイント
-									交換</a></li>
+							<li><a href="/anikare/ItemChangeServlet"
+								class="btn btn-border">ポイント 交換</a></li>
 							<li><a href="/anikare/MypageServlet" class="btn btn-border">
 									マイページ </a></li>
 							<li><a href="/anikare/LoginServlet" class="btn btn-border">
@@ -49,14 +51,12 @@
 				<!--タイトル-->
 				<p>
 				<h1 class="logo">
-					<a href="/anikare/ToppageServlet.java"><img
+					<a href="/anikare/ToppageServlet"><img
 						src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 				</h1>
 				</p>
-
-
 				<!--ポイント交換-->
-				<!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
+				<!-- <a href ="/anikare/MypageServlet">ポイント交換</a></p> -->
 				<!-- ポイントデータベースから引っ張ってくる -->
 
 				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
@@ -71,7 +71,7 @@
 				<div class="leftside">
 					<!--キャラの吹き出し-->
 					<div class="animalcomment">
-						<img src="ma"><img scr="ma">
+						マイページ <img src="ma"><img src="ma">
 
 
 					</div>
@@ -89,26 +89,30 @@
 						<div class="my_data">
 
 							<h2>ユーザー情報変更</h2>
-							<c:forEach var="e" items="${cardList}" >
-							<details>
-								<form method="POST" action="/anikare/MypageServlet" id="form">
-									<h3>ユーザー名</h3>
-									<!-- データベースから持ってくる -->
-									現在のユーザー名:${user_name}  新しいユーザー名: <input type="text" name="new_name"
-										value="">
-									<!-- 更新押したらテキストボックス その後データベースを更新-->
-									<input type="submit" name="submit" value="更新"> <input
-										type="reset" name="reset" value="クリア">
-									<h3>パスワード</h3>
-									現在のパスワード: <input type="text" name="now_password" value="">
-									 新しいパスワード: <input type="text" name="new_password" value="">
 
-									<!-- 現在のパスワードがあっていればテキストボックス→データベースを更新 間違っていれば違いますのアラート-->
-									<input type="submit" name="submit" value="更新"> <input
-										type="reset" name="reset" value="クリア">
-								</form>
-							</details>
-							</c:forEach>
+
+
+							<form method="POST" action="/anikare/MypageServlet" id="form">
+								<h3>ユーザー名</h3>
+								<!-- データベースから持ってくる -->
+								<c:forEach var="e" items="${cardList}">
+										現在のユーザー名:${user_name} 新しいユーザー名: <input type="text"
+										name="new_name" value="">
+								</c:forEach>
+								<!-- 更新押したらテキストボックス その後データベースを更新-->
+								<input type="submit" name="submit" value="更新"> <input
+									type="reset" name="reset" value="クリア">
+								<h3>パスワード</h3>
+								現在のパスワード: <input type="text" name="now_password" value="">
+								新しいパスワード: <input type="text" name="new_password" value="">
+
+								<!-- 現在のパスワードがあっていればテキストボックス→データベースを更新 間違っていれば違いますのアラート-->
+								<input type="submit" name="submit" value="更新"> <input
+									type="reset" name="reset" value="クリア">
+							</form>
+
+
+
 						</div>
 
 						<div class="my_item">
@@ -139,25 +143,26 @@
 		</main>
 		<footer> </footer>
 		<script>
-			'use strict'
-			function recalc() {
-				let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
-						'Fri.', 'Sat.' ];
-				const now = new Date();
-				const month = now.getMonth() + 1;
-				const date = now.getDate();
-				const day = now.getDay();
+				'use strict'
+				function recalc() {
+					let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
+							'Fri.', 'Sat.' ];
+					const now = new Date();
+					const month = now.getMonth() + 1;
+					const date = now.getDate();
+					const day = now.getDay();
 
-				document.getElementById('time').textContent = month + '/'
-						+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
-				refresh();
-			}
+					document.getElementById('time').textContent = month + '/'
+							+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
+					refresh();
+				}
 
-			function refresh() {
-				setTimeout(recalc, 1000);
-			}
-			recalc();
-		</script>
+				function refresh() {
+					setTimeout(recalc, 1000);
+				}
+				recalc();
+			</script>
 	</div>
+
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body>
 	<header>
 		<h1 class="logo">
-			<img src="/anikare/img/logo.png" alt="アニカレロゴ">
+			<a href="/anikare/ToppageServlet"><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 		</h1>
 		<!-- ロゴの挿入 -->
 	</header>
@@ -33,5 +33,22 @@
 		<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 		<!-- 要相談 -->
 	</footer>
+	<script>
+		'use strict'
+		//更新確認
+		/* function clickkakunin(){ */
+			 if("${res}" == "ok"){
+			}
+			else if("${res}" == "miss")
+				{
+				var clicked = window.confirm('間違いがあります');
+
+
+			}else{
+				console.log("empty");
+			}
+
+/* } */
+	</script>
 </body>
 </html>
