@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UsersDAO;
 import model.Users;
@@ -27,6 +28,9 @@ public class LoginServlet extends HttpServlet {
 		// ログインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("res", "get");
 
 	}
 
@@ -51,8 +55,9 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("true");
 		}
 		else {									// ログイン失敗
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			request.setAttribute("Result", "fail");
+			// セッションスコープに、値を格納
+			HttpSession session = request.getSession();
+			session.setAttribute("res", "fail");
 
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
