@@ -44,7 +44,11 @@ public class NewAccountServlet extends HttpServlet {
 			System.out.println("false");
 
 		}
-
+		// ログインページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
+
+
