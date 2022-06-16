@@ -50,16 +50,15 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("/anikare/ToppageServlet");
 			System.out.println("true");
 		}
-//		else {									// ログイン失敗
-//			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-//			request.setAttribute("result",
-//			new Result("ログイン失敗！", "IDまたはPWに間違いがあります。", "/simpleBC/LoginServlet"));
-//
-//			// 結果ページにフォワードする
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-//		dispatcher.forward(request, response);
+		else {									// ログイン失敗
+			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
+			request.setAttribute("Result", "fail");
 
-//		}
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+		dispatcher.forward(request, response);
+
+		}
 	}
 
 }

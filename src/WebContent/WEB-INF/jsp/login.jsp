@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +57,15 @@
 			<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 			<!-- 要相談 -->
 		</footer>
+
 	</div>
+	<%
+	//リクエストスコープからのデータ取得
+	String Result = (String)request.getAttribute("Result"); %>
+	<script>
+	if (Result != null){
+		alert ('メールアドレス、もしくはPWが間違っています。');
+	}
+	</script>
 </body>
 </html>
