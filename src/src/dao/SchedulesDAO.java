@@ -1,35 +1,5 @@
 package dao;
 
-<<<<<<< Updated upstream
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-/**
- * Servlet implementation class SchedulesDAO
- */
-@WebServlet("/SchedulesDAO")
-public class SchedulesDAO extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SchedulesDAO() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,13 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Users;
+import model.Schedules;
 
-public class SDAO {
+
+
+public class SchedulesDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Users> select(Users param) {
+	public List<Schedules> select(Schedules param) {
 		Connection conn = null;
-		List<Users> cardList = new ArrayList<Users>();
+		List<Schedules> cardList = new ArrayList<Schedules>();
 
 		try
 		{
@@ -55,51 +27,25 @@ public class SDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
-			String sql = "select id, user_id, user_name,mail, login_pw  "
-					+ "from users WHERE id LIKE ? AND user_id LIKE ? AND user_name LIKE ? AND mail LIKE ? "
-					+ "AND login_pw LIKE ? ORDER BY id";
-			//			6/1412時作業
+			String sql = "SELECT * FROM Schedules ORDER BY id";
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// SQL文を完成させる<<検索項目だけ書く
-			if (param.getId() != 0) {
-				pStmt.setInt(1, param.getId() );
-			}
-			else {
-				pStmt.setInt(1, 0);
-			}
-			if (param.getUser_id() != null) {
-				pStmt.setString(2, "%" + param.getUser_id() + "%");
-			}
-			else {
-				pStmt.setString(2, "%");
-			}
-			if (param.getUser_name() != null) {
-				pStmt.setString(3, "%" + param.getUser_name() + "%");
-			} else {
-				pStmt.setString(3, "");
-			}
-			if (param.getMail() != null) {
-				pStmt.setString(4, "%" + param.getMail() + "%");
-			} else {
-				pStmt.setString(4, "");
-			}
-			if (param.getLogin_pw() != null) {
-				pStmt.setString(5,"%" + param.getLogin_pw() + "%");
-			} else {
-				pStmt.setString(5, "");
-			}
+
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				Users card = new Users(
+				Schedules card = new Schedules(
 						rs.getInt("id"),
-						rs.getString("user_id"),
-						rs.getString("user_name"),
-						rs.getString("mail"),
-						rs.getString("login_pw")
+						rs.getString("title"),
+						rs.getString("start_time"),
+						rs.getString("end_time"),
+						rs.getString("stamp_id"),
+						rs.getString("schedule_memo"),
+						rs.getString("place"),
+						rs.getString("user_id")
 						);
 				cardList.add(card);
 			}
@@ -130,7 +76,7 @@ public class SDAO {
 	}
 
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
-	public boolean insert(Users card) {
+	public boolean insert(Schedules card) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -142,38 +88,46 @@ public class SDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into users (user_name,mail, login_pw) values (?, ? ,? )";
+			String sql = "insert into schedules (title,start_time,end_time,stamp_id,schedule_memo,place) values (?, ? ,?, ?, ?, ? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 
-			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
-				pStmt.setString(1, card.getUser_name());
+			if (card.getTitle() != null && !card.getTitle().equals("")) {
+				pStmt.setString(1, card.getTitle());
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getMail() != null && !card.getMail().equals("")) {
-				pStmt.setString(2, card.getMail());
+			if (card.getStart_time() != null && !card.getStart_time().equals("")) {
+				pStmt.setString(2, card.getStart_time());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
-				pStmt.setString(3, card.getLogin_pw());
+			if (card.getEnd_time() != null && !card.getEnd_time().equals("")) {
+				pStmt.setString(3, card.getEnd_time());
 			} else {
 				pStmt.setString(3, "");
 			}
+			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
+				pStmt.setString(4, card.getStamp_id());
+			} else {
+				pStmt.setString(4, "");
+			}
+			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
+				pStmt.setString(5, card.getSchedule_memo());
+			} else {
+				pStmt.setString(5, "");
+			}
+			if (card.getPlace() != null && !card.getPlace().equals("")) {
+				pStmt.setString(6, card.getPlace());
+			} else {
+				pStmt.setString(6, "");
+			}
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
-			//user_idの登録
-			sql = "UPDATE Users SET  user_id=(SELECT CONCAT('u',id) FROM Users WHERE user_id IS NULL) WHERE user_id IS NULL;";
-			pStmt = conn.prepareStatement(sql);
-			// SQL文を実行する
-						if (pStmt.executeUpdate() == 1) {
-							result = true;
-						}
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,7 +149,7 @@ public class SDAO {
 	}
 
 	// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
-	public boolean update(Users card) {
+	public boolean update(Schedules card) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -207,27 +161,41 @@ public class SDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update Users set user_name=?, mail=?, login_pw=? ";
+			String sql = "update Schedules set title=?, start_time=?, end_time=?, stamp_id=?, schedule_memo=?, place=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 
 
-			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
-				pStmt.setString(1, card.getUser_name());
+			if (card.getTitle() != null && !card.getTitle().equals("")) {
+				pStmt.setString(1, card.getTitle());
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getMail() != null && !card.getMail().equals("")) {
-				pStmt.setString(2, card.getMail());
+			if (card.getStart_time() != null && !card.getStart_time().equals("")) {
+				pStmt.setString(2, card.getStart_time());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
-				pStmt.setString(3, card.getLogin_pw());
+			if (card.getEnd_time() != null && !card.getEnd_time().equals("")) {
+				pStmt.setString(3, card.getEnd_time());
 			} else {
 				pStmt.setString(3, "");
-
+			}
+			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
+				pStmt.setString(4, card.getStamp_id());
+			} else {
+				pStmt.setString(4, "");
+			}
+			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
+				pStmt.setString(5, card.getSchedule_memo());
+			} else {
+				pStmt.setString(5, "");
+			}
+			if (card.getPlace() != null && !card.getPlace().equals("")) {
+				pStmt.setString(6, card.getPlace());
+			} else {
+				pStmt.setString(6, "");
 			}
 
 			// SQL文を実行する
@@ -251,7 +219,6 @@ public class SDAO {
 
 		// 結果を返す
 		return result;
->>>>>>> Stashed changes
 	}
 
 	// 引数numberで指定されたレコードを削除し、成功したらtrueを返す
@@ -267,7 +234,7 @@ public class SDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from Users where Id=?";
+			String sql = "delete from Schedules where Id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -291,59 +258,9 @@ public class SDAO {
 				}
 			}
 		}
-
 		// 結果を返す
 		return result;
 	}
 
-	public boolean isLoginOK(Users Users) {
-		Connection conn = null;
-		boolean loginResult = false;
 
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
-
-			// SELECT文を準備する
-			String sql = "select mail, login_pw  from Users where mail = ? and login_pw = ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, Users.getMail());
-			pStmt.setString(2, Users.getLogin_pw());
-
-			// SELECT文を実行し、結果表を取得する
-			ResultSet rs = pStmt.executeQuery();
-
-			// メアドとパスワードが一致するユーザーがいたかどうかをチェックする
-			rs.next();
-			if (rs.getInt("mail, login_pw") == 1) {
-				loginResult = true;
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			loginResult = false;
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			loginResult = false;
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-					loginResult = false;
-				}
-			}
-		}
-
-		// 結果を返す
-		return loginResult;
-	}
 }
