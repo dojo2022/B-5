@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,13 +60,18 @@
 		</footer>
 
 	</div>
-	<%
-	//リクエストスコープからのデータ取得
-	String Result = (String)request.getAttribute("Result"); %>
 	<script>
-	if (Result != null){
-		alert ('メールアドレス、もしくはPWが間違っています。');
-	}
+	'use strict'
+	//更新確認
+	/* function clickkakunin(){ */
+	if("${res}" == "fail")
+			{
+			var clicked = window.confirm('メールアドレスもしくはPWが間違っています。n再度入力をしてください。');
+		}else{
+			console.log("empty");
+		}
+
+/* } */
 	</script>
 </body>
 </html>
