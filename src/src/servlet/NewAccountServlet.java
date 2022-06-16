@@ -39,9 +39,13 @@ public class NewAccountServlet extends HttpServlet {
 		UsersDAO uDao = new UsersDAO();
 		if (uDao.insert(new Users( user_name, mail, login_pw))) {	// 登録成功
 			System.out.println("true");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
 		}
 		else {												// 登録失敗
 			System.out.println("false");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/js/new_account.js");
+			dispatcher.forward(request, response);
 
 		}
 
