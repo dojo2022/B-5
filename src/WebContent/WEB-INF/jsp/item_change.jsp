@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,18 +95,22 @@
 									<th class="header" colspan="4">壁紙</th>
 								</tr>
 								<tr>
-									<!-- 後で暮らす指定して一括で画像サイズを固定 -->
+								<c:forEach var="e" items="${cardList}">
+
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200">${e.genre_name}</td>
+									<%-- <td width="200">${e.genre_name}</td>
+									<td width="200">${e.genre_name}</td>
+									<td width="200">${e.genre_name}</td> --%>
+								</c:forEach>
+								</tr>
+<!-- 								<tr>
 									<td><img src="/anikare/img/city.jpg" width="200"></td>
 									<td><img src="/anikare/img/sea.jpg" width="200"></td>
 									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
 									<td><img src="/anikare/img/city.jpg" width="200"></td>
 								</tr>
-								<tr>
-									<td><img src="/anikare/img/city.jpg" width="200"></td>
-									<td><img src="/anikare/img/sea.jpg" width="200"></td>
-									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
-									<td><img src="/anikare/img/city.jpg" width="200"></td>
-								</tr>
+ -->
 							</table>
 						</div>
 						<!-- 格言リスト -->
@@ -114,18 +119,21 @@
 								<tr>
 									<th class="header" colspan="4">格言</th>
 								</tr>
+								<c:forEach var="e" items="${cardList}">
 								<tr>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200">${e.genre_name}</td>
+									<td width="200">${e.genre_name}</td>
+									<td width="200">${e.genre_name}</td>
+									<td width="200">${e.genre_name}</td>
 								</tr>
-								<tr>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
-									<td><img src="/anikare/img/kakugen.jpg" width="200"></td>
+<!-- 								<tr>
+									<td><img src="/anikare/img/city.jpg" width="200"></td>
+									<td><img src="/anikare/img/sea.jpg" width="200"></td>
+									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
+									<td><img src="/anikare/img/city.jpg" width="200"></td>
 								</tr>
+ -->								</c:forEach>
 							</table>
 						</div>
 						<!-- キャラクターリスト -->
@@ -163,7 +171,7 @@
 									<th class="header" colspan="4">クーポン</th>
 								</tr>
 								<tr>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+									<td><img id ="${e.id }"src="${e.image }" width="200"></td>
 									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
 									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
 									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
@@ -204,6 +212,12 @@
   setTimeout(recalc, 1000);
   }
 recalc();
+
+//どれが押されたかを読み取る getElementById
+//押されたもののポイントを変数に入れる
+//今所持してるポイントと比べる
+//少ない時はアラート
+//多い時はサーブレットに移動（ポイントの減額と、所持アイテムの追加,id
 
 
 </script>

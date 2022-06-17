@@ -9,15 +9,17 @@ public class Kakugens implements Serializable{
 	private String genre;
 	private String kakugen_id;
 	private int kakugen_point;
+	private String kakugen_image;
 
 	public Kakugens(int id, String kakugen, String genre_name, String genre,
-			String kakugen_id, int kakugen_point) {
+			String kakugen_id, int kakugen_point, String kakugen_image) {
 		this.id = id;
 		this.kakugen= kakugen;
 		this.genre_name= genre_name;
 		this.genre = genre;
 		this.kakugen_id= kakugen_id;
 		this.kakugen_point= kakugen_point;
+		this.kakugen_image= kakugen_image;
 
 	}
 
@@ -28,6 +30,7 @@ public class Kakugens implements Serializable{
 		this.genre = "";
 		this.kakugen_id= "";
 		this.kakugen_point= 0;
+		this.kakugen_image="";
 	}
 
 	public int getId() {
@@ -77,5 +80,14 @@ public class Kakugens implements Serializable{
 	public void setKakugen_point(int kakugen_point) {
 		this.kakugen_point = kakugen_point;
 	}
+
+	public String getKakugen_image() {
+		return kakugen_image;
+	}
+
+	public void setKakugen_image(String kakugen_image) {
+		this.kakugen_image = kakugen_image;
+	}
+
 
 }

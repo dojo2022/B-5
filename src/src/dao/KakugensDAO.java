@@ -13,7 +13,7 @@ import model.Kakugens;
 public class KakugensDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	//常にすべてのデータを表示するのであいまい検索
-	public List<Kakugens> select() {
+	public List<Kakugens> select(Kakugens param) {
 		Connection conn = null;
 		List<Kakugens> cardList = new ArrayList<Kakugens>();
 
@@ -44,7 +44,8 @@ public class KakugensDAO {
 				rs.getString("genre_name"),
 				rs.getString("genre"),
 				rs.getString("kakugen_id"),
-				rs.getInt("kakugen_point")
+				rs.getInt("kakugen_point"),
+				rs.getString("kakugen_image")
 				);
 				cardList.add(card);
 			}
