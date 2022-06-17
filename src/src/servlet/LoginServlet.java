@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UsersDAO;
+import model.Login;
 import model.Users;
 
 /**
@@ -46,20 +47,20 @@ public class LoginServlet extends HttpServlet {
 
 		// ログイン処理を行う
 		UsersDAO uDao = new UsersDAO();
-		if (uDao.isLoginOK(new Users(mail, login_pw ))) {	// ログイン成功 これ以降がいまいちわかっていない
-//			// セッションスコープにIDを格納する
-//		    HttpSession session = request.getSession();
-//			session.setAttribute("id", new LoginUser(mail));
-////			 メニューサーブレットにリダイレクトする
+		if (uDao.isLoginOK(new Users(mail, login_pw ))) {	// ログイン成功
+			// セッションスコープにアドレスを格納する
+		    HttpSession session = request.getSession();
+			session.setAttribute("id", new Login(mail));
+//			 トップページのサーブレットにリダイレクトする
 			response.sendRedirect("/anikare/ToppageServlet");
-			System.out.println("true");
+
 		}
 		else {									// ログイン失敗
-			// セッションスコープに、値を格納
+			// セッションスコープに値を格納
 			HttpSession session = request.getSession();
 			session.setAttribute("res", "fail");
 
-			// 結果ページにフォワードする
+			// 	ログインページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
 

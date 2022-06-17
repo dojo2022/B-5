@@ -42,7 +42,7 @@
 				<!--タイトル-->
 				<!-- <p class=""> -->
 				<h1 class="logo">
-					<a href=""><img src="src/WebContent/img/logo.png" alt="アニカレロゴ"></a>
+					<a href=""><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 				</h1>
 				<!-- </p> -->
 
@@ -74,7 +74,7 @@
 
 					<!--- キャラクター --->
 					<div class="animals">
-						<img src="src/WebContent/img/animal_zou.png">
+						<img src="/anikare/img/animal_zou.png">
 						<!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
 					</div>
 				</div>
