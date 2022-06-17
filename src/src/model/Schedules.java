@@ -24,16 +24,7 @@ public class Schedules implements Serializable{
 		this.user_id = user_id;
 	}
 
-	public Schedules() {
-		this.id = 0;
-		this.title = "";
-		this.start_time = "";
-		this.end_time = "";
-		this.stamp_id = "";
-		this.schedule_memo = "";
-		this.place = "";
-		this.user_id = "";
-	}
+
 
 	public int getId() {
 		return id;
