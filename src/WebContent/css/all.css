@@ -134,7 +134,7 @@ a.btn-border {
   a.btn-border:after {
     position: absolute;
 
-    max-width: 100%;
+    width: 100%;
     height: 2px;
 
     content: '';
