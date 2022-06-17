@@ -118,6 +118,7 @@
 						<div class="my_item">
 							<h2>sampleさん所持アイテム一覧</h2>
 							<h3>壁紙</h3>
+
 							<!-- background_itemsから要素を順番に表示 -->
 							<input type="submit" name="submit" value="変更">
 							<h3>格言</h3>
