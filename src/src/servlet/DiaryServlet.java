@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.DiariesDAO;
 import model.Diaries;
@@ -24,22 +23,22 @@ public class DiaryServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/WEB-INF/jsp/login.jsp");
 			return;
-		}
+		}*/
 
 
 
 
 	DiariesDAO dDao = new DiariesDAO();
-	List<Diaries> cardList = dDao.select(new Diaries("","","",""));
+	List<Diaries> cardList = dDao.select(new Diaries("",""));
 
 	// 検索結果をリクエストスコープに格納する
 	request.setAttribute("cardList", cardList);
 	// メニューページにフォワードする
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/diary.jsp");
 	dispatcher.forward(request, response);
 
 }

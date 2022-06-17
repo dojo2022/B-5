@@ -23,15 +23,17 @@
 
 		<div>
 			<form method="POST" action="/anikare/PasswordResetServlet" id=form>
-				<label for="Mail">メールアドレス<br> <input type="text"
-					name="Mail" placeholder="メールアドレス"></label><br>
+				<label for="Mail">メールアドレス<br>
+				 <input type="text"	name="Mail" placeholder="メールアドレス"></label><br>
 				<p>※登録されているメールアドレスを入力してください。</p>
 				<p>ログイン用の仮PWを発行致します。</p>
 				<input type="submit" name="submit" value="確認">
-				<!-- onclick="return clickkakunin()" -->
+				  <!--  onclick="return clickkakunin()"-->
+<!-- 				<button onclick="btnClick();">確認</button>
+ -->				<!-- onclick="return clickkakunin()" -->
 				<input type="reset" name="reset" value="クリア">
 			</form>
-			<a href="/anikare/LoginServlet" >※ログインページはこちら</a>
+			<a href="/anikare/LoginServlet">※ログインページはこちら</a>
 		</div>
 
 	</main>
@@ -41,10 +43,80 @@
 	</footer>
 	<script>
 		'use strict'
-		//更新確認
-		/* function clickkakunin(){ */
-
+		/* function btnCliick() {
+			//ランダムパスワード生成
 			let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			let rand_str = '';
+			for (var i = 0; i < 8; i++) {
+				rand_str += chars.charAt(Math.floor(Math.random()
+						* chars.length));
+			}
+			function randomInt(num) {
+				var rand = Math.floor(Math.random() * num);
+
+				return rand;
+			}
+			let random_pw = randomInt(100) + rand_str + randomInt(100)
+			//メールのデータを照合する
+			function postForm(value) {
+
+						var form = document.createElement('form');
+						var request = document.createElement('input');
+
+						form.method = 'POST';
+						form.action = '/anikare/PasswordResetServlet';
+
+						request.type = 'hidden'; //入力フォームが表示されないように
+						request.name = 'text';
+						request.value = value;
+
+						form.appendChild(request);
+						document.body.appendChild(form);
+
+						form.submit();
+
+					}
+				postForm('Mail')
+
+				//confirmダイアログを出す
+			if ("${res}" == "ok") {
+				var clicked = window.confirm('再設定用のパスワードはこちらです[' + random_pw
+						+ ']');
+				if (clicked) {
+					//OKなのでPOSTする
+					function postForm(value) {
+
+						var form = document.createElement('form');
+						var request = document.createElement('input');
+
+						form.method = 'POST';
+						form.action = '/anikare/PasswordResetServlet';
+
+						request.type = 'hidden'; //入力フォームが表示されないように
+						request.name = 'text';
+						request.value = value;
+
+						form.appendChild(request);
+						document.body.appendChild(form);
+
+						form.submit();
+
+					}
+					postForm(random_pw)
+
+				//投げっぱなしでログイン画面に遷移する
+				window.href = "http://localhost:8080/anikare/LoginServlet";
+				}
+			} else if ("${res}" == "miss") {
+				var clicked = window.confirm('間違いがあります');
+
+			} else {
+				console.log("empty");
+			}
+		} */
+		//更新確認
+	/* function clickkakunin(){ */
+			/* let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 			let rand_str = '';
 			for ( var i = 0; i < 8; i++ ) {
 				rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -53,43 +125,44 @@
 				  var rand = Math.floor(Math.random() * num);
 
 				  return rand;
-				}
+			}
 			let random_pw=randomInt(100) +rand_str +randomInt(100)
-			if("${res}" == "ok"){
-				var clicked = window.confirm('再設定用のパスワードはこちらです['+random_pw+']');
-				
-				function postForm(value) {
-					 
-				    var form = document.createElement('form');
-				    var request = document.createElement('input');
-				 
-				    form.method = 'POST';
-				    form.action = '/anikare/PasswordResetServlet';
-				 
-				    request.type = 'hidden'; //入力フォームが表示されないように
-				    request.name = 'text';
-				    request.value = value;
-				 
-				    form.appendChild(request);
-				    document.body.appendChild(form);
-				 
-				    form.submit();
-				    
-				    postForm(random_pw)
-				 
-				}
+ */
+ //${newpass}でデータ取り出す
+		if("${res}" == "ok"){
+			window.confirm('再設定用のパスワードはこちらです['+"${pas}"+']');
+			/* if (clicked){
+			//サーブレットにpostする。
+			function postForm(value) {
+
+			    var form = document.createElement('form');
+			    var request = document.createElement('input');
+
+			    form.method = 'POST';
+			    form.action = '/anikare/PasswordResetServlet';
+
+			    request.type = 'hidden'; //入力フォームが表示されないように
+			    request.name = 'text';
+			    request.value = value;
+
+			    form.appendChild(request);
+			    document.body.appendChild(form);
+
+			    form.submit();
+
+
 			}
-			else if("${res}" == "miss")
-				{
-				var clicked = window.confirm('間違いがあります');
+			postForm(random_pw)
+			} */
+		}
+		else if("${res}" == "miss")
+			{
+			window.confirm('間違いがあります');
 
-			}else{
-				console.log("empty");
-			}
+		}else{
+			console.log("empty");
 
-
-
-/* } */
+		}
 	</script>
 
 </body>

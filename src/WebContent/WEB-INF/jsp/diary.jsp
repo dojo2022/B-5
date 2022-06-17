@@ -6,8 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <title>アニカレ</title>
-  <link rel= "stylesheet" href="src/WebContent/css/all.css">
-  <link rel= "stylesheet" href="src/WebContent/css/diary.css">
+  <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
+ <link rel="stylesheet" type="text/css" href="/anikare/css/diary.css">
   <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
 </head>
 <body>
@@ -71,7 +71,7 @@
 
         <!--- キャラクター --->
         <div class="animals">
-          <img src="src/WebContent/img/animal_zou.png">
+          <img src="img/animal_zou.png">
           <!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
         </div>
       </div>

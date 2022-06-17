@@ -23,6 +23,7 @@
 
 .start_list th {
   background-color:rgb(252, 252, 252);
+  height:10px;
    border: solid 1px  black;
    position: sticky;
    top: 0;

@@ -34,13 +34,27 @@ public class PasswordResetServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String mail = request.getParameter("Mail");
 		UsersDAO uDao = new UsersDAO();
-		//検索処理を行う
-/*		List<Users> cardList = uDao.select(new Users( mail));
-*/
-		if (uDao.isMailOK(new Users(mail))) {	// ログイン成功
-			// セッションスコープにIDを格納する
+
+		if (uDao.isMailOK(new Users(mail))) {	// メール一致
+
+			//passwordを生成してString型newpassに代入
+
+
+			String newpass = "125446842134546";
+
+
+
+			request.setAttribute("pas", newpass);
+			//uDaoにupdate文を追加。mailで検索。passの値をnewpassに更新する
+			if(uDao.updatePassword(new Users(mail,newpass))) {
+
 			HttpSession session = request.getSession();
 			session.setAttribute("res", "ok");
+
+			}else {
+				HttpSession session = request.getSession();
+				session.setAttribute("res", "update_mis");
+			}
 
 		}
 		else {									// ログイン失敗
@@ -49,13 +63,16 @@ public class PasswordResetServlet extends HttpServlet {
 
 
 		}
-		// 結果ページにフォワードする
+		// パスワード再設定ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
 		dispatcher.forward(request, response);
+
+
 	}
 //		//リクエストスコープに保存
 //		request.setAttribute("cardList", cardList);
 //
+		//パスワードを受け取り、上書きする
 
 
 
