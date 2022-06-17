@@ -28,13 +28,13 @@
 					<nav class="drawer-content">
 
 						<ul class=" drawar-list">
-							<li><a href="" class="btn btn-border">トップページ </a></li>
-							<li><a href="" class="btn btn-border">予定・ＴｏＤｏ</a></li>
-							<li><a href="" class="btn btn-border"> 今日の予定 </a></li>
-							<li><a href="" class="btn btn-border"> 日記 一覧 </a></li>
-							<li><a href="" class="btn btn-border">ポイント 交換</a></li>
-							<li><a href="" class="btn btn-border"> マイページ </a></li>
-							<li><a href="" class="btn btn-border"> ログアウト </a></li>
+							<li><a href="/anikare/ToppageServlet" class="btn btn-border">トップページ </a></li>
+							<li><a href="/anikare/ScheduleAddServlet" class="btn btn-border">予定・ＴｏＤｏ</a></li>
+							<li><a href="/anikare/ScheduleEditServlet" class="btn btn-border"> 今日の予定 </a></li>
+							<li><a href="/anikare/DiaryServlet" class="btn btn-border"> 日記 一覧 </a></li>
+							<li><a href="/anikare/ItemChangeServlet" class="btn btn-border">ポイント 交換</a></li>
+							<li><a href="/anikare/MypageServlet" class="btn btn-border"> マイページ </a></li>
+							<li><a href="/anikare/LoginServlet" class="btn btn-border"> ログアウト </a></li>
 						</ul>
 					</nav>
 				</div>
