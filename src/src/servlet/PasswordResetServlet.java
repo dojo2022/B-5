@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,7 +41,17 @@ public class PasswordResetServlet extends HttpServlet {
 			//passwordを生成してString型newpassに代入
 
 
-			String newpass = "125446842134546";
+
+			int min_val = 1000000;
+	        int max_val = 1000000000;
+	        Random rand = new Random();
+	        int randomNum = min_val + rand.nextInt((max_val - min_val) + 1);
+	        Integer i = Integer.valueOf(randomNum);
+	        String newpass = i.toString();
+
+
+			/*String newpass = "125446842134546";*/
+
 
 
 
