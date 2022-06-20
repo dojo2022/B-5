@@ -15,7 +15,7 @@ public class KakugensDAO {
 	//常にすべてのデータを表示するのであいまい検索
 	public List<Kakugens> select(Kakugens param) {
 		Connection conn = null;
-		List<Kakugens> cardList = new ArrayList<Kakugens>();
+		List<Kakugens> wordsList = new ArrayList<Kakugens>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -38,7 +38,7 @@ public class KakugensDAO {
 
 			// 結果表をコレクションにコピーする <<ここも改造！！！>>
 			while (rs.next()) {
-				Kakugens card = new Kakugens(
+				Kakugens words = new Kakugens(
 				rs.getInt("id"),
 				rs.getString("kakugen"),
 				rs.getString("genre_name"),
@@ -47,16 +47,16 @@ public class KakugensDAO {
 				rs.getInt("kakugen_point"),
 				rs.getString("kakugen_image")
 				);
-				cardList.add(card);
+				wordsList.add(words);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			wordsList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			wordsList = null;
 		}
 		finally {
 			// データベースを切断
@@ -66,12 +66,12 @@ public class KakugensDAO {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					wordsList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return cardList;
+		return wordsList;
 	}
 }

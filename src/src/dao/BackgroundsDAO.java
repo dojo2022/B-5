@@ -14,9 +14,9 @@ public class BackgroundsDAO {
 
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	//常にすべてのデータを表示するのであいまい検索
-	public List<Backgrounds> select() {
+	public List<Backgrounds> select(Backgrounds param) {
 		Connection conn = null;
-		List<Backgrounds> cardList = new ArrayList<Backgrounds>();
+		List<Backgrounds> bgList = new ArrayList<Backgrounds>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -27,7 +27,7 @@ public class BackgroundsDAO {
 
 			// SQL文を準備する <<ここを改造する！！！>>表が持っているデータを書き並べる　～LIKE?
 			// とりあえず名刺番号、名、会社名のみで検索
-			String sql = "select * from Backgroungds ORDER BY id";
+			String sql = "select * from Backgrounds ORDER BY id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
@@ -35,23 +35,23 @@ public class BackgroundsDAO {
 
 			// 結果表をコレクションにコピーする <<ここも改造！！！>>
 			while (rs.next()) {
-				Backgrounds card = new Backgrounds(
+				Backgrounds bg = new Backgrounds(
 				rs.getInt("id"),
 				rs.getString("bg_name"),
 				rs.getString("bg_image"),
 				rs.getInt("bg_point"),
 				rs.getString("background_id")
 				);
-				cardList.add(card);
+				bgList.add(bg);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			bgList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			bgList = null;
 		}
 		finally {
 			// データベースを切断
@@ -61,12 +61,12 @@ public class BackgroundsDAO {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					bgList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return cardList;
+		return bgList;
 	}
 }

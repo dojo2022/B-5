@@ -11,7 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BackgroundsDAO;
+import dao.CharactersDAO;
+import dao.CouponsDAO;
 import dao.KakugensDAO;
+import model.Backgrounds;
+import model.Characters;
+import model.Coupons;
 import model.Kakugens;
 
 /**
@@ -33,11 +39,29 @@ public class ItemChangeServlet extends HttpServlet {
 			return;
 		}
 		//アイテムの全件表示を行う
-		KakugensDAO kDAO = new KakugensDAO();
-		List<Kakugens> cardList = kDAO.select(new Kakugens(0,"","" ,"","",0 ,""));
-
+		//背景はbgListスコープに保存
+		BackgroundsDAO bDAO = new BackgroundsDAO();
+		List<Backgrounds> bgList = bDAO.select(new Backgrounds(0,"","" ,0 ,""));
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("cardList", cardList);
+		request.setAttribute("bgList", bgList);
+
+		//格言はwordsListスコープに保存
+		KakugensDAO kDAO = new KakugensDAO();
+		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","" ,"","",0 ,""));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("wordsList", wordsList);
+
+		//キャラクターはcharactersスコープに保存
+		CharactersDAO cDAO = new CharactersDAO();
+		List<Characters> charactersList = cDAO.select(new Characters(0,"","" ,"","",0 ,""));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("charactersList", charactersList);
+
+		//クーポンはcouponsスコープに保存
+		CouponsDAO coDAO = new CouponsDAO();
+		List<Coupons> couponsList = coDAO.select(new Coupons(0,"","" ,0 ,""));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("couponsList", couponsList);
 
 		//ログインデータがある場合、アイテム交換ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");

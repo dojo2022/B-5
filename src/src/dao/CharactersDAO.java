@@ -13,9 +13,9 @@ import model.Characters;
 public class CharactersDAO {
 		// 引数paramで検索項目を指定し、検索結果のリストを返す
 		//常にすべてのデータを表示するのであいまい検索
-		public List<Characters> select() {
+		public List<Characters> select(Characters param) {
 			Connection conn = null;
-			List<Characters> cardList = new ArrayList<Characters>();
+			List<Characters> charactersList = new ArrayList<Characters>();
 
 			try {
 				// JDBCドライバを読み込む
@@ -33,7 +33,7 @@ public class CharactersDAO {
 
 				// 結果表をコレクションにコピーする <<ここも改造！！！>>
 				while (rs.next()) {
-					Characters card = new Characters(
+					Characters characters = new Characters(
 					rs.getInt("id"),
 					rs.getString("user_id"),
 					rs.getString("character_name"),
@@ -42,16 +42,16 @@ public class CharactersDAO {
 					rs.getInt("character_point"),
 					rs.getString("character_id")
 					);
-					cardList.add(card);
+					charactersList.add(characters);
 				}
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				cardList = null;
+				charactersList = null;
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				cardList = null;
+				charactersList = null;
 			}
 			finally {
 				// データベースを切断
@@ -61,13 +61,13 @@ public class CharactersDAO {
 					}
 					catch (SQLException e) {
 						e.printStackTrace();
-						cardList = null;
+						charactersList = null;
 					}
 				}
 			}
 
 			// 結果を返す
-			return cardList;
+			return charactersList;
 		}
 	}
 

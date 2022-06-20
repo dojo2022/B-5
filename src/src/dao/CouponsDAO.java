@@ -14,9 +14,9 @@ public class CouponsDAO {
 
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	//常にすべてのデータを表示するのであいまい検索
-	public List<Coupons> select() {
+	public List<Coupons> select(Coupons param) {
 		Connection conn = null;
-		List<Coupons> cardList = new ArrayList<Coupons>();
+		List<Coupons> couponsList = new ArrayList<Coupons>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -35,23 +35,23 @@ public class CouponsDAO {
 
 			// 結果表をコレクションにコピーする <<ここも改造！！！>>
 			while (rs.next()) {
-				Coupons card = new Coupons(
+				Coupons coupons = new Coupons(
 				rs.getInt("id"),
 				rs.getString("coupon_name"),
-				rs.getString("coupon_img"),
+				rs.getString("coupon_image"),
 				rs.getInt("coupon_point"),
 				rs.getString("coupon_id")
 				);
-				cardList.add(card);
+				couponsList.add(coupons);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			couponsList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			couponsList = null;
 		}
 		finally {
 			// データベースを切断
@@ -61,13 +61,13 @@ public class CouponsDAO {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					couponsList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return cardList;
+		return couponsList;
 	}
 }
 

@@ -95,22 +95,24 @@
 									<th class="header" colspan="4">壁紙</th>
 								</tr>
 								<tr>
-								<c:forEach var="e" items="${cardList}">
-
+								<c:forEach var="e" items="${bgList}" begin="0" end="3" >
 									<!-- 後でクラス指定して一括で画像サイズを固定 -->
-									<td width="200px">${e.genre_name}</td>
-									<%-- <td width="200">${e.genre_name}</td>
-									<td width="200">${e.genre_name}</td>
-									<td width="200">${e.genre_name}</td> --%>
+									<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
 								</c:forEach>
 								</tr>
-<!-- 								<tr>
-									<td><img src="/anikare/img/city.jpg" width="200"></td>
-									<td><img src="/anikare/img/sea.jpg" width="200"></td>
-									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
-									<td><img src="/anikare/img/city.jpg" width="200"></td>
+								<tr>
+								<c:forEach var="e" items="${bgList}" begin="4" end="7" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
+								</c:forEach>
 								</tr>
- -->
+								<tr>
+								<c:forEach var="e" items="${bgList}" begin="8" end="11" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
+								</c:forEach>
+								</tr>
+								<!-- 要素が増えたらこのfor文を追加する -->
 							</table>
 						</div>
 						<!-- 格言リスト -->
@@ -119,21 +121,25 @@
 								<tr>
 									<th class="header" colspan="4">格言</th>
 								</tr>
-								<c:forEach var="e" items="${cardList}">
 								<tr>
+								<c:forEach var="e" items="${wordsList}" begin="0" end="3" >
 									<!-- 後でクラス指定して一括で画像サイズを固定 -->
-									<td width="200">${e.genre_name}</td>
-									<td width="200">${e.genre_name}</td>
-									<td width="200">${e.genre_name}</td>
-									<td width="200">${e.genre_name}</td>
+									<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+								</c:forEach>
 								</tr>
-<!-- 								<tr>
-									<td><img src="/anikare/img/city.jpg" width="200"></td>
-									<td><img src="/anikare/img/sea.jpg" width="200"></td>
-									<td><img src="/anikare/img/mountain.jpg" width="200"></td>
-									<td><img src="/anikare/img/city.jpg" width="200"></td>
+								<tr>
+								<c:forEach var="e" items="${wordsList}" begin="4" end="7" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+								</c:forEach>
 								</tr>
- -->								</c:forEach>
+								<tr>
+								<c:forEach var="e" items="${wordsList}" begin="8" end="11" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+								</c:forEach>
+								</tr>
+								<!-- 要素が増えたらこのfor文を追加する -->
 							</table>
 						</div>
 						<!-- キャラクターリスト -->
@@ -143,25 +149,24 @@
 									<th class="header" colspan="4">キャラクター</th>
 								</tr>
 								<tr>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
+								<c:forEach var="e" items="${charactersList}" begin="0" end="3" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.character_image}<br>${e.character_point}</td>
+								</c:forEach>
 								</tr>
 								<tr>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
-									<td><img src="/anikare/img/character.jpg"
-										width="200"></td>
+								<c:forEach var="e" items="${charactersList}" begin="4" end="7" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.character_image}<br>${e.character_point}</td>
+								</c:forEach>
 								</tr>
+								<tr>
+								<c:forEach var="e" items="${charactersList}" begin="8" end="11" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.character_image}<br>${e.character_point}</td>
+								</c:forEach>
+								</tr>
+								<!-- 要素が増えたらこのfor文を追加する -->
 							</table>
 						</div>
 						<!-- クーポンリスト -->
@@ -171,18 +176,24 @@
 									<th class="header" colspan="4">クーポン</th>
 								</tr>
 								<tr>
-									<td><img id ="${e.id }"src="${e.image }" width="200"></td>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+								<c:forEach var="e" items="${couponsList}" begin="0" end="3" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
+								</c:forEach>
 								</tr>
 								<tr>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
-									<td><img src="/anikare/img/coupon.jpg" width="200"></td>
+								<c:forEach var="e" items="${couponsList}" begin="4" end="7" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
+								</c:forEach>
 								</tr>
-							</table>
+								<tr>
+								<c:forEach var="e" items="${couponsList}" begin="8" end="11" >
+									<!-- 後でクラス指定して一括で画像サイズを固定 -->
+									<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
+								</c:forEach>
+								</tr>
+								</table>
 						</div>
 					</div>
 				</div>
