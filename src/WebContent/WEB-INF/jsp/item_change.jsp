@@ -90,14 +90,14 @@
 						<h2>アイテム交換リスト</h2>
 						<!-- 壁紙リスト -->
 						<div class="table-content">
-							<table class="td-list">
+							<table class="td-list" >
 								<tr>
 									<th class="header" colspan="4">壁紙</th>
 								</tr>
 								<tr>
 								<c:forEach var="e" items="${bgList}" begin="0" end="3" >
 									<!-- 後でクラス指定して一括で画像サイズを固定 -->
-									<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
+									<td id="list" width="200px" onclick="confirm('本当に交換してよろしいですか？')">${e.bg_image}<br>${e.bg_point}</td>
 								</c:forEach>
 								</tr>
 								<tr>
@@ -224,6 +224,16 @@
   }
 recalc();
 
+//押されたものを読み取る
+ function confirm()
+		var result = window.confirm();
+
+		if (result == true) {
+			alert("わかったよ！")；
+		} else {
+			alert("残念…");
+		}
+		}
 //どれが押されたかを読み取る getElementById
 //押されたもののポイントを変数に入れる
 //今所持してるポイントと比べる
