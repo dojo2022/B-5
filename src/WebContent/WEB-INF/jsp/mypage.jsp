@@ -66,19 +66,21 @@
 		</header>
 
 
-		<main>
+		<main id="city">
 			<div class="maincontents">
 				<div class="leftside">
 					<!--キャラの吹き出し-->
 					<div class="animalcomment">
-						マイページ <img src="ma"><img src="ma">
-
+						マイページ<br>
+						マイページ<br>
+						マイページ<br>
+						マイページ<br>
 
 					</div>
 
 					<!--- キャラクター --->
 					<div class="animals">
-						<img src="/anikare/img/animal_zou.png">
+						<img id="image_chara" src="/anikare/img/animal_zou.png">
 						<!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
 					</div>
 				</div>
@@ -96,15 +98,14 @@
 								<h3>ユーザー名</h3>
 								<!-- データベースから持ってくる -->
 								<c:forEach var="e" items="${cardList}">
-										現在のユーザー名:${e.user_name} 新しいユーザー名: <input type="text"
-										name="new_name" >
+										現在のユーザー名:${e.user_name}<br>
+										新しいユーザー名: <input type="text"name="new_name"><br>
 								</c:forEach>
 								<!-- 更新押したらテキストボックス その後データベースを更新-->
-								<input type="submit" name="submit" value="更新"> <input
-									type="reset" name="reset" value="クリア">
+								<input type="submit" name="submit" value="更新"> <input type="reset" name="reset" value="クリア">
 								<h3>パスワード</h3>
-								現在のパスワード: <input type="text" name="now_password" value="">
-								新しいパスワード: <input type="text" name="new_password" value="">
+								現在のパスワード: <input type="text" name="now_pw" value=""><br>
+								新しいパスワード: <input type="text" name="new_pw" value=""><br>
 
 								<!-- 現在のパスワードがあっていればテキストボックス→データベースを更新 間違っていれば違いますのアラート-->
 								<input type="submit" name="submit" value="更新"> <input
@@ -118,13 +119,15 @@
 						<div class="my_item">
 							<h2>sampleさん所持アイテム一覧</h2>
 							<h3>壁紙</h3>
-
+							<button onclick="effect_bg()">壁紙を書き換える</button>
 							<!-- background_itemsから要素を順番に表示 -->
 							<input type="submit" name="submit" value="変更">
 							<h3>格言</h3>
 							<!-- kakugen_itemsから要素を順番に表示 -->
 							<input type="submit" name="submit" value="変更">
 							<h3>キャラクターカスタマイズ</h3>
+							<a href="javascript:void(0);" onclick="LinkClick(0);">象</a><br>
+							<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
 							<!-- charcterから要素を順番に表示 -->
 							<input type="submit" name="submit" value="変更">
 							<h3>クーポン</h3>
@@ -144,25 +147,48 @@
 		</main>
 		<footer> </footer>
 		<script>
-				'use strict'
-				function recalc() {
-					let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
-							'Fri.', 'Sat.' ];
-					const now = new Date();
-					const month = now.getMonth() + 1;
-					const date = now.getDate();
-					const day = now.getDay();
+			'use strict'
+			function recalc() {
+				let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
+						'Fri.', 'Sat.' ];
+				const now = new Date();
+				const month = now.getMonth() + 1;
+				const date = now.getDate();
+				const day = now.getDay();
 
-					document.getElementById('time').textContent = month + '/'
-							+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
-					refresh();
-				}
+				document.getElementById('time').textContent = month + '/'
+						+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
+				refresh();
+			}
 
-				function refresh() {
-					setTimeout(recalc, 1000);
-				}
-				recalc();
-			</script>
+			function refresh() {
+				setTimeout(recalc, 1000);
+			}
+			recalc();
+
+			function effect_bg() {
+				var element = document.getElementById("city");
+				element.style.backgroundImage = 'url(/anikare/img/city.jpg)';
+				//element.style.background = '#c0c0c0';
+			}
+
+			function LinkClick(param) {
+			      var elem = document.getElementById("image_chara");
+
+			      switch (param) {
+			        case 0:
+			          elem.src = "/anikare/img/animal_zou.png";
+			          break;
+			        case 1:
+			          elem.src = "/anikare/img/animal_lion.png";
+			          break;
+
+			        default:
+			          elem.src = "/anikare/img/character.jpg";
+			          break;
+			      }
+			    }
+		</script>
 	</div>
 
 </body>
