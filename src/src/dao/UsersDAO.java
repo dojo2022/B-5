@@ -440,13 +440,13 @@ public class UsersDAO {
 			// SQL文を完成させる
 
 
-			if (card.getUser_name() != null && !card.getUser_name().equals("")) {
-				pStmt.setString(1, card.getUser_name());
+			if (card.getMail() != null && !card.getMail().equals("")) {
+				pStmt.setString(1, card.getMail());
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getMail() != null && !card.getMail().equals("")) {
-				pStmt.setString(2, card.getMail());
+			if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
+				pStmt.setString(2, card.getLogin_pw());
 			} else {
 				pStmt.setString(2, "");
 			}

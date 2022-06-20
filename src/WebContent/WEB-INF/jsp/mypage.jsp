@@ -78,7 +78,7 @@
 
 					<!--- キャラクター --->
 					<div class="animals">
-						<img src="src/WebContent/img/animal_zou.png">
+						<img src="/anikare/img/animal_zou.png">
 						<!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
 					</div>
 				</div>
@@ -96,8 +96,8 @@
 								<h3>ユーザー名</h3>
 								<!-- データベースから持ってくる -->
 								<c:forEach var="e" items="${cardList}">
-										現在のユーザー名:${user_name} 新しいユーザー名: <input type="text"
-										name="new_name" value="">
+										現在のユーザー名:${e.user_name} 新しいユーザー名: <input type="text"
+										name="new_name" >
 								</c:forEach>
 								<!-- 更新押したらテキストボックス その後データベースを更新-->
 								<input type="submit" name="submit" value="更新"> <input

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UsersDAO;
 import model.Users;
@@ -28,6 +29,16 @@ public class MypageServlet extends HttpServlet {
 //			response.sendRedirect("/simpleBC/LoginServlet");
 //			return;
 //		}
+		HttpSession session = request.getSession();
+		//セッションスコープに格納したidデータを変数idに代入
+		session.getAttribute("mail");
+		String mail = "${mail}";
+		UsersDAO uDao = new UsersDAO();
+		List<Users> cardList = uDao.select(new Users(1, "", "", "", ""));
+		/*//		List<Users> cardList = uDao.select(new Users(, "", "", "mail", ""));
+		 */
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
 		// 個人ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
@@ -43,25 +54,18 @@ public class MypageServlet extends HttpServlet {
 //			return;
 //		}
 		// リクエストパラメータを取得する
-				request.setCharacterEncoding("UTF-8");
-				String user_name = request.getParameter("user_name");
-				String login_pw = request.getParameter("login_pw");
+		request.setCharacterEncoding("UTF-8");
+		String user_name = request.getParameter("new_name");
+		String mail = "c";
+		//String login_pw = request.getParameter("login_pw");
 
 				// 更新処理を行う
 				UsersDAO uDao = new UsersDAO();
-				// 検索処理を行う
-
-				List<Users> cardList = uDao.select(new Users(1, "", "", "", ""));
-
-				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("cardList", cardList);
-
-				if (uDao.update(new Users( user_name, ""))) {	// 登録成功
+				if (uDao.updateName(new Users( user_name, mail))) {	// 登録成功
 					System.out.println("true");
 				}
 				else {												// 登録失敗
 					System.out.println("false");
-
 				}
 	}
 
