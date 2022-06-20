@@ -121,7 +121,8 @@
 							<h3>壁紙</h3>
 							<button onclick="effect_bg()">壁紙を書き換える</button>
 							<c:forEach var="e" items="${backgroundItemsList}">
-							${e.bg_name}${e.bg_image}
+							${e.bg_name}
+							<img id="image_chara" src="/anikare/img/${e.bg_image}">
 							</c:forEach>
 
 
