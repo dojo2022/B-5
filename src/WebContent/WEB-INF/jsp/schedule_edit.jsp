@@ -86,11 +86,11 @@
                         <td><input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="" name="start_time" value="${e.start_time}"></td>
-                        <td><input type="text" class="" name="end_time" value="${e.end_time}"></td>
+                        <td><input type="text" class="" name="start_time" placeholder="12:00" value="${e.start_time}">～</td>
+                        <td><input type="text" class="" name="end_time" placeholder="14:00" value="${e.end_time}"></td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="" name="place" value="${e.place}"></td>
+                        <td><input type="text" class="" name="place" placeholder="場所" value="${e.place}"></td>
                       </tr>
                       <tr>
                         <td>メモ</td>
@@ -125,7 +125,7 @@
                           <td><input type="text" class="titlefont" name="task" placeholder="タスク名を入力" value="${e.task}"></td>
                         </tr>
                         <tr>
-                          <td><input type="text" class="" name="todo_deadline" value="${e.todo_deadline}"></td>
+                          <td><input type="text" class="" name="todo_deadline" placeholder="締め切り時間を入力" value="${e.todo_deadline}"></td>
                         </tr>
                         <tr>
                           <td>メモ</td>
