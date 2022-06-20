@@ -66,7 +66,7 @@
 	/* function clickkakunin(){ */
 	if("${res}" == "fail")
 			{
-			var clicked = window.confirm('メールアドレスもしくはPWが間違っています。n再度入力をしてください。');
+			var clicked = window.confirm('メールアドレスもしくはPWが間違っています。\n再度入力をしてください。');
 		}else{
 			console.log("empty");
 		}

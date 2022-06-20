@@ -98,7 +98,7 @@
 								<c:forEach var="e" items="${cardList}">
 
 									<!-- 後でクラス指定して一括で画像サイズを固定 -->
-									<td width="200">${e.genre_name}</td>
+									<td width="200px">${e.genre_name}</td>
 									<%-- <td width="200">${e.genre_name}</td>
 									<td width="200">${e.genre_name}</td>
 									<td width="200">${e.genre_name}</td> --%>
