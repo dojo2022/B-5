@@ -2,7 +2,7 @@ package model;
 import java.io.Serializable;
 
 public class Schedules implements Serializable{
-	private int id;
+	private String id;
 	private String title;
 	private String start_time;
 	private String end_time;
@@ -11,7 +11,8 @@ public class Schedules implements Serializable{
 	private String place;
 	private String user_id;
 
-	public Schedules(int id, String title, String start_time, String end_time, String stamp_id,
+	//引数があるコンストラクタ
+	public Schedules(String id, String title, String start_time, String end_time, String stamp_id,
 			String schedule_memo, String place, String user_id) {
 		super();
 		this.id = id;
@@ -24,12 +25,26 @@ public class Schedules implements Serializable{
 		this.user_id = user_id;
 	}
 
+	//引数がないコンストラクタ（デフォルトコンストラクタ）
+		public Schedules() {
+			super();
+			this.id = "";
+			this.title = "";
+			this.start_time = "";
+			this.end_time = "";
+			this.stamp_id = "";
+			this.schedule_memo = "";
+			this.place = "";
+			this.user_id = "";
+		}
 
 
-	public int getId() {
+
+
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
  	public String getTitle() {

@@ -2,14 +2,14 @@ package model;
 import java.io.Serializable;
 
 public class TodoLists implements Serializable{
-	private int id;
+	private String id;
 	private String todo_deadline;
 	private String task;
-	private int importance;
+	private String importance;
 	private String todo_memo;
 	private String user_id;
 
-	public TodoLists(int id, String todo_deadline, String task, int importance, String todo_memo,
+	public TodoLists(String id, String todo_deadline, String task, String importance, String todo_memo,
 			String user_id) {
 		super();
 		this.id = id;
@@ -21,19 +21,19 @@ public class TodoLists implements Serializable{
 	}
 
 	public TodoLists() {
-		this.id = 0;
+		this.id = "";
 		this.todo_deadline = "";
 		this.task = "";
-		this.importance = 0;
+		this.importance = "";
 		this.todo_memo= "";
 		this.user_id = "";
 	}
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getTodo_deadline() {
@@ -48,10 +48,10 @@ public class TodoLists implements Serializable{
 	public void setTask(String task) {
 		this.task = task;
 	}
-	public int getImportance() {
+	public String getImportance() {
 		return importance;
 	}
-	public void setImportance(int importance) {
+	public void setImportance(String importance) {
 		this.importance = importance;
 	}
 	public String getTodo_memo() {

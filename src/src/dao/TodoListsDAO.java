@@ -29,36 +29,16 @@ public class TodoListsDAO {
 
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
-//				// SQL文を完成させる
-//				if (param.id() != null) {
-//					pStmt.setInt(1, param.getId());
-//				}
-//				else {
-//					pStmt.setInt(1, 0);
-//				}
-//				if (param.getTask() != null) {
-//					pStmt.setString(2, "%" + param.getTask() + "%");
-//				}
-//				else {
-//					pStmt.setString(2, "%");
-//				}
-//				if (param.getUser_id() != null) {
-//					pStmt.setString(3, "%" + param.getUser_id() + "%");
-//				}
-//				else {
-//					pStmt.setString(3, "%");
-//				}
-
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 
 				// 結果表をコレクションにコピーする
 				while (rs.next()) {
 					TodoLists card = new TodoLists(
-					rs.getInt("id"),
+					rs.getString("id"),
 					rs.getString("task"),
 					rs.getString("todo_deadline"),
-					rs.getInt("importance"),
+					rs.getString("importance"),
 					rs.getString("todo_memo"),
 					rs.getString("user_id")
 					);
@@ -109,11 +89,11 @@ public class TodoListsDAO {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				if (card.getId() != 0 ) {
-					pStmt.setInt(1, card.getId());
+				if (card.getId() != null && !card.getId().equals("")) {
+					pStmt.setString(1, card.getId());
 				}
 				else {
-					pStmt.setInt(1, 0);
+					pStmt.setString(1, null);
 				}
 				if (card.getTodo_deadline() != null && !card.getTodo_deadline().equals("")) {
 					pStmt.setString(2, card.getTodo_deadline());
@@ -127,11 +107,11 @@ public class TodoListsDAO {
 				else {
 					pStmt.setString(3, null);
 				}
-				if (card.getImportance() != 0 ) {
-					pStmt.setInt(4, card.getImportance());
+				if (card.getImportance() != null && !card.getImportance().equals("") ) {
+					pStmt.setString(4, card.getImportance());
 				}
 				else {
-					pStmt.setInt(4, 0);
+					pStmt.setString(4, null);
 				}
 				if (card.getTodo_memo() != null && !card.getTodo_memo().equals("")) {
 					pStmt.setString(5, card.getTodo_memo());
@@ -205,11 +185,11 @@ public class TodoListsDAO {
 					pStmt.setString(2, null);
 				}
 				}
-				if (card.getImportance() != 0) {
-					pStmt.setInt(3, card.getImportance());
+				if (card.getImportance() != null && !card.getImportance().equals("")) {
+					pStmt.setString(3, card.getImportance());
 				}
 				else {
-					pStmt.setInt(3, 0);
+					pStmt.setString(3, null);
 				}
 				if (card.getTodo_memo() != null && !card.getTodo_memo().equals("")) {
 					pStmt.setString(4, card.getTodo_memo());
@@ -224,7 +204,7 @@ public class TodoListsDAO {
 					pStmt.setString(5, null);
 				}
 
-				pStmt.setInt(6, card.getId());
+				pStmt.setString(6, card.getId());
 
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {

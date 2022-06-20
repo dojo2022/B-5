@@ -77,30 +77,30 @@
             <div class="scheduleedit">
                 <!-- 予定編集 -->
                 <h2>今日の予定</h2>
-                <form method="" action="/Servlet">
+                <form method="POST" action="/anikare/ScheduleEditServlet">
                   <details>
                     <summary>🍚ランチ</summary>
                     <table>
                       <tr>
-                        <td><input type="" class="" name="stamp"></td>
-                        <td><input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></td>
+                        <td><input type="text" class="" name="stamp"></td>
+                        <td><input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="" name="starttime"></td>
-                        <td><input type="text" class="" name="endtime"></td>
+                        <td><input type="text" class="" name="start_time" value="${e.start_time}"></td>
+                        <td><input type="text" class="" name="end_time" value="${e.end_time}"></td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="" name="place"></td>
+                        <td><input type="text" class="" name="place" value="${e.place}"></td>
                       </tr>
                       <tr>
                         <td>メモ</td>
                       </tr>
                       <tr>
-                        <td colspan="2"><textarea name="memo"></textarea></td>
+                        <td colspan="2"><textarea name="schedule_memo" value="${e.schedule_memo}"></textarea></td>
                       </tr>
                       <tr>
                         <td>
-                          <div class=""><input class="" type="submit" name="BACK" value="戻る" onsubmit="doSomething();return false;"></div>
+                          <div class=""><input class=""  name="BACK" value="戻る" ></div>
                         </td>
                         <td>
                           <div class=""><input class="" type="submit" name="DELETE" value="削除" onsubmit="doSomething();return false;"></div>
@@ -116,22 +116,22 @@
             <div class="todoedit">
                 <!-- ToDo編集 -->
                 <h2>ToDo</h2>
-                <form method="POST" action="/Servlet">
+                <form method="POST" action="/anikare/TodoEditServlet">
                   <details>
                     <summary><input type="checkbox" id="" name="checkbox" value="missioncomplete">配属希望</summary>
                       <table>
                         <tr>
                           <td><input type="checkbox" id="" name="checkbox" value="missioncomplete"></td>
-                          <td><input type="text" class="titlefont" name="task" placeholder="タスク名を入力"></td>
+                          <td><input type="text" class="titlefont" name="task" placeholder="タスク名を入力" value="${e.task}"></td>
                         </tr>
                         <tr>
-                          <td><input type="text" class="" name="deadline"></td>
+                          <td><input type="text" class="" name="todo_deadline" value="${e.todo_deadline}"></td>
                         </tr>
                         <tr>
                           <td>メモ</td>
                         </tr>
                         <tr>
-                          <td colspan="2"><textarea name="memo"></textarea></td>
+                          <td colspan="2"><textarea name="todo_memo" value="${e.todo_memo}"></textarea></td>
                         </tr>
                         <tr>
                           <td>
@@ -153,13 +153,13 @@
 
          <!-- 日記記入 -->
          <h2>今日の記録</h2>
-         <form method="POST" action="/Servlet">
+         <form method="POST" action="/anikare/DiaryAddServlet">
           <table>
             <tr>
-              <td><input type="text" class="" name="diarytitle" placeholder="タイトルを入力"></td>
+              <td><input type="text" class="" name="diary_title" placeholder="タイトルを入力" value="${e.diary_title}"></td>
             </tr>
             <tr>
-              <td><textarea name="memo"></textarea></td>
+              <td><textarea name="diary_content" value="${e.diary_content}"></textarea></td>
             </tr>
           </table>
             <div class=""><input class="" type="submit" name="DELETE" value="リセット"></div>

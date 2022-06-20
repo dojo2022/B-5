@@ -26,19 +26,19 @@ public class SchedulesDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
-			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+			// 実行するSQL文
 			String sql = "SELECT * FROM Schedules ORDER BY id";
 
+			//一覧を取得
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-
-			// SQL文を実行し、結果表を取得する
+			// SQL文を実行し、変数rsに結果を格納
 			ResultSet rs = pStmt.executeQuery();
 
-			// 結果表をコレクションにコピーする
+			// 実行結果を順番に取り出す
 			while (rs.next()) {
 				Schedules card = new Schedules(
-						rs.getInt("id"),
+						rs.getString("id"),
 						rs.getString("title"),
 						rs.getString("start_time"),
 						rs.getString("end_time"),
@@ -47,6 +47,7 @@ public class SchedulesDAO {
 						rs.getString("place"),
 						rs.getString("user_id")
 						);
+				//取得した要素を、cardに追加
 				cardList.add(card);
 			}
 		}
