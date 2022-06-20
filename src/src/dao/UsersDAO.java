@@ -26,38 +26,33 @@ public class UsersDAO {
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "select id, user_id, user_name,mail, login_pw  "
-					+ "from users WHERE id LIKE ? AND user_id LIKE ? AND user_name LIKE ? AND mail LIKE ? "
+					+ "from users WHERE  user_id LIKE ? AND user_name LIKE ? AND mail LIKE ? "
 					+ "AND login_pw LIKE ? ORDER BY id";
 			//			6/1412時作業
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる<<検索項目だけ書く
-			if (param.getId() != 0) {
-				pStmt.setInt(1, param.getId() );
-			}
-			else {
-				pStmt.setInt(1, 0);
-			}
+
 			if (param.getUser_id() != null) {
-				pStmt.setString(2, "%" + param.getUser_id() + "%");
+				pStmt.setString(1, "%" + param.getUser_id() + "%");
 			}
 			else {
-				pStmt.setString(2, "%");
+				pStmt.setString(1, "%");
 			}
 			if (param.getUser_name() != null) {
-				pStmt.setString(3, "%" + param.getUser_name() + "%");
+				pStmt.setString(2, "%" + param.getUser_name() + "%");
+			} else {
+				pStmt.setString(2, "");
+			}
+			if (param.getMail() != null) {
+				pStmt.setString(3, "%" + param.getMail() + "%");
 			} else {
 				pStmt.setString(3, "");
 			}
-			if (param.getMail() != null) {
-				pStmt.setString(4, "%" + param.getMail() + "%");
+			if (param.getLogin_pw() != null) {
+				pStmt.setString(4,"%" + param.getLogin_pw() + "%");
 			} else {
 				pStmt.setString(4, "");
-			}
-			if (param.getLogin_pw() != null) {
-				pStmt.setString(5,"%" + param.getLogin_pw() + "%");
-			} else {
-				pStmt.setString(5, "");
 			}
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
