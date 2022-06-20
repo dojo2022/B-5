@@ -120,21 +120,25 @@
 							<h2>sampleさん所持アイテム一覧</h2>
 							<h3>壁紙</h3>
 							<button onclick="effect_bg()">壁紙を書き換える</button>
-							<!-- background_itemsから要素を順番に表示 -->
-							<input type="submit" name="submit" value="変更">
-							<h3>格言</h3>
-							<!-- kakugen_itemsから要素を順番に表示 -->
-							<input type="submit" name="submit" value="変更">
-							<h3>キャラクターカスタマイズ</h3>
-							<a href="javascript:void(0);" onclick="LinkClick(0);">象</a><br>
-							<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
-							<!-- charcterから要素を順番に表示 -->
-							<input type="submit" name="submit" value="変更">
-							<h3>クーポン</h3>
-							<!-- coupon_itemsから要素を順番に表示 -->
-							<input type="submit" name="submit" value="使用">
+							<c:forEach var="e" items="${backgroundItemsList}">
+							${e.bg_name}${e.bg_image}
+							</c:forEach>
 
 
+								<!-- background_itemsから要素を順番に表示 -->
+								<input type="submit" name="submit" value="変更">
+								<h3>格言</h3>
+								<!-- kakugen_itemsから要素を順番に表示 -->
+								<input type="submit" name="submit" value="変更">
+								<h3>キャラクターカスタマイズ</h3>
+								<a href="javascript:void(0);" onclick="LinkClick(0);">象</a>
+								<br>
+								<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
+								<!-- charcterから要素を順番に表示 -->
+								<input type="submit" name="submit" value="変更">
+								<h3>クーポン</h3>
+								<!-- coupon_itemsから要素を順番に表示 -->
+								<input type="submit" name="submit" value="使用">
 						</div>
 
 

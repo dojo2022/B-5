@@ -145,4 +145,69 @@ public class BackgroundItemsDAO {
 			// 結果を返す
 			return Result;
 		}
+		public List<BackgroundItems> selectMyItem(BackgroundItems param) {
+			Connection conn = null;
+			List<BackgroundItems> backgroundItemsList = new ArrayList<BackgroundItems>();
+
+			try
+			{
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+				// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+				String sql = "select bg_name, bg_image, background_active from background_items "
+						+ "left join users on users.user_id = BACKGROUND_ITEMS.user_id "
+						+ "left join BACKGROUNDS on BACKGROUNDS.BACKGROUND_ID = BACKGROUND_ITEMS.BACKGROUND_ID "
+						+ "where mail like ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる<<検索項目だけ書く
+
+				if (param.getMail() != null) {
+					pStmt.setString(1, "%" + param.getMail() + "%");
+				}
+				else {
+					pStmt.setString(1, "%");
+				}
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする
+				while (rs.next()) {
+					BackgroundItems card = new BackgroundItems(
+							rs.getString("bg_name"),
+							rs.getString("bg_image"),
+							rs.getString("background_active")
+							);
+					backgroundItemsList.add(card);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				backgroundItemsList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				backgroundItemsList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						backgroundItemsList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return backgroundItemsList;
+		}
 }

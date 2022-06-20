@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BackgroundItemsDAO;
 import dao.UsersDAO;
+import model.BackgroundItems;
+import model.Login;
 import model.Users;
 
 /**
@@ -29,20 +32,24 @@ public class MypageServlet extends HttpServlet {
 		//			response.sendRedirect("/simpleBC/LoginServlet");
 		//			return;
 		//		}
-		HttpSession session = request.getSession();
+
 		//セッションスコープに格納したidデータを変数idに代入
-		session.getAttribute("mail");
-		String mail = "${mail}";
+		HttpSession session = request.getSession();
+		Login mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getId();
 		UsersDAO uDao = new UsersDAO();
-		List<Users> cardList = uDao.select(new Users(1, "", "", "", ""));
-		/*//		List<Users> cardList = uDao.select(new Users(, "", "", "mail", ""));
-		 */
+		List<Users> cardList = uDao.select(new Users( "", "", mail, ""));
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("cardList", cardList);
+
+		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+		List<BackgroundItems> backgroundItemsList = biDao.selectMyItem(new BackgroundItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("backgroundItemsList", backgroundItemsList);
+
 		// 個人ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 
@@ -53,11 +60,14 @@ public class MypageServlet extends HttpServlet {
 		//			response.sendRedirect("/simpleBC/LoginServlet");
 		//			return;
 		//		}
+		//セッションスコープに格納したidデータを変数idに代入
+		HttpSession session = request.getSession();
+		Login mail_session = (Login)session.getAttribute("id");
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String user_name = request.getParameter("new_name");
-		String mail = "c";
-		String now_pw = request.getParameter("now_pw");
+		String mail = mail_session.getId();
 		String new_pw = request.getParameter("new_pw");
 
 		// 更新処理を行う
@@ -76,7 +86,7 @@ public class MypageServlet extends HttpServlet {
 			System.out.println("false");
 		}
 		// 個人ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 		dispatcher.forward(request, response);
 	}
 
