@@ -144,4 +144,70 @@ public class CharacterItemsDAO {
 		// 結果を返す
 		return Result;
 	}
+	// 所持背景をリスト表示
+	public List<CharacterItems> selectMyItem(CharacterItems param) {
+		Connection conn = null;
+		List<CharacterItems> CharacterItemsList = new ArrayList<CharacterItems>();
+
+		try
+		{
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+			String sql = "select character_name, character_image, character_active from character_items "
+					+ "left join users on users.user_id = character_ITEMS.user_id "
+					+ "left join characters on characters.character_ID = character_ITEMS.character_ID "
+					+ "where mail like ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる<<検索項目だけ書く
+
+			if (param.getMail() != null) {
+				pStmt.setString(1, "%" + param.getMail() + "%");
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				CharacterItems card = new CharacterItems(
+						rs.getString("character_name"),
+						rs.getString("character_image"),
+						rs.getString("character_active")
+						);
+				CharacterItemsList.add(card);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			CharacterItemsList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			CharacterItemsList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					CharacterItemsList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return CharacterItemsList;
+	}
 }

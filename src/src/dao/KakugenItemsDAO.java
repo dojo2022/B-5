@@ -149,4 +149,70 @@ public class KakugenItemsDAO {
 		// 結果を返す
 		return Result;
 	}
+	// 所持背景をリスト表示
+	public List<KakugenItems> selectMyItem(KakugenItems param) {
+		Connection conn = null;
+		List<KakugenItems> KakugenItemsList = new ArrayList<KakugenItems>();
+
+		try
+		{
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+			String sql = "select genre_name, kakugen_image, kakugen_active from kakugen_items "
+					+ "left join users on users.user_id = kakugen_ITEMS.user_id "
+					+ "left join kakugens on kakugens.kakugen_ID = kakugen_ITEMS.kakugen_ID "
+					+ "where mail like ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる<<検索項目だけ書く
+
+			if (param.getMail() != null) {
+				pStmt.setString(1, "%" + param.getMail() + "%");
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				KakugenItems card = new KakugenItems(
+						rs.getString("genre_name"),
+						rs.getString("kakugen_image"),
+						rs.getString("kakugen_active")
+						);
+				KakugenItemsList.add(card);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			KakugenItemsList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			KakugenItemsList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					KakugenItemsList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return KakugenItemsList;
+	}
 }

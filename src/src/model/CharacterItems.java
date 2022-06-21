@@ -6,6 +6,10 @@ public class CharacterItems implements Serializable {
 	public int id;
 	public String user_id;
 	public String character_id;
+	public String mail;
+	public String character_active;
+	public String character_image;
+	public String character_name;
 
 	//引数があるコンストラクタ
 	public CharacterItems(int id, String user_id, String character_id) {
@@ -28,6 +32,20 @@ public class CharacterItems implements Serializable {
 		this.id = 0;
 		this.user_id = "";
 		this.character_id = "";
+	}
+
+	public CharacterItems(String mail) {
+		super();
+		this.mail = mail;
+
+	}
+
+	public CharacterItems(String character_name, String character_image, String character_active) {
+		super();
+		this.character_name = character_name;
+		this.character_image = character_image;
+		this.character_active = character_active;
+
 	}
 
 	//ゲッターセッター
@@ -54,4 +72,38 @@ public class CharacterItems implements Serializable {
 	public void setCharacter_id(String character_id) {
 		this.character_id = character_id;
 	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getCharacter_active() {
+		return character_active;
+	}
+
+	public void setCharacter_active(String character_active) {
+		this.character_active = character_active;
+	}
+
+	public String getCharacter_image() {
+		return character_image;
+	}
+
+	public void setCharacter_image(String character_image) {
+		this.character_image = character_image;
+	}
+
+	public String getCharacter_name() {
+		return character_name;
+	}
+
+	public void setCharacter_name(String character_name) {
+		this.character_name = character_name;
+	}
+
+
 }

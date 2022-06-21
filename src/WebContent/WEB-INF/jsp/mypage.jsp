@@ -71,10 +71,7 @@
 				<div class="leftside">
 					<!--キャラの吹き出し-->
 					<div class="animalcomment">
-						マイページ<br>
-						マイページ<br>
-						マイページ<br>
-						マイページ<br>
+						マイページ<br> マイページ<br> マイページ<br> マイページ<br>
 
 					</div>
 
@@ -99,10 +96,12 @@
 								<!-- データベースから持ってくる -->
 								<c:forEach var="e" items="${cardList}">
 										現在のユーザー名:${e.user_name}<br>
-										新しいユーザー名: <input type="text"name="new_name"><br>
+										新しいユーザー名: <input type="text" name="new_name">
+									<br>
 								</c:forEach>
 								<!-- 更新押したらテキストボックス その後データベースを更新-->
-								<input type="submit" name="submit" value="更新"> <input type="reset" name="reset" value="クリア">
+								<input type="submit" name="submit" value="更新"> <input
+									type="reset" name="reset" value="クリア">
 								<h3>パスワード</h3>
 								現在のパスワード: <input type="text" name="now_pw" value=""><br>
 								新しいパスワード: <input type="text" name="new_pw" value=""><br>
@@ -122,24 +121,35 @@
 							<button onclick="effect_bg()">壁紙を書き換える</button>
 							<c:forEach var="e" items="${backgroundItemsList}">
 							${e.bg_name}
-							<img id="image_chara" src="/anikare/img/${e.bg_image}">
+							<img id="image_bg" src="/anikare/img/${e.bg_image}">
 							</c:forEach>
 
 
-								<!-- background_itemsから要素を順番に表示 -->
-								<input type="submit" name="submit" value="変更">
-								<h3>格言</h3>
-								<!-- kakugen_itemsから要素を順番に表示 -->
-								<input type="submit" name="submit" value="変更">
-								<h3>キャラクターカスタマイズ</h3>
-								<a href="javascript:void(0);" onclick="LinkClick(0);">象</a>
-								<br>
-								<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
-								<!-- charcterから要素を順番に表示 -->
-								<input type="submit" name="submit" value="変更">
-								<h3>クーポン</h3>
-								<!-- coupon_itemsから要素を順番に表示 -->
-								<input type="submit" name="submit" value="使用">
+							<!-- background_itemsから要素を順番に表示 -->
+							<input type="submit" name="submit" value="変更">
+							<h3>格言</h3>
+							<c:forEach var="e" items="${KakugenItemsList}">
+							${e.genre_name}
+							<img id="image_bg" src="/anikare/img/${e.kakugen_image}">
+							</c:forEach>
+							<!-- kakugen_itemsから要素を順番に表示 -->
+							<input type="submit" name="submit" value="変更">
+							<h3>キャラクターカスタマイズ</h3>
+							<a href="javascript:void(0);" onclick="LinkClick(0);">象</a> <br>
+							<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
+							<c:forEach var="e" items="${CharacterItemsList}">
+							${e.character_name}
+							<img id="image_chara" src="/anikare/img/${e.character_image}">
+							</c:forEach>
+							<!-- charcterから要素を順番に表示 -->
+							<input type="submit" name="submit" value="変更">
+							<h3>クーポン</h3>
+							<c:forEach var="e" items="${CouponItemsList}">
+							${e.coupon_name},${e.coupon_name}
+							<img id="image_chara" src="/anikare/img/${e.coupon_image}">
+							</c:forEach>
+							<!-- coupon_itemsから要素を順番に表示 -->
+							<input type="submit" name="submit" value="使用">
 						</div>
 
 

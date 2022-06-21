@@ -12,8 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BackgroundItemsDAO;
+import dao.CharacterItemsDAO;
+import dao.CouponItemsDAO;
+import dao.KakugenItemsDAO;
 import dao.UsersDAO;
 import model.BackgroundItems;
+import model.CharacterItems;
+import model.CouponItems;
+import model.KakugenItems;
 import model.Login;
 import model.Users;
 
@@ -46,6 +52,21 @@ public class MypageServlet extends HttpServlet {
 		List<BackgroundItems> backgroundItemsList = biDao.selectMyItem(new BackgroundItems(mail));
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("backgroundItemsList", backgroundItemsList);
+
+		CharacterItemsDAO ciDao = new CharacterItemsDAO();
+		List<CharacterItems> CharacterItemsList = ciDao.selectMyItem(new CharacterItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CharacterItemsList", CharacterItemsList);
+
+		CouponItemsDAO coiDao = new CouponItemsDAO();
+		List<CouponItems> CouponItemsList = coiDao.selectMyItem(new CouponItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CouponItemsList", CouponItemsList);
+
+		KakugenItemsDAO kiDao = new KakugenItemsDAO();
+		List<KakugenItems> KakugenItemsList = kiDao.selectMyItem(new KakugenItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("KakugenItemsList", KakugenItemsList);
 
 		// 個人ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");

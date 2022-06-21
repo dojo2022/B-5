@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.BackgroundItems;
+import model.Users;
 
 public class BackgroundItemsDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -145,6 +146,7 @@ public class BackgroundItemsDAO {
 			// 結果を返す
 			return Result;
 		}
+	// 所持背景をリスト表示
 		public List<BackgroundItems> selectMyItem(BackgroundItems param) {
 			Connection conn = null;
 			List<BackgroundItems> backgroundItemsList = new ArrayList<BackgroundItems>();
@@ -209,5 +211,64 @@ public class BackgroundItemsDAO {
 
 			// 結果を返す
 			return backgroundItemsList;
+		}
+	// 適用した背景の更新
+		// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
+		public boolean update(Users card) {
+			Connection conn = null;
+			boolean result = false;
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+				// SQL文を準備する
+				String sql = "update Users set user_name=?, mail=?, login_pw=? ";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+
+
+				if (card.getUser_name() != null && !card.getUser_name().equals("")) {
+					pStmt.setString(1, card.getUser_name());
+				} else {
+					pStmt.setString(1, "");
+				}
+				if (card.getMail() != null && !card.getMail().equals("")) {
+					pStmt.setString(2, card.getMail());
+				} else {
+					pStmt.setString(2, "");
+				}
+				if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
+					pStmt.setString(3, card.getLogin_pw());
+				} else {
+					pStmt.setString(3, "");
+
+				}
+
+				// SQL文を実行する
+				if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			// 結果を返す
+			return result;
 		}
 }
