@@ -32,11 +32,11 @@ public class ItemChangeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-//		HttpSession session = request.getSession();
-//		if (session.getAttribute("id") == null) {
-//			response.sendRedirect("/anikare/LoginServlet");
-//			return;
-//		}
+		//		HttpSession session = request.getSession();
+		//		if (session.getAttribute("id") == null) {
+		//			response.sendRedirect("/anikare/LoginServlet");
+		//			return;
+		//		}
 		//アイテムの全件表示を行う
 		//背景はbgListスコープに保存
 		BackgroundsDAO bDAO = new BackgroundsDAO();

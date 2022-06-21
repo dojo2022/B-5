@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -34,22 +34,22 @@
 				<div>
 					<form method="POST" action="/anikare/LoginServlet" id="form">
 						<label for="Mail">メールアドレス<br> <input type="text"
-							name="mail" placeholder="メールアドレス"></label><br>
-						<label for="login_pw">Password<br> <input type="password"
-							name="login_pw" placeholder="Password"></label><br>
-						<input type="submit" name="submit" value="ログイン">
-						<input type="reset" name="reset" value="クリア">
+							name="mail" placeholder="メールアドレス"></label><br> <label
+							for="login_pw">Password<br> <input type="password"
+							name="login_pw" placeholder="Password"></label><br> <input
+							type="submit" name="submit" value="ログイン"> <input
+							type="reset" name="reset" value="クリア">
 					</form>
 					<!-- あっていた場合はそのままログイン、
                     間違っていた場合はエラーの表示をjsで表示する -->
 				</div>
 			</div>
 			<div>
-				<a href="/anikare/NewAccountServlet" >※新規会員登録はこちら</a>
+				<a href="/anikare/NewAccountServlet">※新規会員登録はこちら</a>
 				<!-- リンクを貼り忘れない -->
 			</div>
 			<div>
-				<a href="/anikare/PasswordResetServlet" >※パスワードを忘れた方はこちら</a>
+				<a href="/anikare/PasswordResetServlet">※パスワードを忘れた方はこちら</a>
 				<!-- リンクを貼り忘れない -->
 			</div>
 		</main>
@@ -61,17 +61,17 @@
 
 	</div>
 	<script>
-	'use strict'
-	//更新確認
-	/* function clickkakunin(){ */
-	if("${res}" == "fail")
-			{
-			var clicked = window.confirm('メールアドレスもしくはPWが間違っています。\n再度入力をしてください。');
-		}else{
+		'use strict'
+		//更新確認
+		/* function clickkakunin(){ */
+		if ("${res}" == "fail") {
+			var clicked = window
+					.confirm('メールアドレスもしくはPWが間違っています。\n再度入力をしてください。');
+		} else {
 			console.log("empty");
 		}
 
-/* } */
+		/* } */
 	</script>
 </body>
 </html>

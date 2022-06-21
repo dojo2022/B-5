@@ -49,9 +49,9 @@ public class LoginServlet extends HttpServlet {
 		UsersDAO uDao = new UsersDAO();
 		if (uDao.isLoginOK(new Users(mail, login_pw ))) {	// ログイン成功
 			// セッションスコープにアドレスを格納する
-		    HttpSession session = request.getSession();
+			HttpSession session = request.getSession();
 			session.setAttribute("id", new Login(mail));
-//			 トップページのサーブレットにリダイレクトする
+			//			 トップページのサーブレットにリダイレクトする
 			response.sendRedirect("/anikare/ToppageServlet");
 
 		}
@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 
 			// 	ログインページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
+			dispatcher.forward(request, response);
 
 		}
 	}
