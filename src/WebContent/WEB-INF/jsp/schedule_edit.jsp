@@ -18,7 +18,7 @@
 
 
         <!--- メニューバー --->
-        <p class="">
+  <!--       <p> -->
             <div class="drawer">
             <!-- ハンバーガーメニュー表示・非表示切り替え -->
             <input type="checkbox" id="drawer-check" class="drawer-hidden" >
@@ -37,9 +37,11 @@
                     </ul>
                 </nav>
               </div>
-        </p>
+     <!--    </p> -->
       <!--タイトル-->
-      <p class=""><h1 class="logo"><a href =""><img src="img/logo.png" alt="アニカレロゴ"></a></h1></p>
+<!--       <p> -->
+      <h1 class="logo"><a href =""><img src="img/logo.png" alt="アニカレロゴ"></a></h1>
+ <!--      </p> -->
 
 
       <!--ポイント交換-->
@@ -58,8 +60,8 @@
       <div class="leftside">
             <!--キャラの吹き出し-->
             <div class="animalcomment">
-                <img scr="ma"><img scr="ma">
-                <p>予定・ToDoリストの編集<br>日記の記入ができるよ～<br>日記を記入してポイントをゲットしよう！
+<!--                 <img scr="ma"><img scr="ma">
+ -->                <p>予定・ToDoリストの編集<br>日記の記入ができるよ～<br>日記を記入してポイントをゲットしよう！
                 </p>
 
               </div>
@@ -96,8 +98,8 @@
                         <td>メモ</td>
                       </tr>
                       <tr>
-                        <td colspan="2"><textarea name="schedule_memo" value="${e.schedule_memo}"></textarea></td>
-                      </tr>
+          <%--               <td colspan="2"><textarea name="schedule_memo" value="${e.schedule_memo}"></textarea></td>
+           --%>            </tr>
                       <tr>
                         <td>
                           <div class=""><input class=""  name="BACK" value="戻る" ></div>
@@ -131,8 +133,8 @@
                           <td>メモ</td>
                         </tr>
                         <tr>
-                          <td colspan="2"><textarea name="todo_memo" value="${e.todo_memo}"></textarea></td>
-                        </tr>
+               <%--            <td colspan="2"><textarea name="todo_memo" value="${e.todo_memo}"></textarea></td>
+                --%>         </tr>
                         <tr>
                           <td>
                             <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
@@ -156,10 +158,10 @@
          <form method="POST" action="/anikare/DiaryAddServlet">
           <table>
             <tr>
-              <td><input type="text" class="" name="diary_title" placeholder="タイトルを入力" value="${e.diary_title}"></td>
+              <td><input type="text" class="" name="diary_title" placeholder="タイトルを入力" value="${diaryList[0].diary_title}"></td>
             </tr>
             <tr>
-              <td><textarea name="diary_content" value="${e.diary_content}"></textarea></td>
+              <td><input type="text" name="diary_content" value="${diaryList[0].diary_content}"></td>
             </tr>
           </table>
             <div class=""><input class="" type="submit" name="DELETE" value="リセット"></div>

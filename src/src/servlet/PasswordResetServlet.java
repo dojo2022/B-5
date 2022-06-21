@@ -47,7 +47,7 @@ public class PasswordResetServlet extends HttpServlet {
 	        Random rand = new Random();
 	        int randomNum = min_val + rand.nextInt((max_val - min_val) + 1);
 	        Integer i = Integer.valueOf(randomNum);
-	        String newpass = i.toString();
+	        String newpass ="pw" + i.toString();
 
 
 			/*String newpass = "125446842134546";*/

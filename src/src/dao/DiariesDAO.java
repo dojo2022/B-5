@@ -26,38 +26,33 @@ public class DiariesDAO {
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "select id, user_id, diary_date,diary_title, diary_content  "
-					+ "from diaries WHERE id LIKE ? AND user_id LIKE ? AND diary_date LIKE ? AND diary_title LIKE ? "
+					+ "from diaries WHERE user_id LIKE ? AND diary_date LIKE ? AND diary_title LIKE ? "
 					+ "AND diary_content LIKE ? ORDER BY id";
 			//			6/1412時作業
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる<<検索項目だけ書く
-			if (param.getId() != 0) {
-				pStmt.setInt(1, param.getId() );
-			}
-			else {
-				pStmt.setInt(1, 0);
-			}
+
 			if (param.getUser_id() != null) {
-				pStmt.setString(2, "%" + param.getUser_id() + "%");
+				pStmt.setString(1, "%" + param.getUser_id() + "%");
 			}
 			else {
-				pStmt.setString(2, "%");
+				pStmt.setString(1, "%");
 			}
 			if (param.getDiary_date() != null) {
-				pStmt.setString(3, "%" + param.getDiary_date() + "%");
+				pStmt.setString(2, "%" + param.getDiary_date() + "%");
 			} else {
-				pStmt.setString(3, "");
+				pStmt.setString(2, "%");
 			}
 			if (param.getDiary_title() != null) {
-				pStmt.setString(4, "%" + param.getDiary_title() + "%");
+				pStmt.setString(3, "%" + param.getDiary_title() + "%");
 			} else {
-				pStmt.setString(4, "");
+				pStmt.setString(3, "%");
 			}
 			if (param.getDiary_content() != null) {
-				pStmt.setString(5,"%" + param.getDiary_content() + "%");
+				pStmt.setString(4,"%" + param.getDiary_content() + "%");
 			} else {
-				pStmt.setString(5, "");
+				pStmt.setString(4, "%");
 			}
 
 			// SQL文を実行し、結果表を取得する
@@ -66,7 +61,6 @@ public class DiariesDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Diaries card = new Diaries(
-						rs.getInt("id"),
 						rs.getString("user_id"),
 						rs.getString("diary_date"),
 						rs.getString("diary_title"),

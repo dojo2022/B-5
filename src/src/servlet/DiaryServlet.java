@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -33,7 +34,7 @@ public class DiaryServlet extends HttpServlet {
 
 
 	DiariesDAO dDao = new DiariesDAO();
-	List<Diaries> cardList = dDao.select(new Diaries("",""));
+	List<Diaries> cardList = dDao.select(new Diaries("","","",""));
 
 	// 検索結果をリクエストスコープに格納する
 	request.setAttribute("cardList", cardList);
@@ -42,6 +43,29 @@ public class DiaryServlet extends HttpServlet {
 	dispatcher.forward(request, response);
 
 }
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+		String date = request.getParameter("date");
+		String title = request.getParameter("title");
+
+		//Diarys
+		List<Diaries> diaryList = new ArrayList<Diaries>();
+		Diaries param = new Diaries("",date,title,"");
+		DiariesDAO dDao = new DiariesDAO();
+		diaryList=dDao.select(param);
+//		HttpSession session = request.getSession();
+		request.setAttribute("diaryList", diaryList);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
+		dispatcher.forward(request, response);
+
+
+
+
+
+	}
+
 }
 
 

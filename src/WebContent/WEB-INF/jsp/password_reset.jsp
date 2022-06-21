@@ -13,31 +13,36 @@
 </head>
 <body>
 	<header>
-		<h1 class="logo">
-			<img src="/anikare/img/logo.png" alt="アニカレロゴ">
-		</h1>
-		<!-- ロゴの挿入 -->
-	</header>
-	<main>
-		<h2>pw再設定ページ</h2>
-
-		<div>
-			<form method="POST" action="/anikare/PasswordResetServlet" id=form>
-				<label for="Mail">メールアドレス<br>
-				 <input type="text"	name="Mail" placeholder="メールアドレス"></label><br>
-				<p>※登録されているメールアドレスを入力してください。</p>
-				<p>ログイン用の仮PWを発行致します。</p>
-				<input type="submit" name="submit" value="確認">
-				  <!--  onclick="return clickkakunin()"-->
-<!-- 				<button onclick="btnClick();">確認</button>
- -->				<!-- onclick="return clickkakunin()" -->
-				<input type="reset" name="reset" value="クリア">
-			</form>
-			<a href="/anikare/LoginServlet">※ログインページはこちら</a>
+		<div id="aniheader">
+			<h1 class="logo">
+				<img src="/anikare/img/logo.png" alt="アニカレロゴ">
+			</h1>
+			<!-- ロゴの挿入 -->
 		</div>
+	</header>
 
+	<main>
+		<div class="main">
+			<h2>pw再設定ページ</h2>
+
+			<div>
+				<form method="POST" action="/anikare/PasswordResetServlet" id=form>
+					<label for="Mail">メールアドレス<br>
+					 <input type="text"	name="Mail" placeholder="メールアドレス"></label><br>
+					<p>※登録されているメールアドレスを入力してください。</p>
+					<p>ログイン用の仮PWを発行致します。</p>
+					<input type="submit" name="submit" value="確認">
+					  <!--  onclick="return clickkakunin()"-->
+	<!-- 				<button onclick="btnClick();">確認</button>
+	 -->				<!-- onclick="return clickkakunin()" -->
+					<input type="reset" name="reset" value="クリア">
+				</form>
+		</div>
+		</div>
+		<a href="/anikare/LoginServlet">※ログインページはこちら</a>
 	</main>
 	<footer class="footer">
+	<hr>
 		<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 		<!-- 要相談 -->
 	</footer>
@@ -130,7 +135,7 @@
  */
  //${newpass}でデータ取り出す
 		if("${res}" == "ok"){
-			window.confirm('再設定用のパスワードはこちらです['+"${pas}"+']');
+			window.confirm('再設定用のパスワードはこちらです['+"${pas}"+']\nログイン画面に遷移して入力してください');
 			/* if (clicked){
 			//サーブレットにpostする。
 			function postForm(value) {
@@ -157,7 +162,7 @@
 		}
 		else if("${res}" == "miss")
 			{
-			window.confirm('間違いがあります');
+			window.confirm('メールアドレスに間違いがあります。');
 
 		}else{
 			console.log("empty");

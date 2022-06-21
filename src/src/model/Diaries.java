@@ -37,12 +37,22 @@ public class Diaries implements Serializable {
 		this.diary_content = diary_content;
 	}
 
-	public Diaries( String diary_title, String diary_content) {
+
+	/*public Diaries( String diary_title, String diary_content) {
 		super();
 
 		this.diary_title = diary_title;
 		this.diary_content = diary_content;
+	}*/
+
+	public Diaries(String diary_date, String diary_title) {
+		super();
+
+		this.diary_date = diary_date;
+		this.diary_title = diary_title;
+
 	}
+
 		public Diaries() {
 			super();
 			this.id = 0;
