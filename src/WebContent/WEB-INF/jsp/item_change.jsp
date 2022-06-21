@@ -95,15 +95,18 @@
 									<th class="header" colspan="4">壁紙</th>
 								</tr>
 								<tr>
-								<c:forEach var="e" items="${bgList}" begin="0" end="3" >
+								<c:forEach var="e" items="${bgList}" begin="0" end="3"  varStatus="status">
 									<!-- 後でクラス指定して一括で画像サイズを固定 -->
-									<td id="list" width="200px" onclick="confirm('本当に交換してよろしいですか？')">${e.bg_image}<br>${e.bg_point}</td>
+									<td id="list" width="200px" >${e.bg_image}<br>${e.bg_point}<br>
+									<input type="button" value="交換" id='item_change${status.index}'></td>
+
 								</c:forEach>
 								</tr>
 								<tr>
-								<c:forEach var="e" items="${bgList}" begin="4" end="7" >
+								<c:forEach var="e" items="${bgList}" begin="4" end="7" varStatus="status">
 									<!-- 後でクラス指定して一括で画像サイズを固定 -->
-									<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
+									<td width="200px">${e.bg_image}<br>${e.bg_point}<br>
+									<input type="button" value="交換" id='item_change${status.index}'></td>
 								</c:forEach>
 								</tr>
 								<tr>
@@ -225,15 +228,27 @@
 recalc();
 
 //押されたものを読み取る
- function confirm()
-		var result = window.confirm();
+/* エレメントを作成 */
 
-		if (result == true) {
-			alert("わかったよ！")；
-		} else {
-			alert("残念…");
-		}
-		}
+let count=[];
+
+for (let i =0; i<= 11; i++){
+	count[i] = document.getElementById('item_change' + i);
+	count[i].addEventListener('click', function(){
+    console.log('Click'+i);
+});
+	count[i].addEventListener('click', check);
+}
+/*  クリックされたときの動作 */
+function check(){
+    if (confirm('こちらと交換します。よろしいですか？') == true) {
+   	alert("交換します！");
+    } else {
+	alert("交換を中止しました。");
+    }
+    console.log(check);
+}
+count[i].addEventListener('click', check);
 //どれが押されたかを読み取る getElementById
 //押されたもののポイントを変数に入れる
 //今所持してるポイントと比べる
