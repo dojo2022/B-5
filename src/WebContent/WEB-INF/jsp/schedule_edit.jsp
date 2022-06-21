@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>アニカレ</title>
@@ -9,34 +11,35 @@
   <link rel= "stylesheet" href="/anikare/css/schedule_edit.css">
   <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
 </head>
+
 <body>
 <div class="wrapper">
   <header>
     <div id="aniheader">
         <!--日付表示-->
-          <p class="headermoji"><span id="time"></span></p>
+		<p class="headermoji"><span id="time"></span></p>
 
 
         <!--- メニューバー --->
   <!--       <p> -->
-            <div class="drawer">
-            <!-- ハンバーガーメニュー表示・非表示切り替え -->
-            <input type="checkbox" id="drawer-check" class="drawer-hidden" >
-            <!-- ハンバーガーアイコン -->
-            <label for="drawer-check" class="drawer-open"><span></span></label>
-                <nav class="drawer-content">
+        <div class="drawer">
+        <!-- ハンバーガーメニュー表示・非表示切り替え -->
+        <input type="checkbox" id="drawer-check" class="drawer-hidden" >
+        <!-- ハンバーガーアイコン -->
+        <label for="drawer-check" class="drawer-open"><span></span></label>
+            <nav class="drawer-content">
 
-                     <ul class=" drawar-list">
-                       	<li><a href="/anikare/ToppageServlet" class="btn btn-border">トップページ </a></li>
-						<li><a href="/anikare/ScheduleAddServlet" class="btn btn-border">予定・ＴｏＤｏ</a></li>
-						<li><a href="/anikare/ScheduleEditServlet" class="btn btn-border"> 今日の予定 </a></li>
-						<li><a href="/anikare/DiaryServlet" class="btn btn-border"> 日記 一覧 </a></li>
-						<li><a href="/anikare/ItemChangeServlet" class="btn btn-border">ポイント 交換</a></li>
-						<li><a href="/anikare/MypageServlet" class="btn btn-border"> マイページ </a></li>
-						<li><a href="/anikare/LoginServlet" class="btn btn-border"> ログアウト </a></li>
-                    </ul>
-                </nav>
-              </div>
+                 <ul class=" drawar-list">
+                   	<li><a href="/anikare/ToppageServlet" class="btn btn-border">トップページ </a></li>
+		<li><a href="/anikare/ScheduleAddServlet" class="btn btn-border">予定・ＴｏＤｏ</a></li>
+		<li><a href="/anikare/ScheduleEditServlet" class="btn btn-border"> 今日の予定 </a></li>
+		<li><a href="/anikare/DiaryServlet" class="btn btn-border"> 日記 一覧 </a></li>
+		<li><a href="/anikare/ItemChangeServlet" class="btn btn-border">ポイント 交換</a></li>
+		<li><a href="/anikare/MypageServlet" class="btn btn-border"> マイページ </a></li>
+		<li><a href="/anikare/LoginServlet" class="btn btn-border"> ログアウト </a></li>
+                </ul>
+            </nav>
+          </div>
      <!--    </p> -->
       <!--タイトル-->
 <!--       <p> -->
@@ -81,25 +84,25 @@
                 <h2>今日の予定</h2>
                 <form method="POST" action="/anikare/ScheduleEditServlet">
                   <details>
-                    <summary>🍚ランチ</summary>
+						<summary>
+							<select id="stampselect" name ="stampselect" value="${e.stamp}">
+								<option value="${e.stamp_id }">🍚</option>
+								<option value="${e.stamp_id }">💛</option>
+								<option value="${e.stamp_id }">⛰</option>
+						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></summary>
                     <table>
                       <tr>
-                        <td><input type="text" class="" name="stamp"></td>
-                        <td><input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></td>
+                        <td><input type="text" class="shorttext" name="start_time" placeholder="12:00" value="${e.start_time}">～</td>
+                        <td><input type="text" class="shorttext" name="end_time" placeholder="14:00" value="${e.end_time}"></td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="" name="start_time" placeholder="12:00" value="${e.start_time}">～</td>
-                        <td><input type="text" class="" name="end_time" placeholder="14:00" value="${e.end_time}"></td>
+                        <td><input type="text" class="shorttext" name="place" placeholder="場所" value="${e.place}"></td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="" name="place" placeholder="場所" value="${e.place}"></td>
+                        <td colspan="2"><input type="text" class="longtext" name="schedule_memo" placeholder="メモ" value="${e.schedule_memo}"></td>
                       </tr>
                       <tr>
-                        <td>メモ</td>
-                      </tr>
-                      <tr>
-          <%--               <td colspan="2"><textarea name="schedule_memo" value="${e.schedule_memo}"></textarea></td>
-           --%>            </tr>
+
                       <tr>
                         <td>
                           <div class=""><input class=""  name="BACK" value="戻る" ></div>
@@ -120,21 +123,17 @@
                 <h2>ToDo</h2>
                 <form method="POST" action="/anikare/TodoEditServlet">
                   <details>
-                    <summary><input type="checkbox" id="" name="checkbox" value="missioncomplete">配属希望</summary>
+                    <summary>
+                    	<input type="checkbox" id="" name="checkbox" value="missioncomplete">
+                    	<input type="text" class="titlefont" name="task" placeholder="タスク名を入力" value="${e.task}">
+                    </summary>
                       <table>
-                        <tr>
-                          <td><input type="checkbox" id="" name="checkbox" value="missioncomplete"></td>
-                          <td><input type="text" class="titlefont" name="task" placeholder="タスク名を入力" value="${e.task}"></td>
-                        </tr>
                         <tr>
                           <td><input type="text" class="" name="todo_deadline" placeholder="締め切り時間を入力" value="${e.todo_deadline}"></td>
                         </tr>
                         <tr>
-                          <td>メモ</td>
+                          <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="メモ" value="${e.todo_memo}"></td>
                         </tr>
-                        <tr>
-               <%--            <td colspan="2"><textarea name="todo_memo" value="${e.todo_memo}"></textarea></td>
-                --%>         </tr>
                         <tr>
                           <td>
                             <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>

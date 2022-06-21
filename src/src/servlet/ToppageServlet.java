@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import dao.BackgroundsDAO;
+import dao.SchedulesDAO;
+import model.Backgrounds;
+import model.Schedules;
 
 
 
@@ -31,43 +36,48 @@ public class ToppageServlet extends HttpServlet {
 //					return;
 //				}
 
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+//		String id = request.getParameter("id");
+//		String title = request.getParameter("title");
+//		String start_time = request.getParameter("start_time");
+//		String end_time = request.getParameter("end_time");
+//		String stamp_id = request.getParameter("stamp_id");
+//		String schedule_memo = request.getParameter("schedule_memo");
+//		String place = request.getParameter("place");
 
-		//トップページにフォワードする
+		//検索処理を行う
+		SchedulesDAO sDao = new SchedulesDAO();
+		List<Schedules> cardList = sDao.select(new Schedules());
+
+		//アイテムの全件表示を行う
+		//スタンプはbgListスコープに保存
+		BackgroundsDAO bDAO = new BackgroundsDAO();
+		List<Backgrounds> bgList = bDAO.select(new Backgrounds(0,"","" ,0 ,""));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("bgList", bgList);
+
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
+
+		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 		dispatcher.forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-				HttpSession session = request.getSession();
-				if (session.getAttribute("id") == null) {
-					response.sendRedirect("/anikare/LoginServlet");
-					return;
-				}
-
-				// リクエストパラメータを取得する
-				request.setCharacterEncoding("UTF-8");
-
-//				// 登録処理を行う
-//				DAO bDao = new BcDAO();
-//				if (bDao.insert(new Bc(number,firstname, name, firstnameFurigana,nameFurigana,postalcode,address,company,
-//						department,position,mail,tel,fax,birthday))) {	// 登録成功
-//					request.setAttribute("result",
-//					new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
+//		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+//				HttpSession session = request.getSession();
+//				if (session.getAttribute("id") == null) {
+//					response.sendRedirect("/anikare/LoginServlet");
+//					return;
 //				}
-//				else {												// 登録失敗
-//					request.setAttribute("result",
-//					new Result("登録失敗！", "レコードを登録できませんでした。", "/simpleBC/MenuServlet"));
-//				}
-//
-//				// 結果ページにフォワードする
-//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-//				dispatcher.forward(request, response);
-//			}
-//}
+
+
 	}
 
 }

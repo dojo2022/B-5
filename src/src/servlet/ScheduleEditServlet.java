@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +25,11 @@ public class ScheduleEditServlet extends HttpServlet {
 		// 予定・ToDo編集ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
 		dispatcher.forward(request, response);
+
+		SchedulesDAO sDao = new SchedulesDAO();
+		List<Schedules> SchedulesList = sDao.select(new Schedules());
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("SchedulesList", SchedulesList);
 	}
 
 
