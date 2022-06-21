@@ -119,37 +119,70 @@
 							<h2>sampleさん所持アイテム一覧</h2>
 							<h3>壁紙</h3>
 							<button onclick="effect_bg()">壁紙を書き換える</button>
-							<c:forEach var="e" items="${backgroundItemsList}">
-							${e.bg_name}
-							<img id="image_bg" src="/anikare/img/${e.bg_image}">
-							</c:forEach>
+							<form method="POST" action="/anikare/MypageServlet" id="form">
+								<table>
+									<tr>
+										<thcolspan"2">壁紙
+										</th>
+									</tr>
+									<c:forEach var="e" items="${backgroundItemsList}">
+										<td width="200px"><img id="bg_image" name="bg_image"
+											src="/anikare/img/${e.bg_image}"><br>
+											<p name="bg_name">${e.bg_name}</p></td>
+									</c:forEach>
+									<td><input type="submit" name="submit" value="壁紙の変更"></td>
+								</table>
+							</form>
 
 
-							<!-- background_itemsから要素を順番に表示 -->
-							<input type="submit" name="submit" value="変更">
 							<h3>格言</h3>
-							<c:forEach var="e" items="${KakugenItemsList}">
-							${e.genre_name}
-							<img id="image_bg" src="/anikare/img/${e.kakugen_image}">
-							</c:forEach>
-							<!-- kakugen_itemsから要素を順番に表示 -->
-							<input type="submit" name="submit" value="変更">
+							<form method="POST" action="/anikare/MypageServlet" id="form">
+								<table>
+									<tr>
+										<thcolspan"2">格言</th>
+							</tr>
+									<c:forEach var="e" items="${KakugenItemsList}">
+										<td width="200px"><img id="bg_image" name="bg_image"
+											src="/anikare/img/${e.kakugen_image}"><br>
+											<p name="bg_name">${e.genre_name}</p></td>
+									</c:forEach>
+									<td><input type="submit" name="submit" value="格言の変更"></td>
+								</table>
+							</form>
+
 							<h3>キャラクターカスタマイズ</h3>
 							<a href="javascript:void(0);" onclick="LinkClick(0);">象</a> <br>
 							<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
-							<c:forEach var="e" items="${CharacterItemsList}">
-							${e.character_name}
-							<img id="image_chara" src="/anikare/img/${e.character_image}">
-							</c:forEach>
-							<!-- charcterから要素を順番に表示 -->
-							<input type="submit" name="submit" value="変更">
+							<form method="POST" action="/anikare/MypageServlet" id="form">
+								<table>
+									<tr>
+										<thcolspan"4">キャラクターカスタマイズ
+										</th>
+									</tr>
+									<c:forEach var="e" items="${CharacterItemsList}">
+										<td width="200px"><img id="bg_image" name="bg_image"
+											src="/anikare/img/${e.character_image}"><br>
+											<p name="bg_name">${e.character_name}</p></td>
+									</c:forEach>
+									<td><input type="submit" name="submit" value="キャラクターの変更"></td>
+								</table>
+							</form>
+
 							<h3>クーポン</h3>
-							<c:forEach var="e" items="${CouponItemsList}">
-							${e.coupon_name},${e.coupon_name}
-							<img id="image_chara" src="/anikare/img/${e.coupon_image}">
-							</c:forEach>
-							<!-- coupon_itemsから要素を順番に表示 -->
-							<input type="submit" name="submit" value="使用">
+							<form method="POST" action="/anikare/MypageServlet" id="form">
+								<table>
+									<tr>
+										<thcolspan"4">クーポン</th>
+							</tr>
+									<c:forEach var="e" items="${CouponItemsList}">
+										<td width="200px"><img id="bg_image" name="bg_image"
+											src="/anikare/img/${e.coupon_image}"><br>
+											<p name="bg_name">${e.coupon_name}${e.coupon_name}</p></td>
+									</c:forEach>
+									<td><input type="submit" name="submit" value="クーポンの使用"></td>
+								</table>
+							</form>
+
 						</div>
 
 
@@ -188,21 +221,21 @@
 			}
 
 			function LinkClick(param) {
-			      var elem = document.getElementById("image_chara");
+				var elem = document.getElementById("image_chara");
 
-			      switch (param) {
-			        case 0:
-			          elem.src = "/anikare/img/animal_zou.png";
-			          break;
-			        case 1:
-			          elem.src = "/anikare/img/animal_lion.png";
-			          break;
+				switch (param) {
+				case 0:
+					elem.src = "/anikare/img/animal_zou.png";
+					break;
+				case 1:
+					elem.src = "/anikare/img/animal_lion.png";
+					break;
 
-			        default:
-			          elem.src = "/anikare/img/character.jpg";
-			          break;
-			      }
-			    }
+				default:
+					elem.src = "/anikare/img/character.jpg";
+					break;
+				}
+			}
 		</script>
 	</div>
 

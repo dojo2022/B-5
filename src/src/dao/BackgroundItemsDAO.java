@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.BackgroundItems;
-import model.Users;
 
 public class BackgroundItemsDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -214,7 +213,7 @@ public class BackgroundItemsDAO {
 		}
 	// 適用した背景の更新
 		// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
-		public boolean update(Users card) {
+		public boolean activate(BackgroundItems card) {
 			Connection conn = null;
 			boolean result = false;
 
@@ -225,28 +224,40 @@ public class BackgroundItemsDAO {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
-				// SQL文を準備する
-				String sql = "update Users set user_name=?, mail=?, login_pw=? ";
+
+				String sql = "update character_items set background_active='false' where background_active = 'true' and user_id=(select user_id from users where mail like ?);";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				if (card.getMail() != null) {
+					pStmt.setString(1, "%" + card.getMail() + "%");
+				}
+				else {
+					pStmt.setString(1, "%");
+				}
+				// SQL文を実行する
+				if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+
+				// SQL文を準備する
+				sql = "update background_items set background_active='true' where user_id=(select user_id from users where mail like ?)and background_ID like (select background_ID from backgroundS where background_name like '?');";
+				pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
 
 
-				if (card.getUser_name() != null && !card.getUser_name().equals("")) {
-					pStmt.setString(1, card.getUser_name());
-				} else {
-					pStmt.setString(1, "");
+				if (card.getMail() != null) {
+					pStmt.setString(1, "%" + card.getMail() + "%");
 				}
-				if (card.getMail() != null && !card.getMail().equals("")) {
-					pStmt.setString(2, card.getMail());
-				} else {
-					pStmt.setString(2, "");
+				else {
+					pStmt.setString(1, "%");
 				}
-				if (card.getLogin_pw() != null && !card.getLogin_pw().equals("")) {
-					pStmt.setString(3, card.getLogin_pw());
-				} else {
-					pStmt.setString(3, "");
-
+				if (card.getBg_name() != null) {
+					pStmt.setString(2, "%" + card.getBg_name() + "%");
+				}
+				else {
+					pStmt.setString(2, "%");
 				}
 
 				// SQL文を実行する

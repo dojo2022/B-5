@@ -33,10 +33,10 @@ public class BackgroundItems implements Serializable {
 	}
 
 	//登録用コンストラクタ
-	public BackgroundItems(String user_id, String background_id) {
+	public BackgroundItems(String mail, String bg_name) {
 		super();
-		this.user_id = user_id;
-		this.background_id = background_id;
+		this.mail = mail;
+		this.bg_name = bg_name;
 	}
 
 	//

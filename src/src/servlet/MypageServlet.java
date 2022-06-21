@@ -90,6 +90,7 @@ public class MypageServlet extends HttpServlet {
 		String user_name = request.getParameter("new_name");
 		String mail = mail_session.getId();
 		String new_pw = request.getParameter("new_pw");
+		String bg_name = request.getParameter("bg_name");
 
 		// 更新処理を行う
 		UsersDAO uDao = new UsersDAO();
@@ -106,7 +107,20 @@ public class MypageServlet extends HttpServlet {
 		else {												// 登録失敗
 			System.out.println("false");
 		}
-		// 個人ページにフォワードする
+
+		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+		//if (request.getParameter("SUBMIT").equals("壁紙の変更")) {
+			if (biDao.activate(new BackgroundItems(mail, mail, bg_name))) {   // 登録成功
+				System.out.println("activate=true");
+			}
+			else {												// 登録失敗
+				System.out.println("activate=false");
+			}
+		//}
+		//else {												// 登録失敗
+		//	System.out.println("activate=false");
+		//}
+		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 		dispatcher.forward(request, response);
 	}
