@@ -22,7 +22,7 @@
 
 
 				<!--- メニューバー --->
-				<p class="">
+
 				<div class="drawer">
 					<!-- ハンバーガーメニュー表示・非表示切り替え -->
 					<input type="checkbox" id="drawer-check" class="drawer-hidden">
@@ -49,13 +49,13 @@
 						</ul>
 					</nav>
 				</div>
-				</p>
+
 				<!--タイトル-->
-				<p class="">
+
 				<h1 class="logo">
 					<a href=""><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 				</h1>
-				</p>
+
 
 
 				<!--ポイント交換-->
@@ -74,7 +74,7 @@
 				<div class="leftside">
 					<!--キャラの吹き出し-->
 					<div class="animalcomment">
-						<img scr="ma"><img scr="ma">
+						<!-- <img scr="ma"><img scr="ma"> -->
 
 						<!-- ToDo -->
 
@@ -109,23 +109,31 @@
 									<th class="fixed1">title</th>
 								</tr>
 							</table>
-							<c:forEach var="e" items="${cardList}" varStatus='status'>
+							<c:forEach var="e" items="${diaryList}" varStatus='status'>
 								<form method="POST" name="diaryPost" action="/anikare/DiaryServlet">
 									<table class="start_list">
 
 
 										<tr class='row_count'>
-											<td>${e.diary_date}</td>
-											<td >
-											<div id='diary_title${status.count}' onClick="this.form.submit();">${e.diary_title}</div>
-											<%-- <a href="javascript:document.diaryPost.submit()">${e.diary_title}</a> --%>
-											</td>
-											<td><input type="hidden" name="date"
+											<td>${e.diary_date}
+											<input type="hidden" name="date"
 												value="${e.diary_date}">
-												 <input type="hidden"
-												name="title" value="${e.diary_title}"></td>
-											<td><input type="submit" name="submit" value="ログイン">
 											</td>
+											<%-- <td >
+											<div id='diary_title${status.count}' onClick="this.form.submit();">${e.diary_title}</div>
+											<a href="javascript:document.diaryPost.submit()">${e.diary_title}</a>
+											</td> --%>
+											<td>
+											${e.diary_title}
+											<input type="hidden"
+												name="title" value="${e.diary_title}">
+											<input type="submit" name="submit" value="→">
+											</td>
+
+
+
+
+
 										</tr>
 
 
@@ -141,26 +149,26 @@
 		<footer> </footer>
 		<script type="text/javascript">
 			'use strict'
-const counts =document.getElementsByClassName("row_count");
+/* const counts =document.getElementsByClassName("row_count");
 console.log(counts.length);
-let title=[];
+let title=[]; */
 /* エレメントを作成 */
-for (let i =1 ;i<counts.length;i++){
+/* for (let i =1 ;i<counts.length;i++){
 	title[i] = document.getElementById('diary_title'+i);
 }
 function sub(){
 	console.log(' onclick'+i);
 	document.diaryPost.submit();
-}
+} */
 /*  クリックされたときの動作 */
- for (let i =1 ;i<counts.length;i++){
+ /* for (let i =1 ;i<counts.length;i++){
 
  title[i].addEventListener('click',function(){
 		 console.log(' event click'+i);
-		 /*submit機能*/
+		 submit機能
 		 document.diaryPost.submit();
 	 });
- }
+ } */
 
 
 

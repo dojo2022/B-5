@@ -8,6 +8,8 @@ public class Diaries implements Serializable {
 	private String diary_date;
 	private String diary_title;
 	private String diary_content;
+	private String mail;
+
 
 	public Diaries(int id, String user_id, String diary_date, String diary_title, String diary_content) {
 		super();
@@ -53,6 +55,12 @@ public class Diaries implements Serializable {
 
 	}
 
+	public Diaries(String mail) {
+		super();
+		this.mail = mail;
+
+	}
+
 		public Diaries() {
 			super();
 			this.id = 0;
@@ -91,6 +99,12 @@ public class Diaries implements Serializable {
 		}
 		public void setDiary_content(String diary_content) {
 			this.diary_content = diary_content;
+		}
+		public String getMail() {
+			return mail;
+		}
+		public void setMail(String mail) {
+			this.mail = mail;
 		}
 
 

@@ -42,17 +42,17 @@ public class UsersDAO {
 			if (param.getUser_name() != null) {
 				pStmt.setString(2, "%" + param.getUser_name() + "%");
 			} else {
-				pStmt.setString(2, "");
+				pStmt.setString(2, "%");
 			}
 			if (param.getMail() != null) {
 				pStmt.setString(3, "%" + param.getMail() + "%");
 			} else {
-				pStmt.setString(3, "");
+				pStmt.setString(3, "%");
 			}
 			if (param.getLogin_pw() != null) {
 				pStmt.setString(4,"%" + param.getLogin_pw() + "%");
 			} else {
-				pStmt.setString(4, "");
+				pStmt.setString(4, "%");
 			}
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -93,7 +93,72 @@ public class UsersDAO {
 		// 結果を返す
 		return cardList;
 	}
+	public List<Users> select(String mail) {
+		Connection conn = null;
+		List<Users> cardList = new ArrayList<Users>();
 
+		try
+		{
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+			String sql = "select id, user_id, user_name,mail, login_pw  "
+					+ "from users WHERE mail LIKE ? ORDER BY id";
+			//			6/1412時作業
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる<<検索項目だけ書く
+
+			if (mail != null) {
+				pStmt.setString(1, mail);
+			} else {
+				pStmt.setString(1, "%");
+			}
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				Users card = new Users(
+						rs.getInt("id"),
+						rs.getString("user_id"),
+						rs.getString("user_name"),
+						rs.getString("mail"),
+						rs.getString("login_pw")
+						);
+				cardList.add(card);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			cardList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			cardList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					cardList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return cardList;
+	}
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(Users card) {
 		Connection conn = null;

@@ -10,9 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DiariesDAO;
+import dao.UsersDAO;
 import model.Diaries;
+import model.Login;
+import model.Users;
 
 
 /**
@@ -29,22 +33,38 @@ public class DiaryServlet extends HttpServlet {
 			response.sendRedirect("/WEB-INF/jsp/login.jsp");
 			return;
 		}*/
+		HttpSession session = request.getSession();
+		Login mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getId();
+
+		UsersDAO uDao = new UsersDAO();
+		List<Users> cardList = uDao.select(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList",cardList);
+
+		DiariesDAO dDao = new DiariesDAO();
+		List<Diaries> diaryList = dDao.selectMyItem(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("diaryList", diaryList);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/diary.jsp");
+		dispatcher.forward(request, response);
+	}
 
 
+		/*DiariesDAO dDao = new DiariesDAO();
+		List<Diaries> cardList = dDao.select(new Diaries("","","",""));
 
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
+		// メニューページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/diary.jsp");
+		dispatcher.forward(request, response);
 
-	DiariesDAO dDao = new DiariesDAO();
-	List<Diaries> cardList = dDao.select(new Diaries("","","",""));
-
-	// 検索結果をリクエストスコープに格納する
-	request.setAttribute("cardList", cardList);
-	// メニューページにフォワードする
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/diary.jsp");
-	dispatcher.forward(request, response);
-
-}
+		}*/
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
 		request.setCharacterEncoding("UTF-8");
 		String date = request.getParameter("date");
@@ -54,7 +74,7 @@ public class DiaryServlet extends HttpServlet {
 		List<Diaries> diaryList = new ArrayList<Diaries>();
 		Diaries param = new Diaries("",date,title,"");
 		DiariesDAO dDao = new DiariesDAO();
-		diaryList=dDao.select(param);
+		diaryList=dDao.selectMyItem(param);
 //		HttpSession session = request.getSession();
 		request.setAttribute("diaryList", diaryList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
