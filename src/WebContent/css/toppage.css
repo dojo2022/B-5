@@ -1,36 +1,17 @@
 @charset "UTF-8";
-#calendar {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-section {
+body {
+  padding: 0;
   margin: 10px;
 }
 
-h1 {
+p {
+  padding: 10px;
+}
+
+.container {
+  padding: 10px;
+}
+
+input[type=date] {
   font-size: 18px;
-}
-
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-td {
-  border: 1px solid #ddd;
-  padding: 5px;
-  text-align: center;
-}
-
-td:first-child {
-  color: red;
-}
-
-td:last-child {
-  color: royalblue;
-}
-
-td.is-disabled {
-  color: #ccc;
 }

@@ -86,36 +86,19 @@
 				<div class="rightside">
 
 					<!--- カレンダー　--->
-	休業日<br>
+				<div class="container">
+  <input type="date" name="date">
+  <p id="output">Change the Date</p>
+</div>
 
 
 
     <script>
-    import '@grapecity/inputman/CSS/gc.inputman-js.css';
-    import { InputMan } from '@grapecity/inputman';
-    import "./styles.css";
+    let date = document.querySelector(`input[type='date'][name='date']`);
 
-    const gcCalendar1 = new InputMan.GcCalendar(document.getElementById('gcCalendar1'));
-    gcCalendar1.getWeekday('sunday').setWeekFlags(InputMan.WeekFlags.All);
-    gcCalendar1.getWeekday('saturday').setWeekFlags(InputMan.WeekFlags.All);
-
-    const gcCalendar2 = new InputMan.GcCalendar(document.getElementById('gcCalendar2'), {
-        headerFormat: 'gggE年 M月',
-        yearMonthFormat: 'gggE年,M月'
+    date.addEventListener(`change`, () => {
+      document.querySelector(`#output`).innerHTML = date.value;
     });
-
-    const gcCalendar3 = new InputMan.GcCalendar(document.getElementById('gcCalendar3'), {
-        showRokuyou: InputMan.Rokuyou.All
-    });
-
-    const gcCalendar4 = new InputMan.GcCalendar(document.getElementById('gcCalendar4'), {
-        calendarDimensions: {
-            width: 3,
-            height: 2
-        }
-    });
-
-
     </script>
 
 				</div>
