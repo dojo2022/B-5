@@ -9,15 +9,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BackgroundsDAO;
 import dao.CharactersDAO;
 import dao.CouponsDAO;
 import dao.KakugensDAO;
+import dao.UsersDAO;
 import model.Backgrounds;
 import model.Characters;
 import model.Coupons;
 import model.Kakugens;
+import model.Login;
+import model.Users;
 
 /**
  * Servlet implementation class ItemChangeServelet
@@ -37,6 +41,18 @@ public class ItemChangeServlet extends HttpServlet {
 		//			response.sendRedirect("/anikare/LoginServlet");
 		//			return;
 		//		}
+
+		//セッションスコープに格納したidデータを変数idに代入
+		HttpSession session = request.getSession();
+		Login mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getId();
+		UsersDAO uDao = new UsersDAO();
+		List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
+
+
+
 		//アイテムの全件表示を行う
 		//背景はbgListスコープに保存
 		BackgroundsDAO bDAO = new BackgroundsDAO();
@@ -46,7 +62,7 @@ public class ItemChangeServlet extends HttpServlet {
 
 		//格言はwordsListスコープに保存
 		KakugensDAO kDAO = new KakugensDAO();
-		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","" ,"","",0 ,""));
+		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","","","",0 ,""));
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("wordsList", wordsList);
 
@@ -90,7 +106,51 @@ public class ItemChangeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
+//		//ポイントチェック
+//		//リクエストパラメ―タを取得する
+//		String background = "";
+//		background =request.getParameter("background");
+//		String coupon = request.getParameter("cupon");
+//		String result="";
+//
+//		//ポイントチェックをする
+//		if(background != "") {
+//			//backgroundのポイント照合
+//
+//			//自分の現在のポイント合計と交換しようとするポイント
+//			if() {
+//				//ポイントが足りたとき
+//
+//
+//				//insert文を使って自分のポイントを
+//				//1.今交換しようとしたアイテムのポイントを抽出（select）
+//				//2.自分のポイントに1の値のマイナスをinsert
+//
+//				result="ok";
+//			}else {
+//				//ポイントが不足のとき
+//
+//				result="ng";
+//			}
+//
+//
+//		}
+//		if(coupon != "") {
+//			//couponのポイント照合
+//			if() {
+//
+//				result="ok";
+//			}
+//		}
+//
+//		request.setAttribute("result", result);
+//
+//
+//		result
+//
+//
+//		doGet(request, response);
+}
 
 }

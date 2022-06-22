@@ -6,24 +6,27 @@ public class Users {
 	private String user_name;
 	private String mail;
 	private String login_pw;
+	private int point_value;
 
 
-	public Users(int id, String user_id, String user_name, String mail, String login_pw) {
+	public Users(int id, String user_id, String user_name, String mail, String login_pw, int point_value) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
 		this.user_name = user_name;
 		this.mail = mail;
 		this.login_pw = login_pw;
+		this.point_value = point_value;
 
 	}
 
-	public Users( String user_id, String user_name, String mail, String login_pw) {
+	public Users( String user_id, String user_name, String mail, String login_pw, int point_value) {
 		super();
 		this.user_id = user_id;
 		this.user_name = user_name;
 		this.mail = mail;
 		this.login_pw = login_pw;
+		this.point_value = point_value;
 
 	}
 	//引数3つのコンストラクタ
@@ -55,8 +58,10 @@ public class Users {
 		this.user_name ="";
 		this.mail = "";
 		this.login_pw = "";
+		this.point_value= 0;
 
 	}
+
 
 
 	public int getId() {
@@ -98,4 +103,13 @@ public class Users {
 	public void setLogin_pw(String login_pw) {
 		this.login_pw = login_pw;
 	}
+
+	public int getPoint_value() {
+		return point_value;
+	}
+
+	public void setPoint_value(int point_value) {
+		this.point_value = point_value;
+	}
+
 }

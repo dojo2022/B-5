@@ -25,7 +25,8 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
-			String sql = "select id, user_id, user_name,mail, login_pw  "
+			//point_valueをusersに追加 0622
+			String sql = "select id, user_id, user_name,mail, login_pw, point_value "
 					+ "from users WHERE  user_id LIKE ? AND user_name LIKE ? AND mail LIKE ? "
 					+ "AND login_pw LIKE ? ORDER BY id";
 			//			6/1412時作業
@@ -64,7 +65,8 @@ public class UsersDAO {
 						rs.getString("user_id"),
 						rs.getString("user_name"),
 						rs.getString("mail"),
-						rs.getString("login_pw")
+						rs.getString("login_pw"),
+						rs.getInt("point_value")
 						);
 				cardList.add(card);
 			}
@@ -106,7 +108,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
-			String sql = "select id, user_id, user_name,mail, login_pw  "
+			String sql = "select id, user_id, user_name,mail, login_pw, point_value "
 					+ "from users WHERE mail LIKE ? ORDER BY id";
 			//			6/1412時作業
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -130,7 +132,8 @@ public class UsersDAO {
 						rs.getString("user_id"),
 						rs.getString("user_name"),
 						rs.getString("mail"),
-						rs.getString("login_pw")
+						rs.getString("login_pw"),
+						rs.getInt("point_value")
 						);
 				cardList.add(card);
 			}

@@ -60,8 +60,11 @@
 				<!-- ポイントデータベースから引っ張ってくる -->
 
 				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-				<p class="headermoji">ポイント</p>
-
+				<p class="headermoji">
+					<c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>
+					ポイント
+				</p>
 			</div>
 		</header>
 
@@ -96,121 +99,126 @@
 						<div id="itemlist"></div>
 						<h2>アイテム交換リスト</h2>
 						<!-- 壁紙リスト -->
-						<div class="table-content">
-							<table class="td-list">
-								<tr>
-									<th class="header" colspan="4">壁紙</th>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${bgList}" begin="0" end="3"
-										varStatus="status">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td id="list"><img width="200px"
-											src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
-											<input type="button" value="交換"
-											id='item_change${status.index}'></td>
+						<form method="POST" action="/anikare/ItemChangeServlet">
+							<div class="table-content">
+								<table class="td-list">
+									<tr>
+										<th class="header" colspan="4">壁紙</th>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${bgList}" begin="0" end="3"
+											varStatus="status">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td id="list"><img width="200px"
+												src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
+												<input type="hidden" name="background" value="${e.id}">
+												<input type="button" name="submit" value="交換"
+												id='item_change${status.index}'></td>
 
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${bgList}" begin="4" end="7"
-										varStatus="status">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px"><img width="200px"
-											src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
-											<input type="button" value="交換"
-											id='item_change${status.index}'></td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${bgList}" begin="8" end="11">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
-									</c:forEach>
-								</tr>
-								<!-- 要素が増えたらこのfor文を追加する -->
-							</table>
-						</div>
-						<!-- 格言リスト -->
-						<div class="table-content">
-							<table class="td-list">
-								<tr>
-									<th class="header" colspan="4">格言</th>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${wordsList}" begin="0" end="3">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${wordsList}" begin="4" end="7">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${wordsList}" begin="8" end="11">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
-									</c:forEach>
-								</tr>
-								<!-- 要素が増えたらこのfor文を追加する -->
-							</table>
-						</div>
-						<!-- キャラクターリスト -->
-						<div class="table-content">
-							<table class="td-list">
-								<tr>
-									<th class="header" colspan="4">キャラクター</th>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${charactersList}" begin="0" end="3">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.character_image}<br>${e.character_point}</td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${charactersList}" begin="4" end="7">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.character_image}<br>${e.character_point}</td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${charactersList}" begin="8" end="11">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.character_image}<br>${e.character_point}</td>
-									</c:forEach>
-								</tr>
-								<!-- 要素が増えたらこのfor文を追加する -->
-							</table>
-						</div>
-						<!-- クーポンリスト -->
-						<div class="table-content">
-							<table class="td-list">
-								<tr>
-									<th class="header" colspan="4">クーポン</th>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${couponsList}" begin="0" end="3">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${couponsList}" begin="4" end="7">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="e" items="${couponsList}" begin="8" end="11">
-										<!-- 後でクラス指定して一括で画像サイズを固定 -->
-										<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
-									</c:forEach>
-								</tr>
-							</table>
-						</div>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${bgList}" begin="4" end="7"
+											varStatus="status">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px"><img width="200px"
+												src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
+												<input type="button" value="交換"
+												id='item_change${status.index}'></td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${bgList}" begin="8" end="11">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
+										</c:forEach>
+									</tr>
+									<!-- 要素が増えたらこのfor文を追加する -->
+								</table>
+							</div>
+
+							<!-- 格言リスト -->
+							<div class="table-content">
+								<table class="td-list">
+									<tr>
+										<th class="header" colspan="4">格言</th>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${wordsList}" begin="0" end="3">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${wordsList}" begin="4" end="7">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${wordsList}" begin="8" end="11">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+										</c:forEach>
+									</tr>
+									<!-- 要素が増えたらこのfor文を追加する -->
+								</table>
+							</div>
+							<!-- キャラクターリスト -->
+							<div class="table-content">
+								<table class="td-list">
+									<tr>
+										<th class="header" colspan="4">キャラクター</th>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${charactersList}" begin="0" end="3">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.character_image}<br>${e.character_point}</td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${charactersList}" begin="4" end="7">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.character_image}<br>${e.character_point}</td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${charactersList}" begin="8"
+											end="11">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.character_image}<br>${e.character_point}</td>
+										</c:forEach>
+									</tr>
+									<!-- 要素が増えたらこのfor文を追加する -->
+								</table>
+							</div>
+							<!-- クーポンリスト -->
+							<div class="table-content">
+								<table class="td-list">
+									<tr>
+										<th class="header" colspan="4">クーポン</th>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${couponsList}" begin="0" end="3">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${couponsList}" begin="4" end="7">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="e" items="${couponsList}" begin="8" end="11">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td width="200px">${e.coupon_image}<br>${e.coupon_point}</td>
+										</c:forEach>
+									</tr>
+								</table>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -222,24 +230,6 @@
 		</footer>
 		<script>
 			'use strict'
-			function recalc() {
-				let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
-						'Fri.', 'Sat.' ];
-				const now = new Date();
-				const month = now.getMonth() + 1;
-				const date = now.getDate();
-				const day = now.getDay();
-
-				document.getElementById('time').textContent = month + '/'
-						+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
-				refresh();
-			}
-
-			function refresh() {
-				setTimeout(recalc, 1000);
-			}
-			recalc();
-
 			//押されたものを読み取る
 			/* エレメントを作成 */
 
@@ -268,6 +258,7 @@
 			//少ない時はアラート
 			//多い時はサーブレットに移動（ポイントの減額と、所持アイテムの追加,id
 		</script>
+		<script type="text/javascript" src="/anikare/all.js"></script>
 	</div>
 
 </body>
