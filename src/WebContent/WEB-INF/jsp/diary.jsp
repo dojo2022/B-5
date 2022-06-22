@@ -79,7 +79,8 @@
 						<!-- ToDo -->
 
 						<!-- 今日の予定 -->
-						<p>今日はランチ！</p>
+						<p>今までの日記を確認してね！</p><br>
+						<p>→マークから詳細を確認できるよ</p>
 
 					</div>
 
@@ -105,8 +106,8 @@
 
 							<table class="start_list">
 								<tr>
-									<th class="fixed1">day</th>
-									<th class="fixed1">title</th>
+									<th class="dDay">day</th>
+									<th class="dTitle">title</th>
 								</tr>
 							</table>
 							<c:forEach var="e" items="${diaryList}" varStatus='status'>
@@ -172,23 +173,6 @@ function sub(){
 
 
 
-			function recalc() {
-				let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
-						'Fri.', 'Sat.' ];
-				const now = new Date();
-				const month = now.getMonth() + 1;
-				const date = now.getDate();
-				const day = now.getDay();
-
-				document.getElementById('time').textContent = month + '/'
-						+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
-				refresh();
-			}
-
-			function refresh() {
-				setTimeout(recalc, 1000);
-			}
-			recalc();
 
 			const week = [ "日", "月", "火", "水", "木", "金", "土" ];
 			const today = new Date();
@@ -222,6 +206,7 @@ function sub(){
 				document.querySelector('#calendar').innerHTML = calendar;
 			}
 		</script>
+		<script src="/anikare/js/all.js"></script>
 	</div>
 </body>
 

@@ -1,8 +1,13 @@
 @charset "UTF-8";
 /* 日記一覧のリスト表示 */
+
+.rightside {
+    margin-left:150px;
+  }
 .table-contents{
   overflow-y: scroll;
   height: 400px;
+  width:auto;
 }
 
 .start_list {
@@ -10,23 +15,24 @@
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  width: 700px;
-  height: 80px;
+  width: 600px;
+  height: 30px;
   /* overflow: auto;		はみ出した場合は、スクロールバーを表示する */
-  margin: 3px auto;
+  margin: 0 auto;
   padding: 60px;
   border: solid 1px  black;
   text-align: center;
   background-color: rgb(255, 255, 255);
+  table-layout:fixed;
 
 }
 
 .start_list th {
   background-color:rgb(252, 252, 252);
-  height:10px;
    border: solid 1px  black;
    position: sticky;
    top: 0;
+   height:1px;
 }
 .start_list td {
 border: solid 1px  black;
@@ -41,6 +47,16 @@ border: solid 1px  black;
   bottom: 0%;
 }
 
+/* .dDay,.dTitle{
+	width:5px;
+	height:10px;
+	padding:0 0;
+	line-height:2;
+} */
+
+/* .dTitle{
+	width:10px;
+} */
 /* .fixed1{
 	position: sticky;
 	top: 0;
