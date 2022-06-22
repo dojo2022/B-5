@@ -109,33 +109,39 @@ public class ItemChangeServlet extends HttpServlet {
 
 //		//ポイントチェック
 //		//リクエストパラメ―タを取得する
-//		String background = "";
+		int background = 0;
+		background =Integer.parseInt(request.getParameter("background"));
+		int point_value= 0;
+		point_value = Integer.parseInt(request.getParameter("point_value"));
+		//照合の結果を入力する変数
+		String result="";
+
 //		background =request.getParameter("background");
 //		String coupon = request.getParameter("cupon");
 //		String result="";
 //
 //		//ポイントチェックをする
-//		if(background != "") {
-//			//backgroundのポイント照合
-//
-//			//自分の現在のポイント合計と交換しようとするポイント
-//			if() {
-//				//ポイントが足りたとき
-//
-//
-//				//insert文を使って自分のポイントを
-//				//1.今交換しようとしたアイテムのポイントを抽出（select）
-//				//2.自分のポイントに1の値のマイナスをinsert
-//
-//				result="ok";
-//			}else {
-//				//ポイントが不足のとき
-//
-//				result="ng";
-//			}
-//
-//
-//		}
+		if(background != 0 ) {
+			//backgroundのポイント照合
+			//自分の現在のポイント合計と交換しようとするポイント
+			if(background <= point_value) {
+				//ポイントが足りたとき
+				//insert文を使って自分のポイントを
+				//1.今交換しようとしたアイテムのポイントを抽出（select）
+				//2.自分のポイントに1の値のマイナスをinsert
+				result="ok";
+				request.setAttribute("result", result);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}else {
+				//ポイントが不足のとき
+				result="ng";
+
+				request.setAttribute("result", result);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
 //		if(coupon != "") {
 //			//couponのポイント照合
 //			if() {
