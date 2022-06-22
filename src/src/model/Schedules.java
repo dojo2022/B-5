@@ -58,6 +58,20 @@ public class Schedules implements Serializable{
 			this.place = place;
 		}
 
+		//８つのコンストラクタ
+		public Schedules(String title, String schedule_date, String start_time, String end_time, String stamp_id,
+				String schedule_memo, String place, String user_id) {
+			super();
+			this.title = title;
+			this.schedule_date = schedule_date;
+			this.start_time = start_time;
+			this.end_time = end_time;
+			this.stamp_id = stamp_id;
+			this.schedule_memo = schedule_memo;
+			this.place = place;
+			this.user_id = user_id;
+		}
+
 		public Schedules(String mail) {
 			super();
 			this.mail = mail;
