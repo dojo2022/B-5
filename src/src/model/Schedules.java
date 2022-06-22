@@ -2,49 +2,90 @@ package model;
 import java.io.Serializable;
 
 public class Schedules implements Serializable{
-	private String id;
+	private int id;
 	private String title;
+	private String schedule_date;
 	private String start_time;
 	private String end_time;
 	private String stamp_id;
 	private String schedule_memo;
 	private String place;
 	private String user_id;
+	private String mail;
 
 	//引数があるコンストラクタ
-	public Schedules(String id, String title, String start_time, String end_time, String stamp_id,
+	public Schedules(int id, String title, String schedule_date, String start_time, String end_time, String stamp_id,
 			String schedule_memo, String place, String user_id) {
 		super();
 		this.id = id;
 		this.title = title;
+		this.schedule_date = schedule_date;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.stamp_id = stamp_id;
 		this.schedule_memo = schedule_memo;
 		this.place = place;
 		this.user_id = user_id;
+//		this.mail= mail;
 	}
 
 	//引数がないコンストラクタ（デフォルトコンストラクタ）
 		public Schedules() {
 			super();
-			this.id = "";
+			this.id = 0;
 			this.title = "";
+			this.schedule_date="";
 			this.start_time = "";
 			this.end_time = "";
 			this.stamp_id = "";
 			this.schedule_memo = "";
 			this.place = "";
 			this.user_id = "";
+//			this.mail="";
+		}
+
+		//７つのコンストラクタ
+
+		public Schedules(String title, String schedule_date, String start_time, String end_time, String stamp_id,
+				String schedule_memo, String place) {
+			super();
+			this.title = title;
+			this.schedule_date = schedule_date;
+			this.start_time = start_time;
+			this.end_time = end_time;
+			this.stamp_id = stamp_id;
+			this.schedule_memo = schedule_memo;
+			this.place = place;
+		}
+
+		public Schedules(String mail) {
+			super();
+			this.mail = mail;
+
 		}
 
 
+		//ゲッターとセッター
+		public String getSchedule_date() {
+			return schedule_date;
+		}
 
+		public void setSchedule_date(String schedule_date) {
+			this.schedule_date = schedule_date;
+		}
 
-	public String getId() {
+	public String getMail() {
+			return mail;
+		}
+
+		public void setMail(String mail) {
+			this.mail = mail;
+		}
+
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
  	public String getTitle() {

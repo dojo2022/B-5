@@ -14,71 +14,145 @@ import model.Schedules;
 
 public class SchedulesDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Schedules> select(Schedules param) {
-		Connection conn = null;
-		List<Schedules> cardList = new ArrayList<Schedules>();
+//	public List<Schedules> select(Schedules param) {
+//		Connection conn = null;
+//		List<Schedules> cardList = new ArrayList<Schedules>();
+//
+//		try
+//		{
+//			// JDBCドライバを読み込む
+//			Class.forName("org.h2.Driver");
+//
+//			// データベースに接続する
+//			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+//
+//			// 実行するSQL文
+//			String sql = "SELECT * FROM Schedules ORDER BY id";
+//
+//
+//			//一覧を取得
+//			PreparedStatement pStmt = conn.prepareStatement(sql);
+//
+//			// SQL文を実行し、変数rsに結果を格納
+//			ResultSet rs = pStmt.executeQuery();
+//
+//			// 実行結果を順番に取り出す
+//			while (rs.next()) {
+//				Schedules card = new Schedules(
+//						rs.getString("title"),
+//						rs.getString("schedule_date"),
+//						rs.getString("start_time"),
+//						rs.getString("end_time"),
+//						rs.getString("stamp_id"),
+//						rs.getString("schedule_memo"),
+//						rs.getString("place"),
+//						rs.getString("user_id")
+//						);
+//				//取得した要素を、cardに追加
+//				cardList.add(card);
+//			}
+//		}
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//			cardList = null;
+//		}
+//		catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//			cardList = null;
+//		}
+//		finally {
+//			// データベースを切断
+//			if (conn != null) {
+//				try {
+//					conn.close();
+//				}
+//				catch (SQLException e) {
+//					e.printStackTrace();
+//					cardList = null;
+//				}
+//			}
+//		}
+//
+//		// 結果を返す
+//		return cardList;
+//	}
+//
 
-		try
-		{
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
 
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+	//ユーザーを区別するための検索
+		public List<Schedules> selectMyItem(Schedules param) {
+			Connection conn = null;
+			List<Schedules> ScheduleList = new ArrayList<Schedules>();
 
-			// 実行するSQL文
-			String sql = "SELECT * FROM Schedules ORDER BY id";
+			try
+			{
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
 
-			//一覧を取得
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
-			// SQL文を実行し、変数rsに結果を格納
-			ResultSet rs = pStmt.executeQuery();
+				// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+				String sql = "select title,schedule_date,start_time,end_time,stamp_id,schedule_memo,place from schedules "
+						+ "left join users on users.user_id = schedules.user_id "
+						+ "where schedule_date like ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// 実行結果を順番に取り出す
-			while (rs.next()) {
-				Schedules card = new Schedules(
-						rs.getString("id"),
-						rs.getString("title"),
-						rs.getString("start_time"),
-						rs.getString("end_time"),
-						rs.getString("stamp_id"),
-						rs.getString("schedule_memo"),
-						rs.getString("place"),
-						rs.getString("user_id")
-						);
-				//取得した要素を、cardに追加
-				cardList.add(card);
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			cardList = null;
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			cardList = null;
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
+				// SQL文を完成させる<<検索項目だけ書く
+
+				if (param.getSchedule_date()!= null) {
+					pStmt.setString(1, param.getSchedule_date());
 				}
-				catch (SQLException e) {
-					e.printStackTrace();
-					cardList = null;
+				else {
+					pStmt.setString(1, "%");
+				}
+
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする
+				while (rs.next()) {
+					Schedules card = new Schedules(
+							rs.getString("title"),
+							rs.getString("schedule_date"),
+							rs.getString("start_time"),
+							rs.getString("end_time"),
+							rs.getString("schedule_memo"),
+							rs.getString("stamp_id"),
+							rs.getString("place")
+							);
+					ScheduleList.add(card);
 				}
 			}
-		}
+			catch (SQLException e) {
+				e.printStackTrace();
+				ScheduleList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				ScheduleList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						ScheduleList = null;
+					}
+				}
+			}
 
-		// 結果を返す
-		return cardList;
-	}
+			// 結果を返す
+			return ScheduleList;
+		}
 
 
 	// スケジュールリストを表示
-	public List<Schedules> selectMySchedule(Schedules param) {
+	public List<Schedules> selectMyItem(String mail) {
 		Connection conn = null;
 		List<Schedules> SchedulesList = new ArrayList<Schedules>();
 
@@ -93,18 +167,19 @@ public class SchedulesDAO {
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "SELECT title, start_time,end_time,stamp_id,schedule_memo,place FROM Schedules"
 					+ "LEFT JOIN users on users.user_id = SCHEDULES.user_id "
-					+ "LEFT JOIN stamps on stamps.stamp_id = SCHEDULES.BACKGROU"
+					+ "LEFT JOIN stamps on stamps.stamp_id = schedules.stamp_id"
 					+ "WHERE mail like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる<<検索項目だけ書く
-//
-//			if (param.getMail() != null) {
-//				pStmt.setString(1, "%" + param.getMail() + "%");
-//			}
-//			else {
-//				pStmt.setString(1, "%");
-//			}
+
+						if (mail != null) {
+							pStmt.setString(1, mail);
+						}
+						else {
+							pStmt.setString(1, "%");
+						}
+
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -112,7 +187,7 @@ public class SchedulesDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Schedules card = new Schedules(
-						rs.getString("id"),
+
 						rs.getString("title"),
 						rs.getString("start_time"),
 						rs.getString("end_time"),
