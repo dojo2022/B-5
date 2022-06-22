@@ -149,7 +149,7 @@ public class KakugenItemsDAO {
 		// 結果を返す
 		return Result;
 	}
-	// 所持背景をリスト表示
+	// 所持格言をリスト表示
 	public List<KakugenItems> selectMyItem(KakugenItems param) {
 		Connection conn = null;
 		List<KakugenItems> KakugenItemsList = new ArrayList<KakugenItems>();
@@ -215,4 +215,142 @@ public class KakugenItemsDAO {
 		// 結果を返す
 		return KakugenItemsList;
 	}
+
+	// 適用した格言の更新
+	public boolean activate(KakugenItems card) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+
+			String sql = "update Kakugen_items set Kakugen_active = 'false' where Kakugen_active = 'true' and user_id=(select user_id from users where mail like ?);";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			if (card.getKakugen_image() != null) {
+				pStmt.setString(1, "%" + card.getKakugen_image() + "%");
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+
+			// SQL文を準備する
+			sql = "update kakugen_items set kakugen_active='true' where user_id=(select user_id from users where mail like ?)and kakugen_ID like (select background_ID from backgrounds where genre_name like ?);";
+			pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+
+
+			if (card.getKakugen_image() != null) {
+				pStmt.setString(1, "%" + card.getKakugen_image() + "%");
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+			if (card.getKakugen_active() != null) {
+				pStmt.setString(2, "%" + card.getKakugen_active() + "%");
+			}
+			else {
+				pStmt.setString(2, "%");
+			}
+
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
+	}
+
+	//適用した格言の表示
+	public List<KakugenItems> selectActive(KakugenItems param) {
+		Connection conn = null;
+		List<KakugenItems> KakugenItemsList = new ArrayList<KakugenItems>();
+
+		try
+		{
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
+
+			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
+			String sql = "select kakugen_image from Kakugen_items "
+					+ "left join users on users.user_id = Kakugen_ITEMS.user_id "
+					+ "left join KakugenS on KakugenS.Kakugen_ID = Kakugen_ITEMS.Kakugen_ID "
+					+ "where mail like ? and Kakugen_active like 'true'";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる<<検索項目だけ書く
+
+			if (param.getMail() != null) {
+				pStmt.setString(1, "%" + param.getMail() + "%");
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				KakugenItems card = new KakugenItems(
+						rs.getString("bg_image")
+
+						);
+				KakugenItemsList.add(card);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			KakugenItemsList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			KakugenItemsList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					KakugenItemsList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return KakugenItemsList;
+	}
+
 }
