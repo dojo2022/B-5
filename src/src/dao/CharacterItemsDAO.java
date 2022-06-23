@@ -85,6 +85,7 @@ public class CharacterItemsDAO {
 		// 結果を返す
 		return cardList;
 	}
+
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(CharacterItems card) {
 		Connection conn = null;
@@ -317,7 +318,7 @@ public class CharacterItemsDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				CharacterItems card = new CharacterItems(
-						rs.getString("character_image")				
+						rs.getString("character_image")
 						);
 				CharacterItemsList.add(card);
 			}

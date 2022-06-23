@@ -11,12 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BackgroundItemsDAO;
 import dao.BackgroundsDAO;
+import dao.CharacterItemsDAO;
 import dao.CharactersDAO;
+import dao.CouponItemsDAO;
 import dao.CouponsDAO;
 import dao.KakugensDAO;
 import dao.UsersDAO;
+import model.BackgroundItems;
 import model.Backgrounds;
+import model.CharacterItems;
 import model.Characters;
 import model.Coupons;
 import model.Kakugens;
@@ -35,15 +40,15 @@ public class ItemChangeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		//		HttpSession session = request.getSession();
-		//		if (session.getAttribute("id") == null) {
-		//			response.sendRedirect("/anikare/LoginServlet");
-		//			return;
-		//		}
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/anikare/LoginServlet");
+			return;
+		}
 
 		//セッションスコープに格納したidデータを変数idに代入
-		HttpSession session = request.getSession();
 		Login mail_session = (Login)session.getAttribute("id");
 		String mail = mail_session.getMail();
 		UsersDAO uDao = new UsersDAO();
@@ -54,7 +59,8 @@ public class ItemChangeServlet extends HttpServlet {
 
 
 		//アイテムの全件表示を行う
-		//背景はbgListスコープに保存
+		//全部セッションスコープに書き換える
+		//背景はbgListスコープに保存,
 		BackgroundsDAO bDAO = new BackgroundsDAO();
 		List<Backgrounds> bgList = bDAO.select(new Backgrounds(0,"","" ,0 ,""));
 		// 検索結果をリクエストスコープに格納する
@@ -82,6 +88,9 @@ public class ItemChangeServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 		dispatcher.forward(request, response);
 
+
+		session.setAttribute("res", "get");
+
 	}
 
 
@@ -106,21 +115,53 @@ public class ItemChangeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-//		//ポイントチェック
-//		//リクエストパラメ―タを取得する
+		request.setCharacterEncoding("UTF-8");
+		//		//ポイントチェック
+		//		//リクエストパラメ―タを取得する
 		int background = 0;
 		background =Integer.parseInt(request.getParameter("background"));
+		String background_id =request.getParameter("background_id");
 		int point_value= 0;
 		point_value = Integer.parseInt(request.getParameter("point_value"));
-		//照合の結果を入力する変数
-		String result="";
+		HttpSession session = request.getSession();
+		Login mail_session = (Login)session.getAttribute("id");
+		String user_id = mail_session.getUser_id();
+		String character_id = request.getParameter("character_id");
+		String coupon_id = request.getParameter("coupon_id");
+		//登録処理を行う
+		//壁紙
+		BackgroundItemsDAO bDAO = new BackgroundItemsDAO();
+		if (bDAO.insert(new BackgroundItems(user_id, background_id))) {	// 登録成功
+			System.out.println("true");
+		}
+		else {												// 登録失敗
+			System.out.println("false");
+		}
+		//キャラ
+		CharacterItemsDAO cDAO = new CharacterItemsDAO();
+		if (cDAO.insert(new CharacterItems(user_id, character_id))) {	// 登録成功
+			System.out.println("true");
+		}
+		else {												// 登録失敗
+			System.out.println("false");
+		}
+		//クーポン
+		CouponItemsDAO ciDAO = new CouponItemsDAO();
+		if (cDAO.insert(new CharacterItems(user_id, coupon_id))) {	// 登録成功
+			System.out.println("true");
+		}
+		else {												// 登録失敗
+			System.out.println("false");
+		}
 
-//		background =request.getParameter("background");
-//		String coupon = request.getParameter("cupon");
-//		String result="";
-//
-//		//ポイントチェックをする
+		//照合の結果を入力する変数
+		//		String result="";
+
+		//		background =request.getParameter("background");
+		//		String coupon = request.getParameter("cupon");
+		//		String result="";
+		//
+		//		//ポイントチェックをする
 		if(background != 0 ) {
 			//backgroundのポイント照合
 			//自分の現在のポイント合計と交換しようとするポイント
@@ -129,34 +170,41 @@ public class ItemChangeServlet extends HttpServlet {
 				//insert文を使って自分のポイントを
 				//1.今交換しようとしたアイテムのポイントを抽出（select）
 				//2.自分のポイントに1の値のマイナスをinsert
-				result="ok";
-				request.setAttribute("result", result);
+				//				result="ok";
+
+				session.setAttribute("res", "ok");
+				//				request.setAttribute("result", "ok");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 				dispatcher.forward(request, response);
+
 			}else {
 				//ポイントが不足のとき
-				result="ng";
+				//				result="ng";
 
-				request.setAttribute("result", result);
+				//				request.setAttribute("result", result);
+
+				session.setAttribute("res", "fail");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 				dispatcher.forward(request, response);
 			}
 		}
-//		if(coupon != "") {
-//			//couponのポイント照合
-//			if() {
-//
-//				result="ok";
-//			}
-//		}
-//
-//		request.setAttribute("result", result);
-//
-//
-//		result
-//
-//
-//		doGet(request, response);
-}
+		//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+		//		dispatcher.forward(request, response);
+		//		if(coupon != "") {
+		//			//couponのポイント照合
+		//			if() {
+		//
+		//				result="ok";
+		//			}
+		//		}
+		//
+		//		request.setAttribute("result", result);
+		//
+		//
+		//		result
+		//
+		//
+		//		doGet(request, response);
+	}
 
 }

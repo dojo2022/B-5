@@ -105,7 +105,7 @@ public class CouponItemsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			//SQL文を準備する
-			String sql = "insert into background_items (user_id, coupon_id, coupon_num) values(?, ?, ?)";
+			String sql = "insert into background_items (user_id, coupon_id) values(?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
@@ -121,12 +121,12 @@ public class CouponItemsDAO {
 			else {
 				pStmt.setString(2, null);
 			}
-			if (card.getCoupon_num() != null && !card.getCoupon_num().equals("")) {
-				pStmt.setString(3, card.getCoupon_num());
-			}
-			else {
-				pStmt.setInt(3, 0);
-			}
+//			if (card.getCoupon_num() != null && !card.getCoupon_num().equals("")) {
+//				pStmt.setString(3, card.getCoupon_num());
+//			}
+//			else {
+//				pStmt.setInt(3, 0);
+//			}
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

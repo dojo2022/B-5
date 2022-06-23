@@ -99,7 +99,6 @@
 						<div id="itemlist"></div>
 						<h2>アイテム交換リスト</h2>
 						<!-- 壁紙リスト -->
-						<form method="POST" action="/anikare/ItemChangeServlet">
 							<div class="table-content">
 								<table class="td-list">
 									<tr>
@@ -109,38 +108,63 @@
 										<c:forEach var="e" items="${bgList}" begin="0" end="3"
 											varStatus="status">
 											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td id="list"><img width="200px"
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+												<img width="200px"
 												src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
-												<input type="hidden" name="background" value="${e.id}">
 												<input type="hidden" name="background" value="${e.bg_point}">
-													<c:forEach var="e" items="${cardList}" >
-													<input type="hidden" name="point_value" value="${e.point_value}">
-													</c:forEach>
-												<input type="button" name="submit" value="交換"
-												id='item_change${status.index}'></td>
-
+												<input type="hidden" name="background_id"
+												value="${e.background_id}"> <c:forEach var="e"
+													items="${cardList}">
+													<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+												</form>
+												</td>
 										</c:forEach>
 									</tr>
 									<tr>
 										<c:forEach var="e" items="${bgList}" begin="4" end="7"
 											varStatus="status">
 											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td width="200px"><img width="200px"
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+											<img width="200px"
 												src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
-												<input type="button" value="交換"
-												id='item_change${status.index}'></td>
+												<input type="hidden" name="background" value="${e.bg_point}">
+												<input type="hidden" name="background_id"
+												value="${e.background_id}"> <c:forEach var="e"
+													items="${cardList}">
+													<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+												</form>
+												</td>
 										</c:forEach>
 									</tr>
 									<tr>
 										<c:forEach var="e" items="${bgList}" begin="8" end="11">
 											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td width="200px">${e.bg_image}<br>${e.bg_point}</td>
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+											${e.bg_image}<br>${e.bg_point}pt<br>
+												<input type="hidden" name="background" value="${e.bg_point}">
+												<input type="hidden" name="background_id"
+												value="${e.background_id}"> <c:forEach var="e"
+													items="${cardList}">
+													<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+												</form>
+												</td>
 										</c:forEach>
 									</tr>
 									<!-- 要素が増えたらこのfor文を追加する -->
 								</table>
 							</div>
-
 							<!-- 格言リスト -->
 							<div class="table-content">
 								<table class="td-list">
@@ -148,21 +172,58 @@
 										<th class="header" colspan="4">格言</th>
 									</tr>
 									<tr>
-										<c:forEach var="e" items="${wordsList}" begin="0" end="3">
+										<c:forEach var="e" items="${wordsList}" begin="0" end="3"
+											varStatus="status">
 											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+											${e.genre_name}<br>${e.kakugen_point}pt<br>
+												<input type="hidden" name="kakugen_point"value="${e.kakugen_point}">
+												<input type="hidden" name="genre_name" value="${e.genre_name}"> <c:forEach
+													var="e" items="${cardList}">
+													<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+												</form>
+												</td>
+										</c:forEach>
+									<tr>
+										<c:forEach var="e" items="${wordsList}" begin="4" end="7"
+											varStatus="status">
+											<!-- 後でクラス指定して一括で画像サイズを固定 -->
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+											${e.genre_name}<br>${e.kakugen_point}<br>
+												<input type="hidden" name="kakugen_point" value="${e.kakugen_point}">
+												<input type="hidden"name="genre_name" value="${e.genre_name}"> <c:forEach
+													var="e" items="${cardList}">
+													<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+												</form>
+												</td>
 										</c:forEach>
 									</tr>
 									<tr>
-										<c:forEach var="e" items="${wordsList}" begin="4" end="7">
+										<c:forEach var="e" items="${wordsList}" begin="8" end="11"
+											varStatus="status">
 											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
-										</c:forEach>
-									</tr>
-									<tr>
-										<c:forEach var="e" items="${wordsList}" begin="8" end="11">
-											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td width="200px">${e.genre_name}<br>${e.kakugen_point}</td>
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+											${e.genre_name}<br>${e.kakugen_point}<br>
+												<input type="hidden" name="kakugen_point"
+												value="${e.kakugen_point}">
+												<input type="hidden"
+												name="genre_name" value="${e.genre_name}"> <c:forEach
+													var="e" items="${cardList}">
+													<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+												</form>
+												</td>
 										</c:forEach>
 									</tr>
 									<!-- 要素が増えたらこのfor文を追加する -->
@@ -175,9 +236,23 @@
 										<th class="header" colspan="4">キャラクター</th>
 									</tr>
 									<tr>
-										<c:forEach var="e" items="${charactersList}" begin="0" end="3">
+										<c:forEach var="e" items="${charactersList}" begin="0" end="3"
+											varStatus="status">
 											<!-- 後でクラス指定して一括で画像サイズを固定 -->
-											<td width="200px">${e.character_image}<br>${e.character_point}</td>
+											<td id="list">
+											<form id="sub" method="POST" action="/anikare/ItemChangeServlet">
+											${e.character_image}<br>${e.character_point}<br>
+												<input type="hidden" name="kakugen_point"
+												value="${e.character_point}"> <input type="hidden"
+												name="genre_name" value="${e.genre_name}"> <c:forEach
+													var="e" items="${cardList}">
+												<input type="hidden" name="point_value"
+														value="${e.point_value}">
+												</c:forEach> <input type="submit" name="submit" value="交換"
+												id='item_change${status.index}'>
+
+											</form>
+											</td>
 										</c:forEach>
 									</tr>
 									<tr>
@@ -247,21 +322,23 @@
 				count[i].addEventListener('click', check);
 			}
 
-
 			/*  クリックされたときの動作 */
 			function check() {
 				if (confirm('こちらと交換します。よろしいですか？') == true) {
-					if ("$result}" =="ok"){
-						alert("交換します！");
-					} else {
-						alert('ポイントが足りません！')
-					}
+					alert('交換します！');
 				} else {
 					alert("交換を中止しました。");
 				}
-				console.log(check);
 			}
 			count[i].addEventListener('click', check);
+
+			if ("${res}" == "fail") {
+				//				var clicked = window
+				alert('交換失敗！\nポイントが足りません！');
+			} else {
+				//				var clicked = window
+				alert('ポイントを交換しました！');
+			}
 			//どれが押されたかを読み取る getElementById
 			//押されたもののポイントを変数に入れる
 			//今所持してるポイントと比べる

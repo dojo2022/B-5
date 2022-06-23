@@ -104,14 +104,14 @@ public class BackgroundItemsDAO {
 
 			//SQL文を完成させる
 
-			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(1, card.getUser_id());
+			if (card.getMail() != null && !card.getMail().equals("")) {
+				pStmt.setString(1, card.getMail());
 			}
 			else {
 				pStmt.setString(1, null);
 			}
-			if (card.getBackground_id() != null && !card.getBackground_id().equals("")) {
-				pStmt.setString(2, card.getBackground_id());
+			if (card.getBg_name() != null && !card.getBg_name().equals("")) {
+				pStmt.setString(2, card.getBg_name());
 			}
 			else {
 				pStmt.setString(2, null);
