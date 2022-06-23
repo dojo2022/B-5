@@ -236,7 +236,7 @@ public class SchedulesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into schedules (title,start_time,end_time,stamp_id,schedule_memo,place) values (?, ? ,?, ?, ?, ? )";
+			String sql = "insert into schedules (title,schedule_date, start_time,end_time,stamp_id,schedule_memo,place) values (?, ? ,? ,?, ?, ?, ? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -246,30 +246,35 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getStart_time() != null && !card.getStart_time().equals("")) {
-				pStmt.setString(2, card.getStart_time());
+			if (card.getSchedule_date() != null && !card.getTitle().equals("")) {
+				pStmt.setString(2, card.getSchedule_date());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getEnd_time() != null && !card.getEnd_time().equals("")) {
-				pStmt.setString(3, card.getEnd_time());
+			if (card.getStart_time() != null && !card.getStart_time().equals("")) {
+				pStmt.setString(3, card.getStart_time());
 			} else {
 				pStmt.setString(3, "");
 			}
-			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
-				pStmt.setString(4, card.getStamp_id());
+			if (card.getEnd_time() != null && !card.getEnd_time().equals("")) {
+				pStmt.setString(4, card.getEnd_time());
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
-				pStmt.setString(5, card.getSchedule_memo());
+			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
+				pStmt.setString(5, card.getStamp_id());
 			} else {
 				pStmt.setString(5, "");
 			}
-			if (card.getPlace() != null && !card.getPlace().equals("")) {
-				pStmt.setString(6, card.getPlace());
+			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
+				pStmt.setString(6, card.getSchedule_memo());
 			} else {
 				pStmt.setString(6, "");
+			}
+			if (card.getPlace() != null && !card.getPlace().equals("")) {
+				pStmt.setString(7, card.getPlace());
+			} else {
+				pStmt.setString(7, "");
 			}
 
 			// SQL文を実行する
@@ -309,7 +314,7 @@ public class SchedulesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update Schedules set title=?, start_time=?, end_time=?, stamp_id=?, schedule_memo=?, place=?";
+			String sql = "update Schedules set title=?, schedule_date=? , start_time=?, end_time=?, stamp_id=?, schedule_memo=?, place=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -320,30 +325,35 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getStart_time() != null && !card.getStart_time().equals("")) {
-				pStmt.setString(2, card.getStart_time());
+			if (card.getSchedule_date() != null && !card.getTitle().equals("")) {
+				pStmt.setString(2, card.getSchedule_date());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getEnd_time() != null && !card.getEnd_time().equals("")) {
-				pStmt.setString(3, card.getEnd_time());
+			if (card.getStart_time() != null && !card.getStart_time().equals("")) {
+				pStmt.setString(3, card.getStart_time());
 			} else {
 				pStmt.setString(3, "");
 			}
-			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
-				pStmt.setString(4, card.getStamp_id());
+			if (card.getEnd_time() != null && !card.getEnd_time().equals("")) {
+				pStmt.setString(4, card.getEnd_time());
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
-				pStmt.setString(5, card.getSchedule_memo());
+			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
+				pStmt.setString(5, card.getStamp_id());
 			} else {
 				pStmt.setString(5, "");
 			}
-			if (card.getPlace() != null && !card.getPlace().equals("")) {
-				pStmt.setString(6, card.getPlace());
+			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
+				pStmt.setString(6, card.getSchedule_memo());
 			} else {
 				pStmt.setString(6, "");
+			}
+			if (card.getPlace() != null && !card.getPlace().equals("")) {
+				pStmt.setString(7, card.getPlace());
+			} else {
+				pStmt.setString(7, "");
 			}
 
 			// SQL文を実行する
