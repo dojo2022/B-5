@@ -135,7 +135,7 @@
  */
  //${newpass}でデータ取り出す
 		if("${res}" == "ok"){
-			window.confirm('再設定用のパスワードはこちらです['+"${pas}"+']\nログイン画面に遷移して入力してください');
+			window.confirm('再設定用のパスワードはこちらです['+"${pas}"+']\nログイン後は、マイページから再設定を行ってください');
 			/* if (clicked){
 			//サーブレットにpostする。
 			function postForm(value) {
