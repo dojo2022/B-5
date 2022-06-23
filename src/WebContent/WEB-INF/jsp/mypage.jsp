@@ -21,7 +21,7 @@
 
 
 				<!--- メニューバー --->
-				<p>
+
 				<div class="drawer">
 					<!-- ハンバーガーメニュー表示・非表示切り替え -->
 					<input type="checkbox" id="drawer-check" class="drawer-hidden">
@@ -47,16 +47,16 @@
 						</ul>
 					</nav>
 				</div>
-				</p>
+
 				<!--タイトル-->
-				<p>
+
 				<h1 class="logo">
 					<a href="/anikare/ToppageServlet"><img
 						src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 				</h1>
-				</p>
+
 				<!--ポイント交換-->
-				<!-- <a href ="/anikare/MypageServlet">ポイント交換</a></p> -->
+				<!-- <a href ="/anikare/ItemChangeServlet">ポイント交換</a></p> -->
 				<!-- ポイントデータベースから引っ張ってくる -->
 
 				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
@@ -77,7 +77,9 @@
 
 					<!--- キャラクター --->
 					<div class="animals">
-						<img id="image_chara" src="/anikare/img/animal_zou.png">
+						<c:forEach var="e" items="${CharacterActiveList}">
+							<img id="image_chara" src="/anikare/img/${e.mail}">
+						</c:forEach>
 						<!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
 					</div>
 				</div>
@@ -100,14 +102,14 @@
 									<br>
 								</c:forEach>
 								<!-- 更新押したらテキストボックス その後データベースを更新-->
-								<input type="submit" name="submit" value="更新"> <input
+								<input type="submit" name="namechange" value="更新"> <input
 									type="reset" name="reset" value="クリア">
 								<h3>パスワード</h3>
 								現在のパスワード: <input type="text" name="now_pw" value=""><br>
 								新しいパスワード: <input type="text" name="new_pw" value=""><br>
 
 								<!-- 現在のパスワードがあっていればテキストボックス→データベースを更新 間違っていれば違いますのアラート-->
-								<input type="submit" name="submit" value="更新"> <input
+								<input type="submit" name="passchange" value="更新"> <input
 									type="reset" name="reset" value="クリア">
 							</form>
 
@@ -116,70 +118,97 @@
 						</div>
 
 						<div class="my_item">
-							<h2>sampleさん所持アイテム一覧</h2>
-							<h3>壁紙</h3>
+							<h2>所持アイテム一覧</h2>
+
+
 							<button onclick="effect_bg()">壁紙を書き換える</button>
 							<form method="POST" action="/anikare/MypageServlet" id="form">
 								<table>
 									<tr>
-										<thcolspan"2">壁紙
-										</th>
+										<th>壁紙</th>
 									</tr>
-									<c:forEach var="e" items="${backgroundItemsList}">
-										<td width="200px"><img id="bg_image" name="bg_image"
-											src="/anikare/img/${e.bg_image}"><br>
-											<p name="bg_name">${e.bg_name}</p></td>
-									</c:forEach>
-									<td><input type="submit" name="submit" value="壁紙の変更"></td>
 								</table>
-							</form>
-
-
-							<h3>格言</h3>
-							<form method="POST" action="/anikare/MypageServlet" id="form">
 								<table>
 									<tr>
-										<thcolspan"2">格言</th>
-							</tr>
-									<c:forEach var="e" items="${KakugenItemsList}">
-										<td width="200px"><img id="bg_image" name="bg_image"
-											src="/anikare/img/${e.kakugen_image}"><br>
-											<p name="bg_name">${e.genre_name}</p></td>
-									</c:forEach>
-									<td><input type="submit" name="submit" value="格言の変更"></td>
-								</table>
-							</form>
-
-							<h3>キャラクターカスタマイズ</h3>
-							<a href="javascript:void(0);" onclick="LinkClick(0);">象</a> <br>
-							<a href="javascript:void(0);" onclick="LinkClick(1);">ライオン</a>
-							<form method="POST" action="/anikare/MypageServlet" id="form">
-								<table>
-									<tr>
-										<thcolspan"4">キャラクターカスタマイズ
-										</th>
+										<c:forEach var="e" items="${backgroundItemsList}">
+											<td width="200px"><img width="200px" id="bg_image"
+												name="bg_image" src="/anikare/img/${e.bg_image}"><br>
+												<p>${e.bg_name}</p> <input type="hidden" name="bg_name"
+												value="${e.bg_name}"></td>
+											<td><input type="submit" name="bgchange" value="変更"></td>
+										</c:forEach>
 									</tr>
-									<c:forEach var="e" items="${CharacterItemsList}">
-										<td width="200px"><img id="bg_image" name="bg_image"
-											src="/anikare/img/${e.character_image}"><br>
-											<p name="bg_name">${e.character_name}</p></td>
-									</c:forEach>
-									<td><input type="submit" name="submit" value="キャラクターの変更"></td>
 								</table>
 							</form>
 
-							<h3>クーポン</h3>
 							<form method="POST" action="/anikare/MypageServlet" id="form">
 								<table>
 									<tr>
-										<thcolspan"4">クーポン</th>
-							</tr>
+										<th>格言</th>
+									</tr>
+								</table>
+								<table>
+									<tr>
+										<c:forEach var="e" items="${KakugenItemsList}">
+											<td width="200px"><img width="200px" id="bg_image"
+												name="kakugen_image" src="/anikare/img/${e.kakugen_image}"><br>
+												<p>${e.genre_name}</p>
+												<input type="hidden" name="kakugen_name"
+												value="${e.genre_name}"></td>
+											<td><input type="submit" name="kakugenchange"
+												value="格言の変更"></td>
+										</c:forEach>
+									</tr>
+								</table>
+							</form>
+
+
+								<table>
+									<tr>
+										<th>キャラクターカスタマイズ</th>
+									</tr>
+								</table>
+
+
+										<c:forEach var="e" items="${CharacterItemsList}" varStatus="status">
+										<form method="POST" action="/anikare/MypageServlet" id="form">
+											<table>
+									<tr>
+											<td width="200px">
+											<img width="200px"
+												id="character_image" name="character_image"
+												src="/anikare/img/${e.character_image}"><br>
+												${e.character_name}
+												<input type="hidden" name="character_name" value="${e.character_name}"></td>
+											<td><input id="${status.index}" type="submit"
+												name="characterchange" value="キャラクターの変更"></td>
+															</tr>
+
+
+								</table>
+
+												</form>
+										</c:forEach>
+
+
+
+
+
+							<form method="POST" action="/anikare/MypageServlet" id="form">
+								<table>
+									<tr>
+										<th>クーポン</th>
+									</tr>
+								</table>
+								<table>
 									<c:forEach var="e" items="${CouponItemsList}">
-										<td width="200px"><img id="bg_image" name="bg_image"
-											src="/anikare/img/${e.coupon_image}"><br>
-											<p name="bg_name">${e.coupon_name}${e.coupon_name}</p></td>
+										<td width="200px"><img width="200px" id="bg_image"
+											name="bg_image" src="/anikare/img/${e.coupon_image}"><br>
+											${e.coupon_name}</td>
 									</c:forEach>
-									<td><input type="submit" name="submit" value="クーポンの使用"></td>
+									<tr>
+										<td><input type="submit" name="submit" value="クーポンの使用"></td>
+									</tr>
 								</table>
 							</form>
 
@@ -194,25 +223,8 @@
 
 		</main>
 		<footer> </footer>
-		<script>
+		<script src="/anikare/js/all.js">
 			'use strict'
-			function recalc() {
-				let dayOfWeek = [ 'Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.',
-						'Fri.', 'Sat.' ];
-				const now = new Date();
-				const month = now.getMonth() + 1;
-				const date = now.getDate();
-				const day = now.getDay();
-
-				document.getElementById('time').textContent = month + '/'
-						+ date + '' + '(' + dayOfWeek[now.getDay()] + ')';
-				refresh();
-			}
-
-			function refresh() {
-				setTimeout(recalc, 1000);
-			}
-			recalc();
 
 			function effect_bg() {
 				var element = document.getElementById("city");

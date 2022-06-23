@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <html>
@@ -82,13 +83,15 @@
             <div class="scheduleedit">
                 <!-- 予定編集 -->
                 <h2>今日の予定</h2>
+				<c:forEach var="e" items="${ScheduleList}" varStatus='status'>
                 <form method="POST" action="/anikare/ScheduleEditServlet">
+
                   <details>
 						<summary>
-							<select id="stampselect" name ="stampselect" value="${e.stamp}">
+							<select id="stampselect" name ="value" >
 								<option value="${e.stamp_id }">🍚</option>
 								<option value="${e.stamp_id }">💛</option>
-								<option value="${e.stamp_id }">⛰</option>
+								<option value="${e.stamp_id }">⛰</option></select>
 						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></summary>
                     <table>
                       <tr>
@@ -116,7 +119,9 @@
                       </tr>
                     </table>
                   </details>
+
                 </form>
+                </c:forEach>
             </div>
             <div class="todoedit">
                 <!-- ToDo編集 -->

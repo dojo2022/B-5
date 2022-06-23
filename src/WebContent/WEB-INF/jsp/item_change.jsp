@@ -112,6 +112,10 @@
 											<td id="list"><img width="200px"
 												src="/anikare/img/${e.bg_image}"><br>${e.bg_point}pt<br>
 												<input type="hidden" name="background" value="${e.id}">
+												<input type="hidden" name="background" value="${e.bg_point}">
+													<c:forEach var="e" items="${cardList}" >
+													<input type="hidden" name="point_value" value="${e.point_value}">
+													</c:forEach>
 												<input type="button" name="submit" value="交換"
 												id='item_change${status.index}'></td>
 
@@ -242,10 +246,16 @@
 				});
 				count[i].addEventListener('click', check);
 			}
+
+
 			/*  クリックされたときの動作 */
 			function check() {
 				if (confirm('こちらと交換します。よろしいですか？') == true) {
-					alert("交換します！");
+					if ("$result}" =="ok"){
+						alert("交換します！");
+					} else {
+						alert('ポイントが足りません！')
+					}
 				} else {
 					alert("交換を中止しました。");
 				}
