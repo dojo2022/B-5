@@ -2,14 +2,17 @@ package model;
 import java.io.Serializable;
 
 public class TodoLists implements Serializable{
-	private String id;
+	private int id;
 	private String todo_deadline;
 	private String task;
 	private String importance;
 	private String todo_memo;
 	private String user_id;
+	private String mail;
 
-	public TodoLists(String id, String todo_deadline, String task, String importance, String todo_memo,
+
+	//引数があるコンストラクタ
+	public TodoLists(int id, String todo_deadline, String task, String importance, String todo_memo,
 			String user_id) {
 		super();
 		this.id = id;
@@ -20,8 +23,9 @@ public class TodoLists implements Serializable{
 		this.user_id = user_id;
 	}
 
+	//引数がないコンストラクタ
 	public TodoLists() {
-		this.id = "";
+		this.id = 0;
 		this.todo_deadline = "";
 		this.task = "";
 		this.importance = "";
@@ -29,11 +33,36 @@ public class TodoLists implements Serializable{
 		this.user_id = "";
 	}
 
+	//4つのコンストラクタ
 
-	public String getId() {
+			public TodoLists(String todo_deadline, String task, String importance, String todo_memo) {
+				super();
+				this.todo_deadline = todo_deadline;
+				this.task = task;
+				this.importance = importance;
+				this.todo_memo = todo_memo;
+			}
+
+			//5つのコンストラクタ
+			public TodoLists(String todo_deadline, String task, String importance, String todo_memo, String user_id) {
+				super();
+				this.todo_deadline = todo_deadline;
+				this.task = task;
+				this.importance = importance;
+				this.todo_memo = todo_memo;
+				this.user_id = user_id;
+			}
+			//メールのコンストラクタ
+			public TodoLists(String mail) {
+				super();
+				this.mail = mail;
+			}
+
+			//ゲッターとセッター
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTodo_deadline() {
@@ -65,6 +94,14 @@ public class TodoLists implements Serializable{
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 

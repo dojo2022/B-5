@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,15 +44,18 @@ public class LoginServlet extends HttpServlet {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String mail= request.getParameter("mail");
-		String login_pw = request.getParameter("login_pw");
+		String pw = request.getParameter("login_pw");
 
 		// ログイン処理を行う
 		UsersDAO uDao = new UsersDAO();
-		if (uDao.isLoginOK(new Users(mail, login_pw ))) {	// ログイン成功
+		if (uDao.isLoginOK(new Users(mail, pw ))) {	// ログイン成功
 			// セッションスコープにアドレスを格納する
 			HttpSession session = request.getSession();
-			session.setAttribute("id", new Login(mail));
-			//			 トップページのサーブレットにリダイレクトする
+			//userテーブルから今回のmailと一致するuser_id,mail,passwordを抽出する
+			 List<Users> idList =uDao.select(mail);
+			//抽出結果をセッションスコープに格納
+			session.setAttribute("id", new Login(mail,pw,idList.get(0).getUser_id()));
+			//トップページのサーブレットにリダイレクトする
 			response.sendRedirect("/anikare/ToppageServlet");
 
 		}

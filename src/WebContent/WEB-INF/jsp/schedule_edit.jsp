@@ -123,9 +123,10 @@
                 </form>
                 </c:forEach>
             </div>
-            <div class="todoedit">
+
                 <!-- ToDo編集 -->
                 <h2>ToDo</h2>
+                <c:forEach var="e" items="${TodolistList}" varStatus='status'>
                 <form method="POST" action="/anikare/TodoEditServlet">
                   <details>
                     <summary>
@@ -153,6 +154,7 @@
                       </table>
                   </details>
                 </form>
+                </c:forEach>
             </div>
         </div>
 
@@ -166,7 +168,9 @@
             </tr>
             <tr>
               <td><input type="text" name="diary_content" value="${diaryList[0].diary_content}"></td>
+               <td><input type="hidden" name="user_id" value=${id}></td>
             </tr>
+
           </table>
             <div class=""><input class="" type="submit" name="DELETE" value="リセット"></div>
             <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
