@@ -42,7 +42,7 @@ public class MypageServlet extends HttpServlet {
 		//セッションスコープに格納したidデータを変数idに代入
 		HttpSession session = request.getSession();
 		Login mail_session = (Login)session.getAttribute("id");
-		String mail = mail_session.getId();
+		String mail = mail_session.getMail();
 		UsersDAO uDao = new UsersDAO();
 		List<Users> cardList = uDao.select(new Users( "", "", mail, "", 0));
 		// 検索結果をリクエストスコープに格納する
@@ -123,12 +123,12 @@ public class MypageServlet extends HttpServlet {
 		String characterchange = "";
 		characterchange = request.getParameter("characterchange");
 		String user_name = request.getParameter("new_name");
-		String mail = mail_session.getId();
+		String mail = mail_session.getMail();
 		String new_pw = request.getParameter("new_pw");
 		String bg_name = request.getParameter("bg_name");
 		String kakugen_name = request.getParameter("kakugen_name");
 		String character_name = request.getParameter("character_name");
-		
+
 
 		//名前の変更処理
 		if(namechange != null) {
