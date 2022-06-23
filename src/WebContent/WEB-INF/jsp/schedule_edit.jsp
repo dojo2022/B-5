@@ -88,13 +88,15 @@
 
                   <details>
 						<summary>
-							<select id="stampselect" name ="value" >
-								<option value="${e.stamp_id }">🍚</option>
-								<option value="${e.stamp_id }">💛</option>
-								<option value="${e.stamp_id }">⛰</option></select>
+							<select id="stampselect" name ="stamp_id" >
+								<option value="1">🍚</option>
+								<option value="2">💛</option>
+								<option value="3">⛰</option></select>
 						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></summary>
                     <table>
                       <tr>
+                      	<td><input type="hidden" name="user_id" value="${e.user_id}"></td>
+                      	<td><input type="hidden" name="schedule_date" value="${e.schedule_date}"></td>
                         <td><input type="text" class="shorttext" name="start_time" placeholder="12:00" value="${e.start_time}">～</td>
                         <td><input type="text" class="shorttext" name="end_time" placeholder="14:00" value="${e.end_time}"></td>
                       </tr>
@@ -127,7 +129,7 @@
                 <!-- ToDo編集 -->
                 <h2>ToDo</h2>
                 <c:forEach var="e" items="${TodolistList}" varStatus='status'>
-                <form method="POST" action="/anikare/TodoEditServlet">
+                <form method="POST" action="/anikare/ScheduleEditServlet">
                   <details>
                     <summary>
                     	<input type="checkbox" id="" name="checkbox" value="missioncomplete">
@@ -161,14 +163,14 @@
 
          <!-- 日記記入 -->
          <h2>今日の記録</h2>
-         <form method="POST" action="/anikare/DiaryAddServlet">
+         <form method="POST" action="/anikare/ScheduleEditServlet">
           <table>
             <tr>
               <td><input type="text" class="" name="diary_title" placeholder="タイトルを入力" value="${diaryList[0].diary_title}"></td>
             </tr>
             <tr>
               <td><input type="text" name="diary_content" value="${diaryList[0].diary_content}"></td>
-               <td><input type="hidden" name="user_id" value=${id}></td>
+               <td><input type="hidden" name="user_id" value="${id.user_id}"></td>
             </tr>
 
           </table>

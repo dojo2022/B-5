@@ -45,7 +45,7 @@ public class ItemChangeServlet extends HttpServlet {
 		//セッションスコープに格納したidデータを変数idに代入
 		HttpSession session = request.getSession();
 		Login mail_session = (Login)session.getAttribute("id");
-		String mail = mail_session.getId();
+		String mail = mail_session.getMail();
 		UsersDAO uDao = new UsersDAO();
 		List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
 		// 検索結果をリクエストスコープに格納する

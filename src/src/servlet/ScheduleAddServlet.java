@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.SchedulesDAO;
+import model.Login;
 import model.Schedules;
 
 
@@ -67,7 +68,11 @@ public class ScheduleAddServlet extends HttpServlet {
 				String stamp_id = request.getParameter("stamp_id");
 				String schedule_memo = request.getParameter("schedule_memo");
 				String place = request.getParameter("place");
-				
+
+				HttpSession session = request.getSession();
+				Login user = (Login)session.getAttribute("id");
+				String user_id=user.getUser_id();
+
 				// 登録処理を行う
 				SchedulesDAO sDAO = new SchedulesDAO();
 				if (sDAO.insert(new Schedules(title,schedule_date, start_time,end_time,

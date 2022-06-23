@@ -15,7 +15,7 @@ public class TodoListsDAO {
 //
 
 	//ユーザーを区別するための検索
-			public List<TodoLists> selectMyItem(TodoLists param) {
+			public List<TodoLists> selectMyItem(TodoLists parameter) {
 				Connection conn = null;
 				List<TodoLists> TodolistList = new ArrayList<TodoLists>();
 
@@ -35,8 +35,8 @@ public class TodoListsDAO {
 
 					// SQL文を完成させる<<検索項目だけ書く
 
-					if (param.getTodo_deadline()!= null) {
-						pStmt.setString(1, param.getTodo_deadline());
+					if (parameter.getTodo_deadline()!= null) {
+						pStmt.setString(1, parameter.getTodo_deadline());
 					}
 					else {
 						pStmt.setString(1, "%");

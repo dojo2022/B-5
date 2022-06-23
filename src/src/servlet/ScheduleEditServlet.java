@@ -67,13 +67,12 @@ public class ScheduleEditServlet extends HttpServlet {
 	// 予定のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
 
 			request.setCharacterEncoding("UTF-8");
-			/*	String id = request.getParameter("id");*/
-			//value
+			String user_id = request.getParameter("user_id");
 			String title = request.getParameter("title");
-			/*String schedule_date =request.getParameter("schedule_date");*/
+			String schedule_date =request.getParameter("schedule_date");
 			String start_time = request.getParameter("start_time");
 			String end_time = request.getParameter("end_time");
-			/*String stamp_id = request.getParameter("stamp_id");*/
+			int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
 			String schedule_memo = request.getParameter("schedule_memo");
 			String place = request.getParameter("place");
 
@@ -86,7 +85,7 @@ public class ScheduleEditServlet extends HttpServlet {
 			//DAOを生成し、予定一覧を取得する
 			/*SchedulesDAO sDao = new SchedulesDAO();*/
 			List<Schedules> ScheduleList = new ArrayList<Schedules>();
-			Schedules param = new Schedules("",schedule_date,"","","","","");
+			Schedules param = new Schedules(0,schedule_date,"","",0,"","");
 			SchedulesDAO sDao = new SchedulesDAO();
 			ScheduleList=sDao.selectMyItem(param);
 //			HttpSession session = request.getSession();
@@ -126,9 +125,9 @@ public class ScheduleEditServlet extends HttpServlet {
 			// 更新または削除を行う
 			//DAOを生成し、予定一覧を取得する
 			List<TodoLists> TodolistList = new ArrayList<TodoLists>();
-			TodoLists param = new TodoLists(todo_deadline,"","","");
+			TodoLists parameter = new TodoLists(todo_deadline,"","","");
 			TodoListsDAO tDao = new TodoListsDAO();
-			TodolistList =tDao.selectMyItem(param);
+			TodolistList =tDao.selectMyItem(parameter);
 			request.setAttribute("TodolistList", TodolistList);
 
 			if (request.getParameter("UPDATE").equals("保存")) {
