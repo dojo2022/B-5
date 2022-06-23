@@ -122,46 +122,56 @@
 							<div class="my_item">
 								<h2>所持アイテム一覧</h2>
 
-								<c:forEach var="e" items="${backgroundItemsList}">
-									<form method="POST" action="/anikare/MypageServlet" id="form">
-										<table>
-											<tr>
-												<th>壁紙</th>
-											</tr>
-										</table>
-										<table>
-											<tr>
 
-												<td width="200px"><img width="200px" id="bg_image"
-													name="bg_image" src="/anikare/img/${e.bg_image}"><br>
-													<p>${e.bg_name}</p> <input type="hidden" name="bg_name"
-													value="${e.bg_name}"></td>
-												<td><input type="submit" name="bgchange" value="変更"></td>
+								<table>
+									<tr>
+										<th>壁紙</th>
+									</tr>
+								</table>
 
-											</tr>
-										</table>
-									</form>
-								</c:forEach>
+								<table>
 
-								<form method="POST" action="/anikare/MypageServlet" id="form">
-									<table>
-										<tr>
-											<th>格言</th>
-										</tr>
-									</table>
-									<table>
-										<tr>
-											<c:forEach var="e" items="${KakugenItemsList}">
-												<td width="200px"><img width="200px" id="bg_image"
-													name="kakugen_image" src="/anikare/img/${e.kakugen_image}"><br>
-													<p>${e.genre_name}</p> <input type="hidden"
-													name="kakugen_name" value="${e.genre_name}"></td>
-												<td><input type="submit" name="kakugenchange"
-													value="格言の変更"></td>
-											</c:forEach>
-										</tr>
-									</table>
-								</form>
+
+									<tr>
+										<c:forEach var="e" items="${backgroundItemsList}">
+											<td width="200px"><img width="200px" id="bg_image"
+												name="bg_image" src="/anikare/img/${e.bg_image}"><br>
+												<p>${e.bg_name}</p></td>
+											<td><form method="POST" action="/anikare/MypageServlet"
+													id="form">
+													<input type="hidden" name="bg_name" value="${e.bg_name}">
+													<input type="submit" name="bgchange" value="変更">
+												</form></td>
+										</c:forEach>
+									</tr>
+
+								</table>
+
+
+
+								<table>
+									<tr>
+										<th>格言</th>
+									</tr>
+								</table>
+
+
+								<table>
+									<tr>
+										<c:forEach var="e" items="${KakugenItemsList}">
+											<td width="200px"><img width="200px" id="bg_image"
+												name="kakugen_image" src="/anikare/img/${e.kakugen_image}"><br>
+												<p>${e.genre_name}</p> <input type="hidden"
+												name="kakugen_name" value="${e.genre_name}"></td>
+											<td><form method="POST" action="/anikare/MypageServlet"
+													id="form">
+													<input type="submit" name="kakugenchange" value="格言の変更">
+												</form></td>
+										</c:forEach>
+									</tr>
+								</table>
+
+
 
 
 								<table>
@@ -171,39 +181,49 @@
 								</table>
 
 
-								<c:forEach var="e" items="${CharacterItemsList}"
-									varStatus="status">
-									<form method="POST" action="/anikare/MypageServlet" id="form">
-										<table>
-											<tr>
-												<td width="200px"><img width="200px"
-													id="character_image" name="character_image"
-													src="/anikare/img/${e.character_image}"><br>
-													${e.character_name} <input type="hidden"
-													name="character_name" value="${e.character_name}"></td>
-												<td><input id="${status.index}" type="submit"
-													name="characterchange" value="キャラクターの変更"></td>
-											</tr>
-										</table>
-									</form>
-								</c:forEach>
-								<form method="POST" action="/anikare/MypageServlet" id="form">
-									<table>
-										<tr>
-											<th>クーポン</th>
-										</tr>
-									</table>
-									<table>
+
+
+								<table>
+									<tr>
+										<c:forEach var="e" items="${CharacterItemsList}"
+											varStatus="status">
+											<td width="200px"><img width="200px"
+												id="character_image" name="character_image"
+												src="/anikare/img/${e.character_image}"><br>
+												${e.character_name} <input type="hidden"
+												name="character_name" value="${e.character_name}"></td>
+											<td><form method="POST" action="/anikare/MypageServlet"
+													id="form">
+													<input id="${status.index}" type="submit"
+														name="characterchange" value="キャラクターの変更">
+												</form></td>
+										</c:forEach>
+									</tr>
+								</table>
+
+
+
+								<table>
+									<tr>
+										<th>クーポン</th>
+									</tr>
+								</table>
+								<table>
+									<tr>
 										<c:forEach var="e" items="${CouponItemsList}">
 											<td width="200px"><img width="200px" id="bg_image"
 												name="bg_image" src="/anikare/img/${e.coupon_image}"><br>
 												${e.coupon_name}</td>
+
+
+											<td><form method="POST" action="/anikare/MypageServlet"
+													id="form">
+													<input type="submit" name="submit" value="クーポンの使用">
+												</form></td>
 										</c:forEach>
-										<tr>
-											<td><input type="submit" name="submit" value="クーポンの使用"></td>
-										</tr>
-									</table>
-								</form>
+									</tr>
+								</table>
+
 							</div>
 						</div>
 					</div>
@@ -213,7 +233,7 @@
 			<footer> </footer>
 			<script src="/anikare/js/all.js">
 
-		</script>
+			</script>
 
 		</div>
 

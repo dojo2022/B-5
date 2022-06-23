@@ -165,7 +165,7 @@ public class KakugenItemsDAO {
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "select genre_name, kakugen_image, kakugen_active from kakugen_items "
 					+ "left join users on users.user_id = kakugen_ITEMS.user_id "
-					+ "left join kakugens on kakugens.kakugen_ID = kakugen_ITEMS.kakugen_ID "
+					+ "left join kakugens on kakugens.genre_name = kakugen_ITEMS.genre_name "
 					+ "where mail like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -301,9 +301,9 @@ public class KakugenItemsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
-			String sql = "select kakugen_image from Kakugen_items "
+			String sql = "select kakugen from Kakugen_items "
 					+ "left join users on users.user_id = Kakugen_ITEMS.user_id "
-					+ "left join KakugenS on KakugenS.Kakugen_ID = Kakugen_ITEMS.Kakugen_ID "
+					+ "left join KakugenS on KakugenS.genre_name = Kakugen_ITEMS.genre_name "
 					+ "where mail like ? and Kakugen_active like 'true'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
