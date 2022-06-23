@@ -35,7 +35,7 @@ public class DiaryServlet extends HttpServlet {
 		}*/
 		HttpSession session = request.getSession();
 		Login mail_session = (Login)session.getAttribute("id");
-		String mail = mail_session.getId();
+		String mail = mail_session.getMail();
 
 		UsersDAO uDao = new UsersDAO();
 		List<Users> cardList = uDao.select(mail);
