@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,23 +83,26 @@
                 <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
 						<summary>
-							<select id="stampselect" name ="stampselect" value="${e.stamp}">
-								<option value="${e.stamp_id }">🍚</option>
+							<input type="text" name="stamp_id">
+							<%-- <select id="stampselect" name ="stampselect" value="${e.stamp}"> --%>
+								<%-- <option value="${e.stamp_id }">🍚</option> --%>
+<%-- 								<option value="${e.stamp_id }">🍚</option>
 								<option value="${e.stamp_id }">💛</option>
 								<option value="${e.stamp_id }">⛰</option>
-						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></summary>
+ --%>						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
                     <table>
                       <tr>
-                        <td><input type="starttime">～</td>
-						<td><input type="endtime"></td>
+                        <td><input type="text" name="start_time">～</td>
+						<td><input type="text" name="end_time"></td>
                       </tr>
                       	<br>
                       <tr>
-                        <td><input type="text" class="shorttext" name="place" placeholder="場所" value="${e.place}"></td>
+                        <td><input type="text" class="shorttext" name="place" placeholder="場所"></td>
+                        <td><input type="text" class="shorttext" name="schedule_date" placeholder="日付"></td>
                       </tr>
                       	<br>
                       <tr>
-                        <td colspan="2"><textarea rows="10" cols="60">ここに記入してください(メモ)</textarea></td>
+                        <td colspan="2"><textarea name="schedule_memo" rows="10" cols="60" placeholder="ここに記入してください(メモ)"></textarea></td>
                       </tr>
                       <tr>
 
@@ -150,6 +154,18 @@
 
     </footer>
     <script src="/anikare/js/all.js"></script>
+    <script type="text/javascript">
+    if("${res}" == "ok"){
+		window.confirm('登録成功しました。');
+    }
+	else if("${res}" == "miss")
+	{
+	window.confirm('登録失敗しました。');
+
+}else{
+	console.log("empty");
+
+}</script>
 </div>
 </body>
 </html>
