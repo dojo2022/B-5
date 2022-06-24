@@ -145,6 +145,9 @@
 				</div>
 				<p class="login_text">ログインしてくれてありがとう！</p>
 				<p class="loginBonus_text">※初回ログイン時は、ログインボーナスが付与されます。</p>
+				<form method="POST" name="topPost" action="/anikare/ToppageServlet">
+				<input type="submit" name="submit" value="P取得！">
+				</form>
 			</div>
 			<div class="black-background" id="js-black-bg"></div>
 		</div>
@@ -196,8 +199,9 @@
 				<!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
 				<!-- ポイントデータベースから引っ張ってくる -->
 
-				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-				<p class="headermoji">ポイント</p>
+				<a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
+					<c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>
 
 			</div>
 		</header>

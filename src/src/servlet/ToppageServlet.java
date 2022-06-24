@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.UsersDAO;
+import model.Login;
+import model.Users;
 
 
 
@@ -53,7 +59,15 @@ public class ToppageServlet extends HttpServlet {
 //
 //		// 検索結果をリクエストスコープに格納する
 //		request.setAttribute("cardList", cardList);
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 
+		Login mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getMail();
+		UsersDAO uDao = new UsersDAO();
+		List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
 		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 		dispatcher.forward(request, response);
@@ -71,34 +85,37 @@ public class ToppageServlet extends HttpServlet {
 //					return;
 //				}
 
-		/*request.setCharacterEncoding("UTF-8");
-		String mail = request.getParameter("Mail");
-		UsersDAO uDao = new UsersDAO();
-
-		if (uDao.isMailOK(new Users(mail))) {	// メール一致
+				UsersDAO uDao = new UsersDAO();
 
 
-			if(uDao.updatePassword(new Users(mail,newpass))) {
 
-				HttpSession session = request.getSession();
+
+			request.setCharacterEncoding("UTF-8");
+			HttpSession session = request.getSession();
+			Login point_value_session = (Login)session.getAttribute("id");
+			int point_value = point_value_session.getPoint_value();
+			int pUpdate = point_value + 1;
+
+
+
+			if(uDao.updatePoint(new Users(pUpdate))) {
+
+
 				session.setAttribute("res", "ok");
 
 				}else {
-					HttpSession session = request.getSession();
+
+
 					session.setAttribute("res", "update_mis");
 				}
 
+			// トップページにフォワードする
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
+						dispatcher.forward(request, response);
 			}
-			else {									// ログイン失敗
-				HttpSession session = request.getSession();
-				session.setAttribute("res", "miss");
 
 
-			}
-			// パスワード再設定ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
-			dispatcher.forward(request, response);
 
-*/
+
+
 	}
-}

@@ -45,6 +45,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String mail= request.getParameter("mail");
 		String pw = request.getParameter("login_pw");
+		int point_value =  0;
 
 		// ログイン処理を行う
 		UsersDAO uDao = new UsersDAO();
@@ -54,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 			//userテーブルから今回のmailと一致するuser_id,mail,passwordを抽出する
 			 List<Users> idList =uDao.select(mail);
 			//抽出結果をセッションスコープに格納
-			session.setAttribute("id", new Login(mail,pw,idList.get(0).getUser_id()));
+			session.setAttribute("id", new Login(mail,pw,idList.get(0).getUser_id(),point_value));
 			//トップページのサーブレットにリダイレクトする
 			response.sendRedirect("/anikare/ToppageServlet");
 
