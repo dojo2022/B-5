@@ -125,6 +125,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 
@@ -132,6 +134,20 @@
 </head>
 <body>
 	<div class="wrapper">
+	<!-- ポップアップ表示 -->
+		<div class="popup" id="js-popup">
+			<div class="popup-inner">
+				<div class="close-btn" id="js-close-btn">
+					<i class="fas fa-times"></i>
+				</div>
+				<div class="pChara">
+					<a href="#"><img src="img/animal_dance.png" alt="ポップアップ画像"></a>
+				</div>
+				<p class="login_text">ログインしてくれてありがとう！</p>
+				<p class="loginBonus_text">※初回ログイン時は、ログインボーナスが付与されます。</p>
+			</div>
+			<div class="black-background" id="js-black-bg"></div>
+		</div>
 		<header>
 			<div id="aniheader">
 				<!--日付表示-->
@@ -309,6 +325,26 @@
 			}
 			return calendar;
 		}
+
+		//ポップアップ表示
+		window.onload = function() {
+			  var popup = document.getElementById('js-popup');
+			  if(!popup) return;
+			  popup.classList.add('is-show');
+
+			  var blackBg = document.getElementById('js-black-bg');
+			  var closeBtn = document.getElementById('js-close-btn');
+
+			  closePopUp(blackBg);
+			  closePopUp(closeBtn);
+
+			  function closePopUp(elem) {
+			    if(!elem) return;
+			    elem.addEventListener('click', function() {
+			      popup.classList.remove('is-show');
+			    })
+			  }
+			}
 	</script>
 </body>
 

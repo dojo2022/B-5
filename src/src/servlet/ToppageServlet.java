@@ -71,7 +71,34 @@ public class ToppageServlet extends HttpServlet {
 //					return;
 //				}
 
+		/*request.setCharacterEncoding("UTF-8");
+		String mail = request.getParameter("Mail");
+		UsersDAO uDao = new UsersDAO();
 
+		if (uDao.isMailOK(new Users(mail))) {	// メール一致
+
+
+			if(uDao.updatePassword(new Users(mail,newpass))) {
+
+				HttpSession session = request.getSession();
+				session.setAttribute("res", "ok");
+
+				}else {
+					HttpSession session = request.getSession();
+					session.setAttribute("res", "update_mis");
+				}
+
+			}
+			else {									// ログイン失敗
+				HttpSession session = request.getSession();
+				session.setAttribute("res", "miss");
+
+
+			}
+			// パスワード再設定ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/password_reset.jsp");
+			dispatcher.forward(request, response);
+
+*/
 	}
-
 }
