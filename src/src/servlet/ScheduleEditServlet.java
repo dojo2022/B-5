@@ -80,15 +80,7 @@ public class ScheduleEditServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			Login mail_session = (Login)session.getAttribute("id");
 			String user_id = mail_session.getUser_id();;
-			String title = request.getParameter("title");
-			String schedule_date =request.getParameter("schedule_date");
-			String start_time = request.getParameter("start_time");
-			String end_time = request.getParameter("end_time");
-			//int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
-			//intにする。int stamp_id = 0;
-			String stamp_id = request.getParameter("stamp_id");
-			String schedule_memo = request.getParameter("schedule_memo");
-			String place = request.getParameter("place");
+
 
 //			HttpSession session = request.getSession();
 //			Login user = (Login)session.getAttribute("id");
@@ -96,17 +88,29 @@ public class ScheduleEditServlet extends HttpServlet {
 
 
 			// 更新または削除を行う
-			//DAOを生成し、予定一覧を取得する
-			/*SchedulesDAO sDao = new SchedulesDAO();*/
-			List<Schedules> ScheduleList = new ArrayList<Schedules>();
-			Schedules param = new Schedules("","",schedule_date,"","","","","");
+
+
 			SchedulesDAO sDao = new SchedulesDAO();
-			ScheduleList=sDao.selectMyItem(param);
-//			HttpSession session = request.getSession();
-			request.setAttribute("ScheduleList", ScheduleList);
+			if (request.getParameter("SUBMIT").equals("予定保存")) {
+				String title = request.getParameter("title");
+				String schedule_date =request.getParameter("schedule_date");
+				String start_time = request.getParameter("start_time");
+				String end_time = request.getParameter("end_time");
+				//int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
+				//intにする。int stamp_id = 0;
+				String stamp_id = request.getParameter("stamp_id");
+				String schedule_memo = request.getParameter("schedule_memo");
+				String place = request.getParameter("place");
 
+				//DAOを生成し、予定一覧を取得する
+				/*SchedulesDAO sDao = new SchedulesDAO();*/
+				List<Schedules> ScheduleList = new ArrayList<Schedules>();
+				Schedules param = new Schedules("","",schedule_date,"","","","","");
 
-			if (request.getParameter("UPDATE").equals("保存")) {
+				ScheduleList=sDao.selectMyItem(param);
+//				HttpSession session = request.getSession();
+				request.setAttribute("ScheduleList", ScheduleList);
+
 
 				if (sDao.update(new Schedules(title,schedule_date,start_time,end_time,
 						stamp_id,schedule_memo,place, user_id))) {	// 更新成功
@@ -116,7 +120,8 @@ public class ScheduleEditServlet extends HttpServlet {
 				else {			// 更新失敗
 					request.setAttribute("res", "miss");
 				}
-			}else {
+			}else if (request.getParameter("SUBMIT").equals("予定削除")) {
+{
 				if (sDao.delete(user_id)) {		// 削除成功
 					request.setAttribute("res","sok");
 				}
@@ -127,23 +132,25 @@ public class ScheduleEditServlet extends HttpServlet {
 
 // TODOのリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
 
-			request.setCharacterEncoding("UTF-8");
-			/*String id = request.getParameter("id");*/
-			String todo_deadline = request.getParameter("todo_deadline");
-			String task = request.getParameter("task");
-			String importance = request.getParameter("importance");
-			String todo_memo = request.getParameter("todo_memo");
+
+
 
 
 			// 更新または削除を行う
-			//DAOを生成し、予定一覧を取得する
-			List<TodoLists> TodolistList = new ArrayList<TodoLists>();
-			TodoLists parameter = new TodoLists(todo_deadline,"","","");
-			TodoListsDAO tDao = new TodoListsDAO();
-			TodolistList =tDao.selectMyItem(parameter);
-			request.setAttribute("TodolistList", TodolistList);
+TodoListsDAO tDao = new TodoListsDAO();
+			if (request.getParameter("SUBMIT").equals("タスク保存")) {
+				/*String id = request.getParameter("id");*/
+				String todo_deadline = request.getParameter("todo_deadline");
+				String task = request.getParameter("task");
+				String importance = request.getParameter("importance");
+				String todo_memo = request.getParameter("todo_memo");
 
-			if (request.getParameter("UPDATE").equals("保存")) {
+				//DAOを生成し、予定一覧を取得する
+				List<TodoLists> TodolistList = new ArrayList<TodoLists>();
+				TodoLists parameter = new TodoLists(todo_deadline,"","","");
+
+				TodolistList =tDao.selectMyItem(parameter);
+				request.setAttribute("TodolistList", TodolistList);
 
 				if (tDao.update(new TodoLists(todo_deadline,task,importance,todo_memo,user_id))) {	// 更新成功
 					//リクエストスコープに保存
@@ -152,7 +159,7 @@ public class ScheduleEditServlet extends HttpServlet {
 				else {												// 更新失敗
 					request.setAttribute("res", "miss");
 				}
-			}else {
+			}else if (request.getParameter("SUBMIT").equals("タスク削除"))  {
 				if (tDao.delete(user_id)) {	// 削除成功
 					request.setAttribute("res","sok");
 				}
@@ -162,24 +169,24 @@ public class ScheduleEditServlet extends HttpServlet {
 			}
 
 
-// 日記のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
+// 記録のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
 
-			request.setCharacterEncoding("UTF-8");
-			String diary_date = request.getParameter("diary_date");
-			String diary_title = request.getParameter("diary_title");
-			String diary_content = request.getParameter("diary_content");
+
 
 
 
 			// 更新または削除を行う
-			//DAOを生成し、予定一覧を取得する
-			List<Diaries> DiaryList = new ArrayList<Diaries>();
-			Diaries para = new Diaries(diary_date,"","");
 			DiariesDAO dDao = new DiariesDAO();
-			DiaryList =dDao.selectMyItem(para);
-			request.setAttribute("DiaryList", DiaryList);
+			if (request.getParameter("SUBMIT").equals("記録保存")) {
+				String diary_date = request.getParameter("diary_date");
+				String diary_title = request.getParameter("diary_title");
+				String diary_content = request.getParameter("diary_content");
+				//DAOを生成し、予定一覧を取得する
+				List<Diaries> DiaryList = new ArrayList<Diaries>();
+				Diaries para = new Diaries(diary_date,"","");
 
-			if (request.getParameter("UPDATE").equals("保存")) {
+				DiaryList =dDao.selectMyItem(para);
+				request.setAttribute("DiaryList", DiaryList);
 
 				if (dDao.update(new Diaries(diary_date,diary_title,diary_content,user_id))) {	// 更新成功
 					//リクエストスコープに保存
@@ -188,8 +195,8 @@ public class ScheduleEditServlet extends HttpServlet {
 				else {												// 更新失敗
 					request.setAttribute("res", "miss");
 				}
-			}else {
-				if (tDao.delete(user_id)) {	// 削除成功
+			}else if (request.getParameter("SUBMIT").equals("記録削除")) {
+				if (dDao.delete(user_id)) {	// 削除成功
 					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
@@ -200,5 +207,6 @@ public class ScheduleEditServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);
 		}
+	}
 }
 

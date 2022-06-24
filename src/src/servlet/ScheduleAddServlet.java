@@ -92,8 +92,8 @@ public class ScheduleAddServlet extends HttpServlet {
 			String schedule_date = request.getParameter("schedule_date");
 			String start_time = request.getParameter("start_time");
 			String end_time = request.getParameter("end_time");
-			/*int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
-			*/int stamp_id = 0;
+			String stamp_id = request.getParameter("stamp_id");
+
 			String schedule_memo = request.getParameter("schedule_memo");
 			String place = request.getParameter("place");
 			if (sDAO.insert(new Schedules(title, schedule_date, start_time, end_time,

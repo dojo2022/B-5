@@ -83,8 +83,11 @@
                 <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
 						<summary>
-							<input type="text" name="stamp_id" value="0">
-							<%-- <select id="stampselect" name ="stampselect" value="${e.stamp}"> --%>
+								<select id="stampselect" name="stamp_id">
+												<option value="1" ${e.stamp_id == '1' ? 'selected' : ''}>🍚</option>
+												<option value="2" ${e.stamp_id == '2' ? 'selected' : ''}>💛</option>
+												<option value="3" ${e.stamp_id == '3' ? 'selected' : ''}>⛰</option>
+											</select>	<%-- <select id="stampselect" name ="stampselect" value="${e.stamp}"> --%>
 								<%-- <option value="${e.stamp_id }">🍚</option> --%>
 <%-- 								<option value="${e.stamp_id }">🍚</option>
 								<option value="${e.stamp_id }">💛</option>
