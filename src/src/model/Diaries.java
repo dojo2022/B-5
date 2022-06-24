@@ -21,12 +21,12 @@ public class Diaries implements Serializable {
 
 	}
 	//4つのコンストラクタ
-	public Diaries( String user_id, String diary_date, String diary_title, String diary_content) {
+	public Diaries( String diary_date, String diary_title, String diary_content,String user_id) {
 		super();
-		this.user_id = user_id;
 		this.diary_date = diary_date;
 		this.diary_title = diary_title;
 		this.diary_content = diary_content;
+		this.user_id = user_id;
 
 	}
 //3つのコンストラクタ

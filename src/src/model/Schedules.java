@@ -7,14 +7,14 @@ public class Schedules implements Serializable{
 	private String schedule_date;
 	private String start_time;
 	private String end_time;
-	private int stamp_id;
+	private String stamp_id;
 	private String schedule_memo;
 	private String place;
 	private String user_id;
 	private String mail;
 
 	//引数があるコンストラクタ
-	public Schedules(int id, String title, String schedule_date, String start_time, String end_time, int stamp_id,
+	public Schedules(int id, String title, String schedule_date, String start_time, String end_time, String stamp_id,
 			String schedule_memo, String place, String user_id) {
 		super();
 		this.id = id;
@@ -37,7 +37,7 @@ public class Schedules implements Serializable{
 			this.schedule_date="";
 			this.start_time = "";
 			this.end_time = "";
-			this.stamp_id = 0;
+			this.stamp_id = "";
 			this.schedule_memo = "";
 			this.place = "";
 			this.user_id = "";
@@ -46,7 +46,7 @@ public class Schedules implements Serializable{
 
 		//７つのコンストラクタ
 
-		public Schedules(String title, String schedule_date, String start_time, String end_time, int stamp_id,
+		public Schedules(String title, String schedule_date, String start_time, String end_time, String stamp_id,
 				String schedule_memo, String place) {
 			super();
 			this.title = title;
@@ -59,7 +59,7 @@ public class Schedules implements Serializable{
 		}
 
 		//８つのコンストラクタ
-		public Schedules(String title, String schedule_date, String start_time, String end_time, int stamp_id,
+		public Schedules(String title, String schedule_date, String start_time, String end_time, String stamp_id,
 				String schedule_memo, String place, String user_id) {
 			super();
 			this.user_id = user_id;
@@ -121,10 +121,10 @@ public class Schedules implements Serializable{
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
-	public int  getStamp_id() {
+	public String  getStamp_id() {
 		return stamp_id;
 	}
-	public void setStamp_id(int stamp_id) {
+	public void setStamp_id(String stamp_id) {
 		this.stamp_id = stamp_id;
 	}
 	public String getSchedule_memo() {

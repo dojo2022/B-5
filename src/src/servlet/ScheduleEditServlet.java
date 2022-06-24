@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.DiariesDAO;
 import dao.SchedulesDAO;
 import dao.TodoListsDAO;
 import dao.UsersDAO;
+import model.Diaries;
 import model.Login;
 import model.Schedules;
 import model.TodoLists;
@@ -45,15 +47,23 @@ public class ScheduleEditServlet extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("cardList",cardList);
 
+		//予定
 		SchedulesDAO sDao = new SchedulesDAO();
 		List<Schedules> ScheduleList = sDao.selectMyItem(mail);
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("ScheduleList", ScheduleList);
 
+		//Todo
 		TodoListsDAO tDao = new TodoListsDAO();
 		List<TodoLists> TodolistList = tDao.selectMyItem(mail);
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("TodolistList", TodolistList);
+
+		//日記
+		DiariesDAO dDao = new DiariesDAO();
+		List<Diaries> diaryList = dDao.selectMyItem(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("diaryList", diaryList);
 
 		// 予定・ToDo編集ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
@@ -64,7 +74,7 @@ public class ScheduleEditServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-	// 予定のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
+// 予定のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
 
 			request.setCharacterEncoding("UTF-8");
 			HttpSession session = request.getSession();
@@ -75,7 +85,8 @@ public class ScheduleEditServlet extends HttpServlet {
 			String start_time = request.getParameter("start_time");
 			String end_time = request.getParameter("end_time");
 			//int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
-			int stamp_id = 0;
+			//intにする。int stamp_id = 0;
+			String stamp_id = request.getParameter("stamp_id");
 			String schedule_memo = request.getParameter("schedule_memo");
 			String place = request.getParameter("place");
 
@@ -88,12 +99,11 @@ public class ScheduleEditServlet extends HttpServlet {
 			//DAOを生成し、予定一覧を取得する
 			/*SchedulesDAO sDao = new SchedulesDAO();*/
 			List<Schedules> ScheduleList = new ArrayList<Schedules>();
-			Schedules param = new Schedules("","",schedule_date,"",0,"","","");
+			Schedules param = new Schedules("","",schedule_date,"","","","","");
 			SchedulesDAO sDao = new SchedulesDAO();
 			ScheduleList=sDao.selectMyItem(param);
 //			HttpSession session = request.getSession();
 			request.setAttribute("ScheduleList", ScheduleList);
-
 
 
 			if (request.getParameter("UPDATE").equals("保存")) {
@@ -107,7 +117,7 @@ public class ScheduleEditServlet extends HttpServlet {
 					request.setAttribute("res", "miss");
 				}
 			}else {
-				if (sDao.delete(user_id)) {	// 削除成功
+				if (sDao.delete(user_id)) {		// 削除成功
 					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
@@ -115,7 +125,7 @@ public class ScheduleEditServlet extends HttpServlet {
 				}
 			}
 
-			// TODOのリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
+// TODOのリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
 
 			request.setCharacterEncoding("UTF-8");
 			/*String id = request.getParameter("id");*/
@@ -144,7 +154,43 @@ public class ScheduleEditServlet extends HttpServlet {
 				}
 			}else {
 				if (tDao.delete(user_id)) {	// 削除成功
+					request.setAttribute("res","sok");
+				}
+				else {						// 削除失敗
+					request.setAttribute("res", "smiss");
+				}
+			}
+
+
+// 日記のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
+
+			request.setCharacterEncoding("UTF-8");
+			String diary_date = request.getParameter("diary_date");
+			String diary_title = request.getParameter("diary_title");
+			String diary_content = request.getParameter("diary_content");
+
+
+
+			// 更新または削除を行う
+			//DAOを生成し、予定一覧を取得する
+			List<Diaries> DiaryList = new ArrayList<Diaries>();
+			Diaries para = new Diaries(diary_date,"","");
+			DiariesDAO dDao = new DiariesDAO();
+			DiaryList =dDao.selectMyItem(para);
+			request.setAttribute("DiaryList", DiaryList);
+
+			if (request.getParameter("UPDATE").equals("保存")) {
+
+				if (dDao.update(new Diaries(diary_date,diary_title,diary_content,user_id))) {	// 更新成功
+					//リクエストスコープに保存
 					request.setAttribute("res","ok");
+				}
+				else {												// 更新失敗
+					request.setAttribute("res", "miss");
+				}
+			}else {
+				if (tDao.delete(user_id)) {	// 削除成功
+					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
 					request.setAttribute("res", "smiss");

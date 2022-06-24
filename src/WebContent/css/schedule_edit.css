@@ -37,7 +37,16 @@ details[open] {
   height:280px;
   background: #c3f6ff;
 }
-  input[type="text"], textarea{
+
+  .titlefont{
+    font-size:18px;
+    height:10px;
+  }
+
+  .shorttext{
+ 	font-size: 14px;
+ 	width: 30px;
+ 	height:10px;
     margin: 5px;
     padding: 5px;
     background: rgba(255, 255, 255, 0.8);
@@ -48,18 +57,17 @@ details[open] {
     -moz-appearance: none;
     appearance: none;
   }
-  input[type="text"]{
-    height:10px;
+
+  .longtext{
+    width: 50px;
+    height: 10px;
   }
-  .titlefont{
-    font-size:18px;
-    height:10px;
+
+  .diarycontent{
+  	width:50rem;
+  	height: 10rem;
   }
-  textarea{
-    /* 日記のメモ欄は別のものを作る */
-    width: 22rem;
-    height: 5rem;
-  }
+
   tr{
     height:10px;
   }
