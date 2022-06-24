@@ -97,28 +97,22 @@ public class KakugenItemsDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
-			//SQL文を準備する
-			String sql = "insert into background_items (id, user_id, kakugen_id) values(?, ?, ?)";
+			//SQL文を準備する 0624清水変更　
+			String sql = "insert into kakugen_items (user_id, genre_name) values(?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
-			if (card.getId() != 0 ) {
-				pStmt.setInt(1, card.getId());
+			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+				pStmt.setString(1, card.getUser_id());
 			}
 			else {
-				pStmt.setInt(1, 0);
+				pStmt.setString(1, "");
 			}
-			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(2, card.getUser_id());
+			if (card.getGenre_name() != null && !card.getGenre_name().equals("")) {
+				pStmt.setString(2, card.getGenre_name());
 			}
 			else {
 				pStmt.setString(2, "");
-			}
-			if (card.getKakugen_id() != null && !card.getKakugen_id().equals("")) {
-				pStmt.setString(3, card.getKakugen_id());
-			}
-			else {
-				pStmt.setString(3, "");
 			}
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

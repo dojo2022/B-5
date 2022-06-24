@@ -105,7 +105,7 @@ public class CouponItemsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			//SQL文を準備する
-			String sql = "insert into background_items (user_id, coupon_id) values(?, ?)";
+			String sql = "insert into coupon_items (user_id, coupon_id) values(?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる

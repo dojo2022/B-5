@@ -17,13 +17,16 @@ import dao.CharacterItemsDAO;
 import dao.CharactersDAO;
 import dao.CouponItemsDAO;
 import dao.CouponsDAO;
+import dao.KakugenItemsDAO;
 import dao.KakugensDAO;
 import dao.UsersDAO;
 import model.BackgroundItems;
 import model.Backgrounds;
 import model.CharacterItems;
 import model.Characters;
+import model.CouponItems;
 import model.Coupons;
+import model.KakugenItems;
 import model.Kakugens;
 import model.Login;
 import model.Users;
@@ -116,52 +119,50 @@ public class ItemChangeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		//		//ポイントチェック
-		//		//リクエストパラメ―タを取得する
+		//ポイントチェック
+		//リクエストパラメ―タを取得する
+		//交換に必要なポイント数
 		int background = 0;
-		background =Integer.parseInt(request.getParameter("background"));
-		String background_id =request.getParameter("background_id");
+		if (request.getParameter("background") != null) {
+			background =Integer.parseInt(request.getParameter("background"));
+		}
+		int kakugen = 0;
+		if (request.getParameter("kakugen") != null) {
+			kakugen =Integer.parseInt(request.getParameter("kakugen"));
+		}
+		int character = 0;
+		if (request.getParameter("character") != null) {
+			character =Integer.parseInt(request.getParameter("character"));
+		}
+		int coupon = 0;
+		if (request.getParameter("coupon") != null) {
+			coupon =Integer.parseInt(request.getParameter("coupon"));
+		}
+		//それぞれアイテムに追加するデータ
+		String background_id ="";
+		if (request.getParameter("background_id") != null) {
+			background_id = request.getParameter("background_id");
+		}
+		String genre_name ="";
+		if (request.getParameter("genre_name") != null) {
+			genre_name = request.getParameter("genre_name");
+		}
+		String character_id = "";
+		if (request.getParameter("character_id") != null) {
+			character_id = request.getParameter("character_id");
+		}
+		String coupon_id = "";
+		if (request.getParameter("coupon_id") != null) {
+			coupon_id = request.getParameter("coupon_id");
+		}
+		//ユーザとそのユーザが持っているポイントデータ
 		int point_value= 0;
 		point_value = Integer.parseInt(request.getParameter("point_value"));
 		HttpSession session = request.getSession();
 		Login mail_session = (Login)session.getAttribute("id");
 		String user_id = mail_session.getUser_id();
-		String character_id = request.getParameter("character_id");
-		String coupon_id = request.getParameter("coupon_id");
-		//登録処理を行う
-		//壁紙
-		BackgroundItemsDAO bDAO = new BackgroundItemsDAO();
-		if (bDAO.insert(new BackgroundItems(user_id, background_id))) {	// 登録成功
-			System.out.println("true");
-		}
-		else {												// 登録失敗
-			System.out.println("false");
-		}
-		//キャラ
-		CharacterItemsDAO cDAO = new CharacterItemsDAO();
-		if (cDAO.insert(new CharacterItems(user_id, character_id))) {	// 登録成功
-			System.out.println("true");
-		}
-		else {												// 登録失敗
-			System.out.println("false");
-		}
-		//クーポン
-		CouponItemsDAO ciDAO = new CouponItemsDAO();
-		if (cDAO.insert(new CharacterItems(user_id, coupon_id))) {	// 登録成功
-			System.out.println("true");
-		}
-		else {												// 登録失敗
-			System.out.println("false");
-		}
-
-		//照合の結果を入力する変数
-		//		String result="";
-
-		//		background =request.getParameter("background");
-		//		String coupon = request.getParameter("cupon");
-		//		String result="";
-		//
 		//		//ポイントチェックをする
+		//壁紙
 		if(background != 0 ) {
 			//backgroundのポイント照合
 			//自分の現在のポイント合計と交換しようとするポイント
@@ -170,7 +171,103 @@ public class ItemChangeServlet extends HttpServlet {
 				//insert文を使って自分のポイントを
 				//1.今交換しようとしたアイテムのポイントを抽出（select）
 				//2.自分のポイントに1の値のマイナスをinsert
-				//				result="ok";
+				//登録処理を行う
+				//壁紙
+				BackgroundItemsDAO bDAO = new BackgroundItemsDAO();
+				if (bDAO.insert(new BackgroundItems(user_id, background_id))) {	// 登録成功
+					System.out.println("true");
+				}
+				else {												// 登録失敗
+					System.out.println("false");
+				}
+
+				session.setAttribute("res", "ok");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}else {
+				//ポイントが不足のとき
+
+				session.setAttribute("res", "fail");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		//		//ポイントチェックをする
+		//格言
+		if(kakugen != 0 ) {
+			//backgroundのポイント照合
+			//自分の現在のポイント合計と交換しようとするポイント
+			if(kakugen <= point_value) {
+				//ポイントが足りたとき
+				//insert文を使って自分のポイントを
+				//1.今交換しようとしたアイテムのポイントを抽出（select）
+				//2.自分のポイントに1の値のマイナスをinsert
+				//格言
+				KakugenItemsDAO kDAO = new KakugenItemsDAO();
+				if (kDAO.insert(new KakugenItems(user_id, genre_name))) {	// 登録成功
+					System.out.println("true");
+				} else {												// 登録失敗
+					System.out.println("false");
+				}
+				session.setAttribute("res", "ok");
+				//				request.setAttribute("result", "ok");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+
+			}else {
+				//ポイントが不足のとき
+				session.setAttribute("res", "fail");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		//		//ポイントチェックをする
+		//キャラクター
+		if(character != 0 ) {
+			//backgroundのポイント照合
+			//自分の現在のポイント合計と交換しようとするポイント
+			if(character <= point_value) {
+				//ポイントが足りたとき
+				//insert文を使って自分のポイントを
+				//1.今交換しようとしたアイテムのポイントを抽出（select）
+				//2.自分のポイントに1の値のマイナスをinsert
+				//キャラ
+				CharacterItemsDAO cDAO = new CharacterItemsDAO();
+				if (cDAO.insert(new CharacterItems(user_id, character_id))) {	// 登録成功
+					System.out.println("true");
+				}
+				else {												// 登録失敗
+					System.out.println("false");
+				}
+				session.setAttribute("res", "ok");
+				//				request.setAttribute("result", "ok");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}else {
+				//ポイントが不足のとき
+				session.setAttribute("res", "fail");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		//		//ポイントチェックをする
+		//クーポン
+		if(coupon != 0 ) {
+			//backgroundのポイント照合
+			//自分の現在のポイント合計と交換しようとするポイント
+			if(coupon <= point_value) {
+				//ポイントが足りたとき
+				//insert文を使って自分のポイントを
+				//1.今交換しようとしたアイテムのポイントを抽出（select）
+				//2.自分のポイントに1の値のマイナスをinsert
+				//クーポン
+				CouponItemsDAO ciDAO = new CouponItemsDAO();
+				if (ciDAO.insert(new CouponItems(user_id, coupon_id))) {	// 登録成功
+					System.out.println("true");
+				}
+				else {												// 登録失敗
+					System.out.println("false");
+				}
 
 				session.setAttribute("res", "ok");
 				//				request.setAttribute("result", "ok");
@@ -179,32 +276,15 @@ public class ItemChangeServlet extends HttpServlet {
 
 			}else {
 				//ポイントが不足のとき
-				//				result="ng";
-
-				//				request.setAttribute("result", result);
 
 				session.setAttribute("res", "fail");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 				dispatcher.forward(request, response);
 			}
-		}
-		//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-		//		dispatcher.forward(request, response);
-		//		if(coupon != "") {
-		//			//couponのポイント照合
-		//			if() {
-		//
-		//				result="ok";
-		//			}
-		//		}
-		//
-		//		request.setAttribute("result", result);
-		//
-		//
-		//		result
-		//
-		//
-		//		doGet(request, response);
-	}
 
+
+		}
+
+	}
 }
+

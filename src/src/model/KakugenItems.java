@@ -19,20 +19,29 @@ public class KakugenItems implements Serializable {
 		this.kakugen_id = kakugen_id;
 	}
 
-	//登録用コンストラクタ
-	public KakugenItems(String user_id, String kakugen_id) {
+//	//登録用コンストラクタ
+//	public KakugenItems(String user_id, String kakugen_id) {
+//		super();
+//		this.user_id = user_id;
+//		this.kakugen_id = kakugen_id;
+//	}
+
+	//登録用コンストラクタ 0624清水追加
+	public KakugenItems(String user_id, String genre_name) {
 		super();
 		this.user_id = user_id;
-		this.kakugen_id = kakugen_id;
+		this.genre_name = genre_name;
 	}
 
-	//引数がないコンストラクタ
+
+	//引数がないコンストラクタ 0624清水変更　kakugen_id→genre_name
 	public KakugenItems() {
 		super();
 		this.id = 0;
 		this.user_id = "";
-		this.kakugen_id = "";
+		this.genre_name = "";
 	}
+
 
 	public KakugenItems(String genre_name, String kakugen_image, String kakugen_active) {
 		super();
@@ -100,6 +109,10 @@ public class KakugenItems implements Serializable {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public void setGenre_name(String genre_name) {
+		this.genre_name = genre_name;
 	}
 
 }
