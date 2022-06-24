@@ -166,7 +166,7 @@ public class TodoListsDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 				// SQL文を準備する
-				String sql = "INSERT INTO TodoLists (todo_deadline,task,importance,todo_memo) values (?, ?, ?, ?)";
+				String sql = "INSERT INTO TodoLists (todo_deadline,task,importance,todo_memo,user_id) values (?,?, ?, ?, ?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -193,6 +193,12 @@ public class TodoListsDAO {
 				}
 				else {
 					pStmt.setString(4, null);
+				}
+				if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+					pStmt.setString(5, card.getUser_id());
+				}
+				else {
+					pStmt.setString(5, null);
 				}
 
 

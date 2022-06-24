@@ -237,7 +237,7 @@ public class SchedulesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into schedules (title,schedule_date, start_time,end_time,stamp_id,schedule_memo,place) values (?, ? ,? ,?, ?, ?, ? )";
+			String sql = "insert into schedules (title,schedule_date, start_time,end_time,stamp_id,schedule_memo,place,user_id) values (?,?, ? ,? ,?, ?, ?, ? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -265,7 +265,7 @@ public class SchedulesDAO {
 			if (card.getStamp_id() != 0) {
 				pStmt.setInt(5, card.getStamp_id());
 			} else {
-				pStmt.setString(5, "");
+				pStmt.setInt(5, 0);
 			}
 			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
 				pStmt.setString(6, card.getSchedule_memo());
@@ -276,6 +276,11 @@ public class SchedulesDAO {
 				pStmt.setString(7, card.getPlace());
 			} else {
 				pStmt.setString(7, "");
+			}
+			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+				pStmt.setString(8, card.getUser_id());
+			} else {
+				pStmt.setString(8, "");
 			}
 
 			// SQL文を実行する

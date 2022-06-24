@@ -83,7 +83,7 @@
                 <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
 						<summary>
-							<input type="text" name="stamp_id">
+							<input type="text" name="stamp_id" value="0">
 							<%-- <select id="stampselect" name ="stampselect" value="${e.stamp}"> --%>
 								<%-- <option value="${e.stamp_id }">🍚</option> --%>
 <%-- 								<option value="${e.stamp_id }">🍚</option>
@@ -108,7 +108,7 @@
 
                       <tr>
                         <td>
-                          <div class=""><input class="" type="submit" name="UPDATE" value="保存" onsubmit="doSomething();return false;"></div>
+                          <div class=""><input class="" type="submit" name="submit" value="スケジュール追加" onsubmit="doSomething();return false;"></div>
                         </td>
                       </tr>
                     </table>
@@ -118,18 +118,21 @@
             <div class="todoedit">
                 <!-- ToDo編集 -->
                 <h2>ToDoの追加</h2>
-                <form method="POST" action="/anikare/TodoAddServlet">
+                <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
                     <summary>
                     	<input type="checkbox" id="" name="checkbox" value="missioncomplete">
-                    	<input type="text" class="titlefont" name="task" placeholder="タスク名を入力" value="${e.task}">
+                    	<input type="text" class="titlefont" name="task" placeholder="タスク名を入力" >
                     </summary>
                       <table>
-                        <tr>
-                          <td><input type="text" class="" name="todo_deadline" placeholder="締め切り時間を入力" value="${e.todo_deadline}"></td>
+                       <tr>
+                          <td><input type="text" class="" name="importance" placeholder="重要度" ></td>
                         </tr>
                         <tr>
-                          <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="メモ" value="${e.todo_memo}"></td>
+                          <td><input type="text" class="" name="todo_deadline" placeholder="締め切り時間を入力"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="メモ" ></td>
                         </tr>
                         <tr>
                           <td>
@@ -138,7 +141,7 @@
                           <td>
                           </td>
                           <td>
-                            <div class=""><input class="" type="submit" name="UPDATE" value="保存"></div>
+                            <div class=""><input class="" type="submit" name="submit" value="Todo追加"></div>
                           </td>
                         </tr>
                       </table>
