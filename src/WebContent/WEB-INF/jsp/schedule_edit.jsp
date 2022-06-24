@@ -44,7 +44,7 @@
      <!--    </p> -->
       <!--タイトル-->
 <!--       <p> -->
-      <h1 class="logo"><a href =""><img src="img/logo.png" alt="アニカレロゴ"></a></h1>
+      <h1 class="logo"><a href ="/anikare/ToppageServlet"><img src="img/logo.png" alt="アニカレロゴ"></a></h1>
  <!--      </p> -->
 
 
@@ -89,9 +89,11 @@
                   <details>
 						<summary>
 							<select id="stampselect" name ="stamp_id" >
-								<option value="1">🍚</option>
-								<option value="2">💛</option>
-								<option value="3">⛰</option></select>
+							<option value="1" ${e.stamp_id == '1' ? 'selected' : ''}>🍚</option>
+						 	 <option value="2" ${e.stamp_id == '2' ? 'selected' : ''}>💛</option>
+						 	 <option value="3" ${e.stamp_id == '3' ? 'selected' : ''}>⛰</option>
+						 	 </select>
+
 						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力" value="${e.title}"></summary>
                     <table>
                       <tr>
@@ -139,6 +141,14 @@
                         <tr>
                           <td><input type="text" class="" name="todo_deadline" placeholder="締め切り時間を入力" value="${e.todo_deadline}"></td>
                         </tr>
+                        <tr><td>
+                        <select id="importanceselect" name ="importance" >
+							<option value="1" ${e.importance == '1' ? 'selected' : ''}>☆</option>
+						 	 <option value="2" ${e.importance == '2' ? 'selected' : ''}>☆☆</option>
+						 	 <option value="3" ${e.importance == '3' ? 'selected' : ''}>☆☆☆</option>
+						 	 </select>
+						 	 </td>
+						 	 </tr>
                         <tr>
                           <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="メモ" value="${e.todo_memo}"></td>
                         </tr>

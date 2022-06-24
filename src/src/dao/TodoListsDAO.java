@@ -239,7 +239,7 @@ public class TodoListsDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 				// SQL文を準備する
-				String sql = "updateTodoLists set todo_deadline=?,task=?,importance=?, todo_memo=?";
+				String sql = "update TodoLists set todo_deadline=?,task=?,importance=?, todo_memo=? where user_id like ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -248,13 +248,14 @@ public class TodoListsDAO {
 				}
 				else {
 					pStmt.setString(1, null);
+				}
 				if (card.getTask() != null && !card.getTask().equals("")) {
 					pStmt.setString(2, card.getTask());
 				}
 				else {
 					pStmt.setString(2, null);
 				}
-				}
+
 				if (card.getImportance() != null && !card.getImportance().equals("")) {
 					pStmt.setString(3, card.getImportance());
 				}
@@ -266,6 +267,12 @@ public class TodoListsDAO {
 				}
 				else {
 					pStmt.setString(4, null);
+				}
+				if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+					pStmt.setString(5, card.getUser_id());
+				}
+				else {
+					pStmt.setString(5, null);
 				}
 
 

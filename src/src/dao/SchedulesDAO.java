@@ -114,12 +114,13 @@ public class SchedulesDAO {
 				// 結果表をコレクションにコピーする
 				while (rs.next()) {
 					Schedules card = new Schedules(
+
 							rs.getString("title"),
 							rs.getString("schedule_date"),
 							rs.getString("start_time"),
 							rs.getString("end_time"),
+							rs.getInt("stamp_id"),
 							rs.getString("schedule_memo"),
-							rs.getString("stamp_id"),
 							rs.getString("place")
 							);
 					ScheduleList.add(card);
@@ -191,7 +192,7 @@ public class SchedulesDAO {
 						rs.getString("schedule_date"),
 						rs.getString("start_time"),
 						rs.getString("end_time"),
-						rs.getString("stamp_id"),
+						rs.getInt("stamp_id"),
 						rs.getString("schedule_memo"),
 						rs.getString("place")
 						);
@@ -261,8 +262,8 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
-				pStmt.setString(5, card.getStamp_id());
+			if (card.getStamp_id() != 0) {
+				pStmt.setInt(5, card.getStamp_id());
 			} else {
 				pStmt.setString(5, "");
 			}
@@ -340,8 +341,8 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
-				pStmt.setString(5, card.getStamp_id());
+			if (card.getStamp_id() != 0) {
+				pStmt.setInt(5, card.getStamp_id());
 			} else {
 				pStmt.setString(5, "");
 			}

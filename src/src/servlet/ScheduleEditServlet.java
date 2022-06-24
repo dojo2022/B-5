@@ -67,25 +67,28 @@ public class ScheduleEditServlet extends HttpServlet {
 	// 予定のリクエストパラメータを取得する（クライアント側のフォームから送られてきたデータ）
 
 			request.setCharacterEncoding("UTF-8");
-			String user_id = request.getParameter("user_id");
+			HttpSession session = request.getSession();
+			Login mail_session = (Login)session.getAttribute("id");
+			String user_id = mail_session.getUser_id();;
 			String title = request.getParameter("title");
 			String schedule_date =request.getParameter("schedule_date");
 			String start_time = request.getParameter("start_time");
 			String end_time = request.getParameter("end_time");
-			int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
+			//int stamp_id = Integer.parseInt(request.getParameter("stamp_id"));
+			int stamp_id = 0;
 			String schedule_memo = request.getParameter("schedule_memo");
 			String place = request.getParameter("place");
 
-			HttpSession session = request.getSession();
-			Login user = (Login)session.getAttribute("id");
-			String user_id=user.getUser_id();
+//			HttpSession session = request.getSession();
+//			Login user = (Login)session.getAttribute("id");
+//			String user_id=user.getUser_id();
 
 
 			// 更新または削除を行う
 			//DAOを生成し、予定一覧を取得する
 			/*SchedulesDAO sDao = new SchedulesDAO();*/
 			List<Schedules> ScheduleList = new ArrayList<Schedules>();
-			Schedules param = new Schedules(0,schedule_date,"","",0,"","");
+			Schedules param = new Schedules("","",schedule_date,"",0,"","","");
 			SchedulesDAO sDao = new SchedulesDAO();
 			ScheduleList=sDao.selectMyItem(param);
 //			HttpSession session = request.getSession();
@@ -95,8 +98,8 @@ public class ScheduleEditServlet extends HttpServlet {
 
 			if (request.getParameter("UPDATE").equals("保存")) {
 
-				if (sDao.update(new Schedules(title,start_time,end_time,
-						stamp_id,schedule_memo,place,user_id))) {	// 更新成功
+				if (sDao.update(new Schedules(title,schedule_date,start_time,end_time,
+						stamp_id,schedule_memo,place, user_id))) {	// 更新成功
 					//リクエストスコープに保存
 					request.setAttribute("res","ok");
 				}
@@ -104,7 +107,7 @@ public class ScheduleEditServlet extends HttpServlet {
 					request.setAttribute("res", "miss");
 				}
 			}else {
-				if (sDao.delete(id)) {	// 削除成功
+				if (sDao.delete(user_id)) {	// 削除成功
 					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
@@ -140,7 +143,7 @@ public class ScheduleEditServlet extends HttpServlet {
 					request.setAttribute("res", "miss");
 				}
 			}else {
-				if (tDao.delete(id)) {	// 削除成功
+				if (tDao.delete(user_id)) {	// 削除成功
 					request.setAttribute("res","ok");
 				}
 				else {						// 削除失敗
@@ -148,7 +151,7 @@ public class ScheduleEditServlet extends HttpServlet {
 				}
 			}
 			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);
 		}
 }
