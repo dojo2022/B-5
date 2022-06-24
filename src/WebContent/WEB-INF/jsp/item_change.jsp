@@ -182,10 +182,10 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.kakugen_name}<br>${e.kakugen_point}pt<br> <input
+												${e.genre_name}<br>${e.kakugen_point}pt<br> <input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
 												<input type="hidden" name="kakugen_name"
-													value="${e.kakugen_name}">
+													value="${e.genre_name}">
 												<c:forEach var="e" items="${cardList}">
 													<input type="hidden" name="point_value"
 														value="${e.point_value}">
@@ -202,10 +202,10 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.kakugen_name}<br>${e.kakugen_point}<br> <input
+												${e.genre_name}<br>${e.kakugen_point}<br> <input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
 												<input type="hidden" name="kakugen_name"
-													value="${e.kakugen_name}">
+													value="${e.genre_name}">
 												<c:forEach var="e" items="${cardList}">
 													<input type="hidden" name="point_value"
 														value="${e.point_value}">
@@ -223,10 +223,10 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.kakugen_name}<br>${e.kakugen_point}<br> <input
+												${e.genre_name}<br>${e.kakugen_point}<br> <input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
 												<input type="hidden" name="kakugen_name"
-													value="${e.kakugen_name}">
+													value="${e.genre_name}">
 												<c:forEach var="e" items="${cardList}">
 													<input type="hidden" name="point_value"
 														value="${e.point_value}">

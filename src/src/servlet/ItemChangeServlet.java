@@ -67,25 +67,33 @@ public class ItemChangeServlet extends HttpServlet {
 		BackgroundsDAO bDAO = new BackgroundsDAO();
 		List<Backgrounds> bgList = bDAO.select(new Backgrounds(0,"","" ,0 ,""));
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("bgList", bgList);
+//		request.setAttribute("bgList", bgList);
+		// 検索結果をセッションスコープに格納する
+		session.setAttribute("bgList", bgList);
 
 		//格言はwordsListスコープに保存
 		KakugensDAO kDAO = new KakugensDAO();
-		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","","","",0 ,""));
+		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","",0 ,""));
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("wordsList", wordsList);
+//		request.setAttribute("wordsList", wordsList);
+		// 検索結果をセッションスコープに格納する
+		session.setAttribute("wordsList", wordsList);
 
 		//キャラクターはcharactersスコープに保存
 		CharactersDAO cDAO = new CharactersDAO();
 		List<Characters> charactersList = cDAO.select(new Characters(0,"","" ,"","",0 ,""));
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("charactersList", charactersList);
+//		request.setAttribute("charactersList", charactersList);
+		// 検索結果をセッションスコープに格納する
+		session.setAttribute("charactersList", charactersList);
 
 		//クーポンはcouponsスコープに保存
 		CouponsDAO coDAO = new CouponsDAO();
 		List<Coupons> couponsList = coDAO.select(new Coupons(0,"","" ,0 ,""));
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("couponsList", couponsList);
+//		request.setAttribute("couponsList", couponsList);
+		// 検索結果をセッションスコープに格納する
+		session.setAttribute("couponsList", couponsList);
 
 		//ログインデータがある場合、アイテム交換ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
@@ -181,6 +189,13 @@ public class ItemChangeServlet extends HttpServlet {
 					System.out.println("false");
 				}
 
+				//背景はbgListスコープに保存,
+				BackgroundsDAO b2DAO = new BackgroundsDAO();
+				List<Backgrounds> bgList = b2DAO.select(new Backgrounds(0,"","" ,0 ,""));
+				// 検索結果をリクエストスコープに格納する
+//				request.setAttribute("bgList", bgList);
+				// 検索結果をセッションスコープに格納する
+				session.setAttribute("bgList", bgList);
 				session.setAttribute("res", "ok");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 				dispatcher.forward(request, response);

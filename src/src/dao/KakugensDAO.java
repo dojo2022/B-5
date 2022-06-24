@@ -42,8 +42,6 @@ public class KakugensDAO {
 				rs.getInt("id"),
 				rs.getString("kakugen"),
 				rs.getString("genre_name"),
-				rs.getString("genre"),
-				rs.getString("kakugen_id"),
 				rs.getInt("kakugen_point"),
 				rs.getString("kakugen_image")
 				);

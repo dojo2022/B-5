@@ -26,8 +26,16 @@ public class BackgroundsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する <<ここを改造する！！！>>表が持っているデータを書き並べる　～LIKE?
-			// とりあえず名刺番号、名、会社名のみで検索
-			String sql = "select * from Backgrounds ORDER BY id";
+			// backgrounds_items似ないものを抽出
+			//SELECT * FROM backgrounds
+//			  LEFT JOIN background_items
+//		         ON  backgrounds.background_id= background_items.background_id
+//		 WHERE background_items.background_id IS NULL;
+//			String sql = "select * from Backgrounds ORDER BY id";
+			String sql = "SELECT * FROM backgrounds\r\n"
+					+ "  LEFT JOIN background_items\r\n"
+					+ "         ON  backgrounds.background_id= background_items.background_id\r\n"
+					+ " WHERE background_items.background_id IS NULL ORDER BY backgrounds.id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
