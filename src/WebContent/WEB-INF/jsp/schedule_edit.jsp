@@ -122,9 +122,8 @@
 											</tr>
 										</table>
 										<div class="input_wrapper">
-											<a href="/anikare/TopPageServlet">戻る</a>
 											<input class="hover" type="submit" name="SUBMIT" value="予定削除" onsubmit="doSomething();return false;">
-												<input class="hover" type="submit" name="SUBMIT" value="予定更新" onsubmit="doSomething();return false;">
+											<input class="hover" type="submit" name="SUBMIT" value="予定更新" onsubmit="doSomething();return false;">
 										</div>
 									</details>
 								</form>
@@ -162,10 +161,8 @@
 											</tr>
 										</table>
 										<div class="input_wrapper">
-											<a href="/anikare/TopPageServlet">戻る</a>
 											<input class="hover" type="submit" name="SUBMIT" value="タスク削除">
 											<input class="hover" type="submit" name="SUBMIT" value="タスク更新">
-
 										</div>
 									</details>
 								</form>
