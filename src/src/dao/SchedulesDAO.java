@@ -168,7 +168,7 @@ public class SchedulesDAO {
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "SELECT title,schedule_date, start_time,end_time,stamp_id,schedule_memo,place FROM Schedules "
 					+ "LEFT JOIN users on users.user_id = SCHEDULES.user_id "
-					+ "WHERE mail like ?";
+					+ "WHERE mail like ? and schedule_date like curdate()";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる<<検索項目だけ書く
