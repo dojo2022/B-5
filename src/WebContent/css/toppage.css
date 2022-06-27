@@ -226,9 +226,9 @@ input:checked+.tab {
    }
 
    /* ▼チェックが入っているラジオボタンに対応するタブの中身を表示する */
-   #tabcheck1:checked ~ #tabcontent1 { display: block; }
-   #tabcheck2:checked ~ #tabcontent2 { display: block; }
-   #tabcheck3:checked ~ #tabcontent3 { display: block; }
+   #todoCheck:checked ~ #todo { display: block; }
+   #scheduleCheck:checked ~ #schedule { display: block; }
+   #kakugenCheck:checked ~ #kakugen { display: block; }
 
 
    /* ▼チェックが入っているラジオボタンの隣にあるタブの装飾(＝選択状態のタブ) */
