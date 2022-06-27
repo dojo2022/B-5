@@ -5,17 +5,19 @@
     display: flex;
   }
 
-	table{
-    /* 予定とToDoと日記のところを分ける */
- 	 /*border: solid 3px;
-    border-collapse:  collapse;
-    border-color:darkorange; */
-    padding: 5px;
-    margin: 5px;
-    table-layout: fixed;
+ table{
+   padding: 5px;
+   margin: 5px;
+   table-layout: fixed;
+ }
 
+ .scheduleedit{
+ 	margin:10px;
+ }
 
-  }
+ .todoedit{
+ 	margin:10px;
+ }
 
 /*アコーディオンのタイトル部分*/
   summary {
@@ -40,13 +42,24 @@ details[open] {
 
   .titlefont{
     font-size:18px;
-    height:10px;
+    width:100px;
+    height:20px;
+    margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
   }
 
   .shorttext{
  	font-size: 14px;
- 	width: 30px;
- 	height:10px;
+ 	width: 60px;
+ 	height:15px;
     margin: 5px;
     padding: 5px;
     background: rgba(255, 255, 255, 0.8);
@@ -59,15 +72,34 @@ details[open] {
   }
 
   .longtext{
-    width: 50px;
-    height: 10px;
+ 	font-size: 12px;
+    width: 110px;
+    height: 40px;
+    margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   .diarycontent{
   	width:50rem;
   	height: 10rem;
+  	margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   tr{
-    height:10px;
+    height:20px;
   }
