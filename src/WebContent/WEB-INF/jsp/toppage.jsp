@@ -6,6 +6,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 
+
+
  <link rel="stylesheet" type="text/css" href="/anikare/css/toppage.css">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -125,8 +127,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
+	rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+	rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 
@@ -134,7 +138,7 @@
 </head>
 <body>
 	<div class="wrapper">
-	<!-- ポップアップ表示 -->
+		<!-- ポップアップ表示 -->
 		<div class="popup" id="js-popup">
 			<div class="popup-inner">
 				<div class="close-btn" id="js-close-btn">
@@ -146,7 +150,7 @@
 				<p class="login_text">ログインしてくれてありがとう！</p>
 				<p class="loginBonus_text">※初回ログイン時は、ログインボーナスが付与されます。</p>
 				<form method="POST" name="topPost" action="/anikare/ToppageServlet">
-				<input type="submit" name="submit" value="P取得！">
+					<input type="submit" name="submit" value="P取得！">
 				</form>
 			</div>
 			<div class="black-background" id="js-black-bg"></div>
@@ -200,7 +204,7 @@
 				<!-- ポイントデータベースから引っ張ってくる -->
 
 				<a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-					<c:forEach var="e" items="${cardList}">${e.point_value}
+				<c:forEach var="e" items="${cardList}">${e.point_value}
 				</c:forEach>
 
 			</div>
@@ -213,13 +217,14 @@
 				<!--キャラの吹き出し-->
 				<div class="animalcomment">
 
-
-					<!-- ToDo -->
-
-					<!-- 今日の予定 -->
-					<p>今日はランチ！</p>
-					<!-- 今日の格言 -->
-					<p>あああああああああああああああああああああああああああ</p>
+					<ul class="slider">
+						<!-- ToDo -->
+						<li>todo</li>
+						<!-- 今日の予定 -->
+						<li>今日はランチ！</li>
+						<!-- 今日の格言 -->
+						<li>格言</li>
+					</ul>
 				</div>
 
 				<!--- キャラクター --->
@@ -249,6 +254,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 	<script>
 		const week = [ "日", "月", "火", "水", "木", "金", "土" ];
@@ -332,24 +339,29 @@
 
 		//ポップアップ表示
 		window.onload = function() {
-			  var popup = document.getElementById('js-popup');
-			  if(!popup) return;
-			  popup.classList.add('is-show');
+			var popup = document.getElementById('js-popup');
+			if (!popup)
+				return;
+			popup.classList.add('is-show');
 
-			  var blackBg = document.getElementById('js-black-bg');
-			  var closeBtn = document.getElementById('js-close-btn');
+			var blackBg = document.getElementById('js-black-bg');
+			var closeBtn = document.getElementById('js-close-btn');
 
-			  closePopUp(blackBg);
-			  closePopUp(closeBtn);
+			closePopUp(blackBg);
+			closePopUp(closeBtn);
 
-			  function closePopUp(elem) {
-			    if(!elem) return;
-			    elem.addEventListener('click', function() {
-			      popup.classList.remove('is-show');
-			    })
-			  }
+			function closePopUp(elem) {
+				if (!elem)
+					return;
+				elem.addEventListener('click', function() {
+					popup.classList.remove('is-show');
+				})
 			}
+		}
+
+
 	</script>
+
 </body>
 
 </html>
