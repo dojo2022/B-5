@@ -1,11 +1,14 @@
 @charset "UTF-8";
 @import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+
+/*マウスカーソル準備*/
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: inherit;
+  -webkit-box-sizing: inherit;  /*継承*/
   box-sizing: inherit;
 }
+
 /* for all pages */
 /* font settings */
 /* background settings */
@@ -32,6 +35,7 @@ body {
 .drawer-hidden {
     display: none;
 }
+
 /* アイコン設置場所 */
 .drawer-open {
     display: flex;
