@@ -42,7 +42,7 @@
      <!--    </p> -->
       <!--タイトル-->
 <!--       <p> -->
-      <h1 class="logo"><a href =""><img src="img/logo.png" alt="アニカレロゴ"></a></h1>
+      <h1 class="logo"><a href ="/anikare/ToppageServlet"><img src="img/logo.png" alt="アニカレロゴ"></a></h1>
  <!--      </p> -->
 
 
@@ -84,9 +84,9 @@
                   <details>
 						<summary>
 								<select id="stampselect" name="stamp_id">
-												<option value="1" ${e.stamp_id == '1' ? 'selected' : ''}>🍚</option>
-												<option value="2" ${e.stamp_id == '2' ? 'selected' : ''}>💛</option>
-												<option value="3" ${e.stamp_id == '3' ? 'selected' : ''}>⛰</option>
+												<option value="1" ${e.stamp_id == 's002' ? 'selected' : ''}><img src="img/lunch.png" alt="ランチ"></option>
+												<option value="2" ${e.stamp_id == 's003' ? 'selected' : ''}><img src="img/dentist.png" alt="歯医者"></option>
+												<option value="3" ${e.stamp_id == 's004' ? 'selected' : ''}><img src="img/baseball.png" alt="野球"></option>
 											</select>
 					<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
                     <table>
