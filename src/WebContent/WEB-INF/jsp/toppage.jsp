@@ -217,14 +217,23 @@
 				<!--キャラの吹き出し-->
 				<div class="animalcomment">
 
-					<ul class="slider">
+					<div class="tabbox">
 						<!-- ToDo -->
-						<li>todo</li>
+						<input type="radio" name="tabset" id="todo"><label
+							for="todo" class="tab">todo</label>
+
 						<!-- 今日の予定 -->
-						<li>今日はランチ！</li>
+						<input type="radio" name="tabset" id="schedule"><label
+							for="schedule" class="tab">今日の予定</label>
+
 						<!-- 今日の格言 -->
-						<li>格言</li>
-					</ul>
+						<input type="radio" name="tabset" id="kakugen" checked><label
+							for="kakugen" class="tab">今日の格言</label>
+
+						<div class="tabcontent" id="todo">勉強する</div>
+						<div class="tabcontent" id="schedule">1200～会議</div>
+						<div class="tabcontent" id="kakugen">頑張れ</div>
+					</div>
 				</div>
 
 				<!--- キャラクター --->
@@ -358,8 +367,6 @@
 				})
 			}
 		}
-
-
 	</script>
 
 </body>

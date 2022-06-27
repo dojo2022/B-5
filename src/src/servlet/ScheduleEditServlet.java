@@ -91,7 +91,7 @@ public class ScheduleEditServlet extends HttpServlet {
 
 
 			SchedulesDAO sDao = new SchedulesDAO();
-			if (request.getParameter("SUBMIT").equals("予定保存")) {
+			if (request.getParameter("SUBMIT").equals("予定更新")) {
 				String title = request.getParameter("title");
 				String schedule_date =request.getParameter("schedule_date");
 				String start_time = request.getParameter("start_time");
@@ -138,7 +138,7 @@ public class ScheduleEditServlet extends HttpServlet {
 
 			// 更新または削除を行う
 TodoListsDAO tDao = new TodoListsDAO();
-			if (request.getParameter("SUBMIT").equals("タスク保存")) {
+			if (request.getParameter("SUBMIT").equals("タスク更新")) {
 				/*String id = request.getParameter("id");*/
 				String todo_deadline = request.getParameter("todo_deadline");
 				String task = request.getParameter("task");

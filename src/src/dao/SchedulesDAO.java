@@ -361,6 +361,12 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(7, "");
 			}
+			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+				pStmt.setString(8, card.getUser_id());
+			} else {
+				pStmt.setString(8, null);
+			}
+
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
