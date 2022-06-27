@@ -28,10 +28,12 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// ログインページにフォワードする
+
+		HttpSession session = request.getSession();
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
 
-		HttpSession session = request.getSession();
 		session.setAttribute("res", "get");
 
 	}
@@ -56,6 +58,8 @@ public class LoginServlet extends HttpServlet {
 			 List<Users> idList =uDao.select(mail);
 			//抽出結果をセッションスコープに格納
 			session.setAttribute("id", new Login(mail,pw,idList.get(0).getUser_id(),point_value));
+
+
 			//トップページのサーブレットにリダイレクトする
 			response.sendRedirect("/anikare/ToppageServlet");
 

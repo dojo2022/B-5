@@ -57,18 +57,19 @@ public class Users {
 		this.point_value = point_value;
 		this.mail = mail;
 
+
 	}
 	//引数1つのコンストラクタ
-		public Users(String mail) {
-			super();
-			this.mail = mail;
+	public Users(String mail) {
+		super();
+		this.mail = mail;
 
-		}
+	}
 
-		public Users(int point_value) {
-			super();
-			this.point_value = point_value;
-		}
+	public Users(int point_value) {
+		super();
+		this.point_value = point_value;
+	}
 	public Users() {
 		super();
 		this.id = 0;
