@@ -119,7 +119,7 @@ public class SchedulesDAO {
 							rs.getString("schedule_date"),
 							rs.getString("start_time"),
 							rs.getString("end_time"),
-							rs.getInt("stamp_id"),
+							rs.getString("stamp_id"),
 							rs.getString("schedule_memo"),
 							rs.getString("place")
 							);
@@ -192,7 +192,7 @@ public class SchedulesDAO {
 						rs.getString("schedule_date"),
 						rs.getString("start_time"),
 						rs.getString("end_time"),
-						rs.getInt("stamp_id"),
+						rs.getString("stamp_id"),
 						rs.getString("schedule_memo"),
 						rs.getString("place")
 						);
@@ -262,10 +262,10 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getStamp_id() != 0) {
-				pStmt.setInt(5, card.getStamp_id());
+			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
+				pStmt.setString(5, card.getStamp_id());
 			} else {
-				pStmt.setInt(5, 0);
+				pStmt.setString(5, "");
 			}
 			if (card.getSchedule_memo() != null && !card.getSchedule_memo().equals("")) {
 				pStmt.setString(6, card.getSchedule_memo());
@@ -320,7 +320,7 @@ public class SchedulesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update Schedules set title=?, schedule_date=? , start_time=?, end_time=?, stamp_id=?, schedule_memo=?, place=?";
+			String sql = "update Schedules set title=?, schedule_date=? , start_time=?, end_time=?, stamp_id=?, schedule_memo=?, place=? where user_id like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -346,8 +346,8 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getStamp_id() != 0) {
-				pStmt.setInt(5, card.getStamp_id());
+			if (card.getStamp_id() != null && !card.getEnd_time().equals("")) {
+				pStmt.setString(5, card.getStamp_id());
 			} else {
 				pStmt.setString(5, "");
 			}
@@ -398,7 +398,7 @@ public class SchedulesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from Schedules where Id=?";
+			String sql = "delete from Schedules where user_id like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
