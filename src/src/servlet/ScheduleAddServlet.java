@@ -77,7 +77,7 @@ public class ScheduleAddServlet extends HttpServlet {
 		//予定の追加
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+//		String id = request.getParameter("id");
 		//value
 
 		HttpSession session = request.getSession();
@@ -105,7 +105,7 @@ public class ScheduleAddServlet extends HttpServlet {
 			}
 		} else {
 			//value
-			String checkbox = request.getParameter("checkbox");
+//			String checkbox = request.getParameter("checkbox");
 			String importance = request.getParameter("importance");
 			String task = request.getParameter("task");
 			String todo_deadline = request.getParameter("todo_deadline");
