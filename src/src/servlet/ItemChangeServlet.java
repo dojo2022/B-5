@@ -188,6 +188,14 @@ public class ItemChangeServlet extends HttpServlet {
 				else {												// 登録失敗
 					System.out.println("false");
 				}
+				point_value = point_value - background;
+				UsersDAO uDAO = new UsersDAO();
+				if (uDAO.updatePoint(new Users(point_value, user_id))) {
+					System.out.println("true");
+				} else {
+					System.out.println("false");
+				}
+
 
 				//背景はbgListスコープに保存,
 				BackgroundsDAO b2DAO = new BackgroundsDAO();
@@ -197,14 +205,10 @@ public class ItemChangeServlet extends HttpServlet {
 				// 検索結果をセッションスコープに格納する
 				session.setAttribute("bgList", bgList);
 				session.setAttribute("res", "ok");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
 			}else {
 				//ポイントが不足のとき
 
 				session.setAttribute("res", "fail");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
 			}
 		}
 		//		//ポイントチェックをする
@@ -254,6 +258,7 @@ public class ItemChangeServlet extends HttpServlet {
 				else {												// 登録失敗
 					System.out.println("false");
 				}
+
 				session.setAttribute("res", "ok");
 				//				request.setAttribute("result", "ok");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
@@ -299,7 +304,8 @@ public class ItemChangeServlet extends HttpServlet {
 
 
 		}
-
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
+		dispatcher.forward(request, response);
 	}
 }
 

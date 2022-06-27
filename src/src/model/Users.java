@@ -45,6 +45,13 @@ public class Users {
 
 	}
 
+	//引数２つのコンストラクタ
+	public Users(String user_id, int point_value) {
+		super();
+		this.user_id = user_id;
+		this.point_value = point_value;
+	}
+
 	public Users(int point_value ,String mail) {
 		super();
 		this.point_value = point_value;

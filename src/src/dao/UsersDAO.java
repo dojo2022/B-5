@@ -538,6 +538,7 @@ public class UsersDAO {
 		return result;
 	}
 
+	//ポイントを書き換える
 	public boolean updatePoint(Users card) {
 		Connection conn = null;
 		boolean result = false;
@@ -549,26 +550,28 @@ public class UsersDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
-			// SQL文を準備する
-			String sql = "update Users set point_value=? where mail like ? ";
+			// SQL文を準備する 0627清水変更 id→user?_id
+			String sql = "update Users set point_value=? where user_id like ? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 
 
 			if (card.getPoint_value() !=0) {
+				if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+				pStmt.setString(2, card.getUser_id());
+				} else {
+				pStmt.setString(2, "");
+				}
 				pStmt.setInt(1, card.getPoint_value());
 			} else {
 				pStmt.setInt(1, 0);
 			}
-			if (card.getMail() != null && !card.getMail().equals("")) {
-				pStmt.setString(2, card.getMail());
-			} else {
-				pStmt.setString(2, "");
-			}
+
 
 
 			// SQL文を実行する
+
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
