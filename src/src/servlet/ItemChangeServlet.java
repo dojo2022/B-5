@@ -170,15 +170,29 @@ public class ItemChangeServlet extends HttpServlet {
 		Login mail_session = (Login)session.getAttribute("id");
 		String user_id = mail_session.getUser_id();
 		//		//ポイントチェックをする
+
+
 		//壁紙
 		if(background != 0 ) {
 			//backgroundのポイント照合
 			//自分の現在のポイント合計と交換しようとするポイント
 			if(background <= point_value) {
 				//ポイントが足りたとき
-				//insert文を使って自分のポイントを
-				//1.今交換しようとしたアイテムのポイントを抽出（select）
-				//2.自分のポイントに1の値のマイナスをinsert
+				point_value = point_value-background;
+
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+				//今のuser_idのpoint _valueを取得して変数に入れる
+				//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
+
+				}else {
+					System.out.println("false");
+
+				}
 				//登録処理を行う
 				//壁紙
 				BackgroundItemsDAO bDAO = new BackgroundItemsDAO();
@@ -188,15 +202,6 @@ public class ItemChangeServlet extends HttpServlet {
 				else {												// 登録失敗
 					System.out.println("false");
 				}
-				point_value = point_value - background;
-				UsersDAO uDAO = new UsersDAO();
-				if (uDAO.updatePoint(new Users(point_value, user_id))) {
-					System.out.println("true");
-				} else {
-					System.out.println("false");
-				}
-
-
 				//背景はbgListスコープに保存,
 				BackgroundsDAO b2DAO = new BackgroundsDAO();
 				List<Backgrounds> bgList = b2DAO.select(new Backgrounds(0,"","" ,0 ,""));

@@ -559,13 +559,13 @@ public class UsersDAO {
 
 			if (card.getPoint_value() !=0) {
 				if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(2, card.getUser_id());
-				} else {
-				pStmt.setString(2, "");
-				}
 				pStmt.setInt(1, card.getPoint_value());
 			} else {
 				pStmt.setInt(1, 0);
+			}
+				pStmt.setString(2, card.getUser_id());
+			} else {
+				pStmt.setString(2, "");
 			}
 
 
