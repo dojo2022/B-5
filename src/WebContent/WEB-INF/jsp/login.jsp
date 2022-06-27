@@ -53,8 +53,9 @@
 				<!-- リンクを貼り忘れない -->
 			</div>
 		</main>
+
 		<footer class="footer">
-			<hr>
+		<hr>
 			<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 			<!-- 要相談 -->
 		</footer>

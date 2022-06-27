@@ -1,10 +1,88 @@
 @charset "UTF-8";
 
-table{
-    border: solid 3px;
-    border-collapse:  collapse;     /* �Z���̐����d�˂� */
-    border-color:darkorange;
-    padding: 5px;
-    margin: 5px;
-    table-layout: fixed;
+/* 編集ページ */
+  .edit{
+    display: flex;
   }
+
+ table{
+   padding: 5px;
+   margin: 5px;
+   table-layout: fixed;
+ }
+
+ .scheduleedit{
+ 	margin:10px;
+ }
+
+ .todoedit{
+ 	margin:10px;
+ }
+
+/*アコーディオンのタイトル部分*/
+  summary {
+  /*display: block;*/
+  cursor: pointer;
+  transition: 0.2s; /* 変化を滑らかに */
+}
+
+summary:hover {
+  cursor: pointer; /* カーソルを指マークに */
+  background-color: #EFEFEF;
+}
+ /*アコーディオンの中身*/
+ details {
+  height: 20px;
+  transition: .5s;
+}
+details[open] {
+  height:280px;
+  background: #c3f6ff;
+}
+
+  .titlefont{
+    font-size:18px;
+    width:100px;
+    height:20px;
+    margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+  }
+
+  .shorttext{
+ 	font-size: 14px;
+ 	width: 100px;
+ 	height:20px;
+    margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .longtext{
+ 	font-size: 12px;
+    width: 200px;
+    height: 80px;
+    margin: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+

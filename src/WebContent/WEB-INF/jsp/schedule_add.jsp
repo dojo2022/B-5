@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,71 +87,66 @@
 												<option value="1" ${e.stamp_id == '1' ? 'selected' : ''}>🍚</option>
 												<option value="2" ${e.stamp_id == '2' ? 'selected' : ''}>💛</option>
 												<option value="3" ${e.stamp_id == '3' ? 'selected' : ''}>⛰</option>
-											</select>	<%-- <select id="stampselect" name ="stampselect" value="${e.stamp}"> --%>
-								<%-- <option value="${e.stamp_id }">🍚</option> --%>
-<%-- 								<option value="${e.stamp_id }">🍚</option>
-								<option value="${e.stamp_id }">💛</option>
-								<option value="${e.stamp_id }">⛰</option>
- --%>						<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
+											</select>
+					<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
                     <table>
+
+                    <tr><td><input type="text" class="shorttext" name="schedule_date" placeholder="日付"></td></tr>
                       <tr>
-                        <td><input type="text" name="start_time">～</td>
-						<td><input type="text" name="end_time"></td>
+                        <td><input type="text" class="shorttext" name="start_time" placeholder="12:00">～</td>
+						<td><input type="text" class="shorttext" name="end_time" placeholder="14:00"></td>
                       </tr>
-                      	<br>
                       <tr>
                         <td><input type="text" class="shorttext" name="place" placeholder="場所"></td>
-                        <td><input type="text" class="shorttext" name="schedule_date" placeholder="日付"></td>
-                      </tr>
-                      	<br>
-                      <tr>
-                        <td colspan="2"><textarea name="schedule_memo" rows="10" cols="60" placeholder="ここに記入してください(メモ)"></textarea></td>
                       </tr>
                       <tr>
+                        <td colspan="2"><input type="text" class="longtext" name="schedule_memo" placeholder="ここにメモを記入"></td>
+                      </tr>
+               		</table>
+                          <div class="input_wrapper">
+                          <a href="/anikare/TopPageServlet">戻る</a>
+                          <input class="" type="submit" name="submit" value="スケジュール追加" onsubmit="doSomething();return false;">
+                          </div>
 
-                      <tr>
-                        <td>
-                          <div class=""><input class="" type="submit" name="submit" value="スケジュール追加" onsubmit="doSomething();return false;"></div>
-                        </td>
-                      </tr>
-                    </table>
                   </details>
                 </form>
             </div>
+
+            <!-- ToDo編集 -->
             <div class="todoedit">
-                <!-- ToDo編集 -->
                 <h2>ToDoの追加</h2>
                 <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
                     <summary>
-                    	<input type="checkbox" id="" name="checkbox" value="missioncomplete">
+                    	<input type="checkbox" id="checkselect" name="checkbox" value="missioncomplete">
                     	<input type="text" class="titlefont" name="task" placeholder="タスク名を入力" >
                     </summary>
                       <table>
+                      <tr>
+                          <td><input type="text" class="shorttext" name="todo_deadline" placeholder="締め切り時間を入力"></td>
+                        </tr>
                        <tr>
-                          <td><input type="text" class="" name="importance" placeholder="重要度" ></td>
+                          <td><select id="importanceselect" name="importance">
+														<option value="3" ${e.importance == '3' ? 'selected' : ''}>☆☆☆</option>
+														<option value="2" ${e.importance == '2' ? 'selected' : ''}>☆☆</option>
+														<option value="1" ${e.importance == '1' ? 'selected' : ''}>☆</option>
+												</select></td>
                         </tr>
+
                         <tr>
-                          <td><input type="text" class="" name="todo_deadline" placeholder="締め切り時間を入力"></td>
+                          <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="ここにメモを記入" ></td>
                         </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="メモ" ></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class=""><input class="" type="submit" name="BACK" value="戻る"></div>
-                          </td>
-                          <td>
-                          </td>
-                          <td>
-                            <div class=""><input class="" type="submit" name="submit" value="Todo追加"></div>
-                          </td>
-                        </tr>
-                      </table>
+                        </table>
+
+                            <div class="input_wrapper">
+                          <a href="/anikare/TopPageServlet">戻る</a>
+
+                            <input class="hover" type="submit" name="submit" value="Todo追加"></div>
                   </details>
                 </form>
             </div>
         </div>
+</div>
 </div>
 
 

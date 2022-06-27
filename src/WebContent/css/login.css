@@ -12,8 +12,9 @@ main {
     /* max-width: 1080px; */
     text-align: center;
 }
+
 .main {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color:rgba(255, 255, 255, 0.9);
     border-radius:10px;
     font-family: "Nico Moji";
     max-width: 540px;
@@ -21,10 +22,10 @@ main {
     text-align: center;
     margin: 0 auto 0 auto;
 }
+/*ロゴ中央寄せ*/
 .logo{
 	text-align: center;
     margin: 0 auto 0 auto;
-
 }
 /* header {
     background-color: rgb(238, 26, 26);

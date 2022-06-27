@@ -117,16 +117,14 @@
 											</tr>
 											<tr>
 												<td colspan="2"><input type="text" class="longtext"
-													name="schedule_memo" placeholder="メモ"
+													name="schedule_memo" placeholder="ここにメモを記入"
 													value="${e.schedule_memo}"></td>
 											</tr>
 										</table>
-										<div class="inpur_wrapper">
-											<a href="/anikare/TopPageServlet">戻る</a> <input class="hover"
-												type="submit" name="SUBMIT" value="予定削除"
-												onsubmit="doSomething();return false;"> <input
-												class="hover" type="submit" name="SUBMIT" value="予定更新"
-												onsubmit="doSomething();return false;">
+										<div class="input_wrapper">
+											<a href="/anikare/TopPageServlet">戻る</a>
+											<input class="hover" type="submit" name="SUBMIT" value="予定削除" onsubmit="doSomething();return false;">
+												<input class="hover" type="submit" name="SUBMIT" value="予定更新" onsubmit="doSomething();return false;">
 										</div>
 									</details>
 								</form>
@@ -135,12 +133,12 @@
 
 						<!-- ToDo編集 -->
 						<div class="todoedit">
-							<h2>ToDo</h2>
+							<h2>ToDoリスト</h2>
 							<c:forEach var="e" items="${TodolistList}" varStatus='status'>
 								<form method="POST" action="/anikare/ScheduleEditServlet">
 									<details>
 										<summary>
-											<input type="checkbox" id="checlselect" name="checkbox"
+											<input type="checkbox" id="checkselect" name="checkbox"
 												value="missioncomplete"> <input type="text"
 												class="titlefont" name="task" placeholder="タスク名を入力"
 												value="${e.task}">
@@ -153,9 +151,9 @@
 											</tr>
 											<tr>
 												<td><select id="importanceselect" name="importance">
-														<option value="1" ${e.importance == '1' ? 'selected' : ''}>☆</option>
-														<option value="2" ${e.importance == '2' ? 'selected' : ''}>☆☆</option>
 														<option value="3" ${e.importance == '3' ? 'selected' : ''}>☆☆☆</option>
+														<option value="2" ${e.importance == '2' ? 'selected' : ''}>☆☆</option>
+														<option value="1" ${e.importance == '1' ? 'selected' : ''}>☆</option>
 												</select></td>
 											</tr>
 											<tr>
@@ -209,6 +207,7 @@
 		</main>
 		<footer> </footer>
 		<script src="/anikare/js/all.js"></script>
+		<script src="/anikare/js/schedule_edit.js"></script>
 	</div>
 </body>
 
