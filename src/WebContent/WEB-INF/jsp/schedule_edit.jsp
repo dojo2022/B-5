@@ -125,7 +125,7 @@
 											<a href="/anikare/TopPageServlet">戻る</a> <input class="hover"
 												type="submit" name="SUBMIT" value="予定削除"
 												onsubmit="doSomething();return false;"> <input
-												class="hover" type="submit" name="SUBMIT" value="予定保存"
+												class="hover" type="submit" name="SUBMIT" value="予定更新"
 												onsubmit="doSomething();return false;">
 										</div>
 									</details>
