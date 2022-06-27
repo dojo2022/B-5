@@ -108,30 +108,28 @@ public class DiariesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into diary (user_id, diary_date,diary_title, diary_content"
-					+ "from diaries ;) values ( ?, ?, ? ,? )";
+			String sql = "INSERT INTO Diaries (diary_date,diary_title,diary_content,user_id) values (?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 
-
-			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(1, card.getUser_id());
+			if (card.getDiary_date() != null && !card.getDiary_date().equals("")) {
+				pStmt.setString(1, card.getDiary_date());
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getDiary_date() != null && !card.getDiary_date().equals("")) {
-				pStmt.setString(2, card.getDiary_date());
+			if (card.getDiary_title() != null && !card.getDiary_title().equals("")) {
+				pStmt.setString(2, card.getDiary_title());
 			} else {
 				pStmt.setString(2, "");
 			}
-			if (card.getDiary_title() != null && !card.getDiary_title().equals("")) {
-				pStmt.setString(3, card.getDiary_title());
+			if (card.getDiary_content() != null && !card.getDiary_content().equals("")) {
+				pStmt.setString(3, card.getDiary_content());
 			} else {
 				pStmt.setString(3, "");
 			}
-			if (card.getDiary_content() != null && !card.getDiary_content().equals("")) {
-				pStmt.setString(4, card.getDiary_content());
+			if (card.getUser_id() != null && !card.getUser_id().equals("")) {
+				pStmt.setString(4, card.getUser_id());
 			} else {
 				pStmt.setString(4, "");
 			}

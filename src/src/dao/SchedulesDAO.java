@@ -331,7 +331,7 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(1, "");
 			}
-			if (card.getSchedule_date() != null && !card.getTitle().equals("")) {
+			if (card.getSchedule_date() != null && !card.getSchedule_date().equals("")) {
 				pStmt.setString(2, card.getSchedule_date());
 			} else {
 				pStmt.setString(2, "");
@@ -346,7 +346,7 @@ public class SchedulesDAO {
 			} else {
 				pStmt.setString(4, "");
 			}
-			if (card.getStamp_id() != null && !card.getEnd_time().equals("")) {
+			if (card.getStamp_id() != null && !card.getStamp_id().equals("")) {
 				pStmt.setString(5, card.getStamp_id());
 			} else {
 				pStmt.setString(5, "");
