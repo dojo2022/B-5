@@ -184,7 +184,7 @@
 												action="/anikare/ItemChangeServlet">
 												${e.genre_name}<br>${e.kakugen_point}pt<br> <input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
-												<input type="hidden" name="kakugen_name"
+												<input type="hidden" name="genre_name"
 													value="${e.genre_name}">
 												<c:forEach var="e" items="${cardList}">
 													<input type="hidden" name="point_value"
@@ -204,7 +204,7 @@
 												action="/anikare/ItemChangeServlet">
 												${e.genre_name}<br>${e.kakugen_point}<br> <input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
-												<input type="hidden" name="kakugen_name"
+												<input type="hidden" name="genre_name"
 													value="${e.genre_name}">
 												<c:forEach var="e" items="${cardList}">
 													<input type="hidden" name="point_value"
@@ -225,7 +225,7 @@
 												action="/anikare/ItemChangeServlet">
 												${e.genre_name}<br>${e.kakugen_point}<br> <input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
-												<input type="hidden" name="kakugen_name"
+												<input type="hidden" name="genre_name"
 													value="${e.genre_name}">
 												<c:forEach var="e" items="${cardList}">
 													<input type="hidden" name="point_value"
@@ -317,7 +317,8 @@
 									<th class="header" colspan="4">クーポン</th>
 								</tr>
 								<tr>
-									<c:forEach var="e" items="${couponsList}" begin="0" end="3">
+									<c:forEach var="e" items="${couponsList}" begin="0" end="3"
+										varStatus="status">
 										<!-- 後でクラス指定して一括で画像サイズを固定 -->
 										<td id="list">
 											<form id="sub" method="POST"
@@ -336,7 +337,8 @@
 									</c:forEach>
 								</tr>
 								<tr>
-									<c:forEach var="e" items="${couponsList}" begin="4" end="7">
+									<c:forEach var="e" items="${couponsList}" begin="4" end="7"
+									varStatus="status">
 										<!-- 後でクラス指定して一括で画像サイズを固定 -->
 										<td id="list">
 											<form id="sub" method="POST"
@@ -355,7 +357,8 @@
 									</c:forEach>
 								</tr>
 								<tr>
-									<c:forEach var="e" items="${couponsList}" begin="8" end="11">
+									<c:forEach var="e" items="${couponsList}" begin="8" end="11"
+									varStatus="status">
 										<!-- 後でクラス指定して一括で画像サイズを固定 -->
 										<td id="list">
 											<form id="sub" method="POST"
@@ -405,6 +408,7 @@
 					alert('交換します！');
 				} else {
 					alert("交換を中止しました。");
+					event.preventDefault();
 				}
 			}
 			count[i].addEventListener('click', check);

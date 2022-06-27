@@ -25,7 +25,9 @@ public class CharactersDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 				// SQL文を準備する <<ここを改造する！！！>>表が持っているデータを書き並べる　～LIKE?
-				String sql = "select * from Characters ORDER BY id";
+//				String sql = "select * from Characters ORDER BY id";
+				String sql = "SELECT * FROM Characters LEFT JOIN Character_items ON  Characters.character_id= Character_items.character_id "
+						+ "WHERE character_items.character_id IS NULL ORDER BY Characters.id";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を実行し、結果表を取得する

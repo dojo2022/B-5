@@ -108,6 +108,13 @@ public class ToppageServlet extends HttpServlet {
 
 					session.setAttribute("res", "update_mis");
 				}
+			//sessionの書き換えを行う
+			Login mail_session = (Login)session.getAttribute("id");
+			String mail = mail_session.getMail();
+			uDao = new UsersDAO();
+			List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("cardList", cardList);
 
 			// トップページにフォワードする
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");

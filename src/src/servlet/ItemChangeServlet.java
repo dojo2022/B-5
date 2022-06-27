@@ -67,63 +67,33 @@ public class ItemChangeServlet extends HttpServlet {
 		BackgroundsDAO bDAO = new BackgroundsDAO();
 		List<Backgrounds> bgList = bDAO.select(new Backgrounds(0,"","" ,0 ,""));
 		// 検索結果をリクエストスコープに格納する
-//		request.setAttribute("bgList", bgList);
+		//		request.setAttribute("bgList", bgList);
 		// 検索結果をセッションスコープに格納する
 		session.setAttribute("bgList", bgList);
 
 		//格言はwordsListスコープに保存
 		KakugensDAO kDAO = new KakugensDAO();
-		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","",0 ,""));
-		// 検索結果をリクエストスコープに格納する
-//		request.setAttribute("wordsList", wordsList);
+		List<Kakugens> wordsList = kDAO.select(new Kakugens(0,"","",0,""));
 		// 検索結果をセッションスコープに格納する
 		session.setAttribute("wordsList", wordsList);
-
 		//キャラクターはcharactersスコープに保存
 		CharactersDAO cDAO = new CharactersDAO();
 		List<Characters> charactersList = cDAO.select(new Characters(0,"","" ,"","",0 ,""));
-		// 検索結果をリクエストスコープに格納する
-//		request.setAttribute("charactersList", charactersList);
 		// 検索結果をセッションスコープに格納する
 		session.setAttribute("charactersList", charactersList);
-
 		//クーポンはcouponsスコープに保存
 		CouponsDAO coDAO = new CouponsDAO();
 		List<Coupons> couponsList = coDAO.select(new Coupons(0,"","" ,0 ,""));
-		// 検索結果をリクエストスコープに格納する
-//		request.setAttribute("couponsList", couponsList);
 		// 検索結果をセッションスコープに格納する
 		session.setAttribute("couponsList", couponsList);
-
 		//ログインデータがある場合、アイテム交換ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 		dispatcher.forward(request, response);
-
-
 		session.setAttribute("res", "get");
-
 	}
-
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-
-	//交換したいアイテムを押下時、jsで確認ポップを表示
-	//アイテムを押下した後どのように動作？
-	//pointsからkakugensDBのkakugen_pointを引く
-	//交換したいアイテム押下→jsで交換の確認を表示→はいを押下→持っているポイントで交換できるかを条件分岐（足りない場合は処理を中止）
-	//→足りた場合はpointsのテーブルからkakugensデータ内の消費ポイント分を引く
-	//→引いた値をユーザに対応する部分に戻す→kakugensテーブルをgenre検索→ヒットしたデータのkakugen_idをスコープに保存
-	//→スコープに保存したkakugen_idをkakugen_itemsテーブルに追加→jsで交換しましたのウィンドウを表示
-	//→修了（処理の途中でエラーが出た場合はロールバック）
-	//別データテーブル間の計算
-	//kakugensDBのgenreでDB内を検索
-	//見つけたデータをスコープに保存する
-	//ヒットしたデータのkakugen_idをkakugen_itemsDB内に追加
-	//スコープに格納した値を
-	//交換が成功した際成功の旨をjsで表示
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
@@ -185,8 +155,8 @@ public class ItemChangeServlet extends HttpServlet {
 
 				boolean result = uDao.updatePoint(userdata);
 				if (result) {
-				//今のuser_idのpoint _valueを取得して変数に入れる
-				//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					//今のuser_idのpoint _valueを取得して変数に入れる
+					//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
 					System.out.println("true");
 
 				}else {
@@ -206,7 +176,7 @@ public class ItemChangeServlet extends HttpServlet {
 				BackgroundsDAO b2DAO = new BackgroundsDAO();
 				List<Backgrounds> bgList = b2DAO.select(new Backgrounds(0,"","" ,0 ,""));
 				// 検索結果をリクエストスコープに格納する
-//				request.setAttribute("bgList", bgList);
+				//				request.setAttribute("bgList", bgList);
 				// 検索結果をセッションスコープに格納する
 				session.setAttribute("bgList", bgList);
 				session.setAttribute("res", "ok");
@@ -223,9 +193,21 @@ public class ItemChangeServlet extends HttpServlet {
 			//自分の現在のポイント合計と交換しようとするポイント
 			if(kakugen <= point_value) {
 				//ポイントが足りたとき
-				//insert文を使って自分のポイントを
-				//1.今交換しようとしたアイテムのポイントを抽出（select）
-				//2.自分のポイントに1の値のマイナスをinsert
+				point_value = point_value-kakugen;
+
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+					//今のuser_idのpoint _valueを取得して変数に入れる
+					//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
+
+				}else {
+					System.out.println("false");
+
+				}
 				//格言
 				KakugenItemsDAO kDAO = new KakugenItemsDAO();
 				if (kDAO.insert(new KakugenItems(user_id, genre_name))) {	// 登録成功
@@ -233,16 +215,16 @@ public class ItemChangeServlet extends HttpServlet {
 				} else {												// 登録失敗
 					System.out.println("false");
 				}
-				session.setAttribute("res", "ok");
-				//				request.setAttribute("result", "ok");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
+				//格言はwordsListスコープに保存
+				KakugensDAO k2DAO = new KakugensDAO();
+				List<Kakugens> wordsList = k2DAO.select(new Kakugens(0,"","",0,""));
+				// 検索結果をセッションスコープに格納する
+				session.setAttribute("wordsList", wordsList);
 
+				session.setAttribute("res", "ok");
 			}else {
 				//ポイントが不足のとき
 				session.setAttribute("res", "fail");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
 			}
 		}
 		//		//ポイントチェックをする
@@ -252,9 +234,21 @@ public class ItemChangeServlet extends HttpServlet {
 			//自分の現在のポイント合計と交換しようとするポイント
 			if(character <= point_value) {
 				//ポイントが足りたとき
-				//insert文を使って自分のポイントを
-				//1.今交換しようとしたアイテムのポイントを抽出（select）
-				//2.自分のポイントに1の値のマイナスをinsert
+				point_value = point_value-character;
+
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+					//今のuser_idのpoint _valueを取得して変数に入れる
+					//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
+
+				}else {
+					System.out.println("false");
+
+				}
 				//キャラ
 				CharacterItemsDAO cDAO = new CharacterItemsDAO();
 				if (cDAO.insert(new CharacterItems(user_id, character_id))) {	// 登録成功
@@ -263,11 +257,13 @@ public class ItemChangeServlet extends HttpServlet {
 				else {												// 登録失敗
 					System.out.println("false");
 				}
+				//キャラクターはcharactersスコープに保存
+				CharactersDAO c2DAO = new CharactersDAO();
+				List<Characters> charactersList = c2DAO.select(new Characters(0,"","" ,"","",0 ,""));
+				// 検索結果をセッションスコープに格納する
+				session.setAttribute("charactersList", charactersList);
 
 				session.setAttribute("res", "ok");
-				//				request.setAttribute("result", "ok");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
 			}else {
 				//ポイントが不足のとき
 				session.setAttribute("res", "fail");
@@ -282,9 +278,17 @@ public class ItemChangeServlet extends HttpServlet {
 			//自分の現在のポイント合計と交換しようとするポイント
 			if(coupon <= point_value) {
 				//ポイントが足りたとき
-				//insert文を使って自分のポイントを
-				//1.今交換しようとしたアイテムのポイントを抽出（select）
-				//2.自分のポイントに1の値のマイナスをinsert
+				point_value = point_value-coupon;
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+					//今のuser_idのpoint _valueを取得して変数に入れる
+					//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
+				}else {
+					System.out.println("false");
+				}
 				//クーポン
 				CouponItemsDAO ciDAO = new CouponItemsDAO();
 				if (ciDAO.insert(new CouponItems(user_id, coupon_id))) {	// 登録成功
@@ -293,22 +297,27 @@ public class ItemChangeServlet extends HttpServlet {
 				else {												// 登録失敗
 					System.out.println("false");
 				}
+				//クーポンはcouponsスコープに保存
+				CouponsDAO ci2DAO = new CouponsDAO();
+				List<Coupons> couponsList = ci2DAO.select(new Coupons(0,"","" ,0 ,""));
+				// 検索結果をセッションスコープに格納する
+				session.setAttribute("couponsList", couponsList);
 
 				session.setAttribute("res", "ok");
-				//				request.setAttribute("result", "ok");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
-
 			}else {
 				//ポイントが不足のとき
-
 				session.setAttribute("res", "fail");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
-				dispatcher.forward(request, response);
 			}
-
-
 		}
+		//sessionスコープ再取得
+		//セッションスコープに格納したidデータを変数idに代入
+		mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getMail();
+		UsersDAO uDao = new UsersDAO();
+		List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/item_change.jsp");
 		dispatcher.forward(request, response);
 	}

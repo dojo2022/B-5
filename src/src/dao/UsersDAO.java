@@ -557,7 +557,7 @@ public class UsersDAO {
 			// SQL文を完成させる
 
 
-			if (card.getPoint_value() !=0) {
+			if (card.getPoint_value() > -1) {
 				if (card.getUser_id() != null && !card.getUser_id().equals("")) {
 				pStmt.setInt(1, card.getPoint_value());
 			} else {

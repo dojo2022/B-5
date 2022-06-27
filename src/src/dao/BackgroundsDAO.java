@@ -32,9 +32,9 @@ public class BackgroundsDAO {
 //		         ON  backgrounds.background_id= background_items.background_id
 //		 WHERE background_items.background_id IS NULL;
 //			String sql = "select * from Backgrounds ORDER BY id";
-			String sql = "SELECT * FROM backgrounds\r\n"
-					+ "  LEFT JOIN background_items\r\n"
-					+ "         ON  backgrounds.background_id= background_items.background_id\r\n"
+			String sql = "SELECT * FROM backgrounds"
+					+ "  LEFT JOIN background_items"
+					+ "         ON  backgrounds.background_id= background_items.background_id"
 					+ " WHERE background_items.background_id IS NULL ORDER BY backgrounds.id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
