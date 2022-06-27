@@ -551,7 +551,7 @@ public class UsersDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する 0627清水変更 id→user?_id
-			String sql = "update Users set point_value=? where user_id like ? ";
+			String sql = "update Users set point_value= ? where user_id = ? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -559,16 +559,14 @@ public class UsersDAO {
 
 			if (card.getPoint_value() !=0) {
 				if (card.getUser_id() != null && !card.getUser_id().equals("")) {
-				pStmt.setString(2, card.getUser_id());
-				} else {
-				pStmt.setString(2, "");
-				}
 				pStmt.setInt(1, card.getPoint_value());
 			} else {
 				pStmt.setInt(1, 0);
 			}
-
-
+				pStmt.setString(2, card.getUser_id());
+			} else {
+				pStmt.setString(2, "");
+			}
 
 			// SQL文を実行する
 
@@ -593,7 +591,6 @@ public class UsersDAO {
 		// 結果を返す
 		return result;
 	}
-
 }
 
 
