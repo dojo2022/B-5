@@ -231,9 +231,10 @@
 						<input type="radio" name="tabset" id="kakugenCheck"><label
 							for="kakugenCheck" class="tab">格言</label>
 
-						<div class="tabcontent" id="todo"></div>
-						<div class="tabcontent" id="schedule"><c:forEach var="e" items="${ScheduleList}" varStatus='status'><a href="/anikare/ScheduleEditServlet"
+						<div class="tabcontent" id="todo"><c:forEach var="e" items="${TodoListList}" varStatus='status'><a href="/anikare/ScheduleEditServlet"
 								>${e.start_time}～${e.title}</a></c:forEach></div>
+						<div class="tabcontent" id="schedule"><c:forEach var="e" items="${ScheduleList}" varStatus='status'><a href="/anikare/ScheduleEditServlet"
+								>${e.task} ${e.deadline}まで</a></c:forEach></div>
 						<div class="tabcontent" id="kakugen">頑張れ</div>
 					</div>
 				</div>
