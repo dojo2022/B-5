@@ -32,6 +32,7 @@
 				<input type="reset" name="reset" value="クリア">
 			</form>
 		</div>
+		<a href="/anikare/LoginServlet">※ログインページはこちら</a>
 		</div>
 	</main>
 	<footer class="footer">
