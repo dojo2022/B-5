@@ -172,6 +172,14 @@ public class ToppageServlet extends HttpServlet {
 			else {
 				System.out.println("1>");
 			}
+			HttpSession session = request.getSession();
+			Login mail_session = (Login)session.getAttribute("id");
+			mail_session = (Login)session.getAttribute("id");
+			String mail = mail_session.getMail();
+			UsersDAO uDao = new UsersDAO();
+			List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("cardList", cardList);
 			// トップページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);

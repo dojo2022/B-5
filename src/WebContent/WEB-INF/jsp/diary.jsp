@@ -62,9 +62,12 @@
 				<!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
 				<!-- ポイントデータベースから引っ張ってくる -->
 
-				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-				<p class="headermoji">ポイント</p>
+				<!-- <a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
+				<p class="headermoji">ポイント</p> -->
 
+				<a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
+				<c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>
 			</div>
 		</header>
 
