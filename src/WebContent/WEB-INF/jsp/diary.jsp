@@ -54,7 +54,7 @@
 				<!--タイトル-->
 
 				<h1 class="logo">
-					<a href=""><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
+					<a href="/anikare/ToppageServlet"><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 				</h1>
 
 
@@ -99,6 +99,7 @@
 				<div class="rightside">
 					<!--- カレンダー --->
 					<div class="main">
+					<h2><img src="/anikare/img/diarylist.png" alt="日記一覧"></h2>
 						<!-- 月表示 -->
 						<!--- ボタン　月移動 --->
 						<div id="next-prev-button">
