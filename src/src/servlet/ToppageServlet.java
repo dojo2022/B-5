@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.SchedulesDAO;
+import dao.TodoListsDAO;
 import dao.UsersDAO;
+import dao.VisitsDAO;
 import model.Login;
+import model.Schedules;
+import model.TodoLists;
 import model.Users;
+import model.Visits;
 
 
 
@@ -68,6 +76,28 @@ public class ToppageServlet extends HttpServlet {
 		List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("cardList", cardList);
+
+		String user_id=mail_session.getUser_id();
+		VisitsDAO vDao = new VisitsDAO();
+		vDao.insert(new Visits(user_id));
+		//visits tableに追加user_id,timestamp
+		//String user_id=mail_session.getUser_id()
+		//--insert into visits (user_id) values (String user_id);
+		//を実行するdaoを作成
+
+
+		//予定
+		SchedulesDAO sDao = new SchedulesDAO();
+		List<Schedules> ScheduleList = sDao.selectMyItem(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("ScheduleList", ScheduleList);
+
+		//Todo
+		TodoListsDAO tDao = new TodoListsDAO();
+		List<TodoLists> TodolistList = tDao.selectMyItem(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("TodolistList", TodolistList);
+
 		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 		dispatcher.forward(request, response);
@@ -85,29 +115,58 @@ public class ToppageServlet extends HttpServlet {
 //					return;
 //				}
 
-				UsersDAO uDao = new UsersDAO();
-
-
-
-
-			request.setCharacterEncoding("UTF-8");
+			//現在の日付を取得
 			HttpSession session = request.getSession();
-			Login point_value_session = (Login)session.getAttribute("id");
-			int point_value = point_value_session.getPoint_value();
-			int pUpdate = point_value + 1;
+			LocalDate todaysDate = LocalDate.now();
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String todaysDateString = todaysDate.format(dateTimeFormatter);
+//			session.setAttribute("Date", todaysDate);
+			//visitsテーブルのvisit_dataに今日と同じ日付があるかどうか検索
 
+			//visit_dataに今日の日付が無かったらログインボーナスを与える
+			//今日はじめての訪問化確認する
+			//select count(*) from visits where visit_date like 'todaysDate'+'%'
+			//上の結果が1ならばログインボーナス処理
+			//2以上ならばページ遷移
+			Login mail_session = (Login)session.getAttribute("id");
+			/*String mail = mail_session.getMail();*/
+			/*UsersDAO uDao = new UsersDAO();
+			List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+			request.setAttribute("cardList", cardList);*/
+			String user_id=mail_session.getUser_id();
+			VisitsDAO vDao = new VisitsDAO();
 
+			//セッションスコープに格納したidデータを変数idに代入
+			/*Login mail_session = (Login)session.getAttribute("id");
+			String mail = mail_session.getMail();
+			UsersDAO uDao = new UsersDAO();
+			List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("cardList", cardList);
+			*/
+		boolean re=	vDao.isVisitsOK(todaysDateString);
+			if(re){
 
-			if(uDao.updatePoint(new Users(pUpdate))) {
+				Login point_value_session = (Login)session.getAttribute("id");
+				int point_value = point_value_session.getPoint_value();
 
+				/*UsersDAO uDao = new UsersDAO();*/
+				point_value = point_value+1;
 
-				session.setAttribute("res", "ok");
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+				//今のuser_idのpoint _valueを取得して変数に入れる
+				//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
 
 				}else {
+					System.out.println("false");
 
-
-					session.setAttribute("res", "update_mis");
 				}
+<<<<<<< Updated upstream
 			//sessionの書き換えを行う
 			Login mail_session = (Login)session.getAttribute("id");
 			String mail = mail_session.getMail();
@@ -119,10 +178,19 @@ public class ToppageServlet extends HttpServlet {
 			// トップページにフォワードする
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 						dispatcher.forward(request, response);
+=======
+>>>>>>> Stashed changes
 			}
-
-
-
-
-
+			else {
+				System.out.println("1>");
+			}
+			// トップページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
+			dispatcher.forward(request, response);
 	}
+
+}
+
+
+
+
