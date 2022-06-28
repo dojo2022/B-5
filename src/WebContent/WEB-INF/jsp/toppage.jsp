@@ -137,8 +137,8 @@
 			<div class="rightside">
 
 				<!--- カレンダー作成　--->
-			</div>
-			<div class="wrapper">
+
+			<div class="calenderwrapper">
 				<!-- xxxx年xx月を表示 -->
 				<!-- <h1 id="header"></h1> -->
 
@@ -151,6 +151,7 @@
 
 				<!-- カレンダー -->
 				<div id="calendar"></div>
+			</div>
 			</div>
 		</div>
 	</div>

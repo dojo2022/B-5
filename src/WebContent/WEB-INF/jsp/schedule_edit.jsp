@@ -123,11 +123,13 @@
 													name="schedule_memo" placeholder="ここにメモを記入"
 													value="${e.schedule_memo}"></td>
 											</tr>
-										</table>
+										<tr><td colspan="2">
 										<div class="input_wrapper">
 											<input class="hover" type="submit" name="SUBMIT" value="予定削除" onsubmit="doSomething();return false;">
 											<input class="hover" type="submit" name="SUBMIT" value="予定更新" onsubmit="doSomething();return false;">
 										</div>
+										</td></tr>
+										</table>
 									</details>
 								</form>
 							</c:forEach>
@@ -162,11 +164,12 @@
 												<td colspan="2"><input type="text" class="longtext"
 													name="todo_memo" placeholder="メモ" value="${e.todo_memo}"></td>
 											</tr>
-										</table>
+										<tr><td colspan="2">
 										<div class="input_wrapper">
 											<input class="hover" type="submit" name="SUBMIT" value="タスク削除">
 											<input class="hover" type="submit" name="SUBMIT" value="タスク更新">
 										</div>
+										</td></tr></table>
 									</details>
 								</form>
 							</c:forEach>

@@ -163,6 +163,7 @@ a.btn-border {
   a.btn-border:hover:after {
     width: 0;
   }
+
   li{
     list-style-type: none;
   }
@@ -241,12 +242,13 @@ a.btn-border {
     height:100px;
 }
 
+/*左側のコンテンツと右側のコンテンツを横並びに*/
 .maincontents{
     display: flex;
     position:static;
      left: 10px;
 }
-
+/*左側*/
 .animalcomment {
     position: relative;
     display: inline-block;
@@ -302,4 +304,15 @@ a.btn-border {
 /* 右サイドの位置変更 */
 .rightside {
     margin-left:100px;
+    width:850px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    border-radius:15px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+  	left: 5px;
   }

@@ -28,7 +28,7 @@
 
 summary:hover {
   cursor: pointer; /* カーソルを指マークに */
-  background-color: #EFEFEF;
+  background-color:  #EFEFEF;
 }
  /*アコーディオンの中身*/
  details {
@@ -36,10 +36,12 @@ summary:hover {
   transition: .5s;
 }
 details[open] {
-  height:280px;
-  background: #c3f6ff;
+  height:250px;
+  background: #afeeee;
 }
-
+table{
+	padding: 10px;
+}
   .titlefont{
     font-size:18px;
     width:100px;

@@ -99,7 +99,7 @@
 				<div class="rightside">
 					<!--- カレンダー --->
 					<div class="main">
-					<h2><img src="/anikare/img/diarylist.png" alt="日記一覧"></h2>
+					<h2 class="h2"><img src="/anikare/img/diarylist.png" alt="日記一覧"></h2>
 						<!-- 月表示 -->
 						<!--- ボタン　月移動 --->
 						<div id="next-prev-button">

@@ -20,9 +20,31 @@ input[type=date] {
 }
 
 /*全体*/
-.wrapper {
-	max-width: 600px;
-	margin: 0 auto;
+/*カレンダーの背景だけ白にしたいので初期化*/
+.rightside {
+	margin-left:initial;
+    width:initial;
+    padding: initial;
+    background-color: initial;
+    border: initial;
+    border-radius:initial;
+    outline: initial;
+    -webkit-appearance: initial;
+    -moz-appearance: initial;
+    appearance: initial;
+}
+.calenderwrapper {
+    margin-left:100px;
+    width:610px;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.9);
+    border: none;
+    border-radius:15px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
 
 }
 

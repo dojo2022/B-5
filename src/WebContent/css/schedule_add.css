@@ -36,10 +36,13 @@ summary:hover {
   transition: .5s;
 }
 details[open] {
-  height:280px;
-  background: #c3f6ff;
+  height:250px;
+  background: #afeeee;
 }
 
+table{
+	padding: 10px;
+}
   .titlefont{
     font-size:18px;
     width:230px;
