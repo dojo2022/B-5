@@ -120,7 +120,7 @@
 								>${e.start_time}～${e.title}</a></c:forEach></div>
 						<div class="tabcontent" id="todo"><c:forEach var="e" items="${TodolistList}" varStatus='status'><a href="/anikare/ScheduleEditServlet"
 								>${e.task} ${e.todo_deadline}まで</a></c:forEach></div>
-						<div class="tabcontent" id="kakugen"><c:forEach var="e" items="${KakugenList}" varStatus='status'>${e.kakugen}</c:forEach></div>
+						<div class="tabcontent" id="kakugen"><c:forEach var="e" items="${KakugenActiveList}" varStatus='status'>${e.mail}</c:forEach></div>
 					</div>
 				</div>
 

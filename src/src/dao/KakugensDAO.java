@@ -30,8 +30,8 @@ public class KakugensDAO {
 								+ "from Kakugens WHERE id LIKE ? AND kakugen LIKE ? AND genre_name LIKE ? AND genre LIKE ? "
 								+ "AND kakugen_id LIKE ? AND kakugen_point LIKE ? ORDER BY id";*/
 //			String sql = "select * from Kakugens ORDER BY id";
-			String sql = "SELECT * FROM Kakugens LEFT JOIN kakugen_items ON  Kakugens.genre_name= kakugen_items.genre_name"
-					+ " WHERE kakugen_items.genre_name IS NULL ORDER BY Kakugens.id";
+			String sql = "SELECT * FROM Kakugens LEFT JOIN kakugen_items ON  Kakugens.genre_name= kakugen_items.genre_name1"
+					+ " WHERE kakugen_items.genre_name1 IS NULL ORDER BY Kakugens.id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 

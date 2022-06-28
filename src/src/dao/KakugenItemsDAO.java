@@ -297,8 +297,7 @@ public class KakugenItemsDAO {
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "select kakugen from Kakugen_items "
 					+ "left join users on users.user_id = Kakugen_ITEMS.user_id "
-					+ "left join KakugenS on KakugenS.genre_name = Kakugen_ITEMS.genre_name1"
-					+ "where mail like ? and Kakugen_active like 'true'";
+					+ "left join Kakugens on Kakugens.genre_name = Kakugen_ITEMS.genre_name1 where mail like ? and Kakugen_active like 'true'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる<<検索項目だけ書く
@@ -316,7 +315,7 @@ public class KakugenItemsDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				KakugenItems card = new KakugenItems(
-						rs.getString("bg_image")
+						rs.getString("kakugen")
 
 						);
 				KakugenItemsList.add(card);

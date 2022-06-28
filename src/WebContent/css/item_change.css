@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
 /* 全体と同じ幅を使用する */
-.main{
-background-color: aliceblue;
-}
+
 /* アイテムリストの画像の表示サイズを統一 */
 .bg_img{
     table-layout: fixed;
