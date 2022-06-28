@@ -76,7 +76,7 @@
 					<div class="leftside">
 						<!--キャラの吹き出し-->
 						<div class="animalcomment">
-
+						ユーザー情報の変更やキャラクター壁紙の変更ができるよ！
 
 						</div>
 
