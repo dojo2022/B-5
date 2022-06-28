@@ -12,8 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BackgroundItemsDAO;
+import dao.CharacterItemsDAO;
 import dao.DiariesDAO;
 import dao.UsersDAO;
+import model.BackgroundItems;
+import model.CharacterItems;
 import model.Diaries;
 import model.Login;
 import model.Users;
@@ -46,6 +50,21 @@ public class DiaryServlet extends HttpServlet {
 		List<Diaries> diaryList = dDao.selectMyItem(mail);
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("diaryList", diaryList);
+
+
+
+
+
+		//背景アクティブを表示
+		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+		List<BackgroundItems> BackgroundActiveList = biDao.selectActive(new BackgroundItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("BackgroundActiveList", BackgroundActiveList);
+		//キャラクターアクティブを表示
+		CharacterItemsDAO ciDao = new CharacterItemsDAO();
+		List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CharacterActiveList", CharacterActiveList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/diary.jsp");
 		dispatcher.forward(request, response);

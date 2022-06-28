@@ -76,7 +76,7 @@
 					<div class="leftside">
 						<!--キャラの吹き出し-->
 						<div class="animalcomment">
-							マイページ<br> マイページ<br> マイページ<br> マイページ<br>
+
 
 						</div>
 

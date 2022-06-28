@@ -33,14 +33,14 @@ public class MypageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		//		HttpSession session = request.getSession();
-		//		if (session.getAttribute("id") == null) {
-		//			response.sendRedirect("/simpleBC/LoginServlet");
-		//			return;
-		//		}
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/anikare/LoginServlet");
+			return;
+		}
 
 		//セッションスコープに格納したidデータを変数idに代入
-		HttpSession session = request.getSession();
+
 		Login mail_session = (Login)session.getAttribute("id");
 		String mail = mail_session.getMail();
 		UsersDAO uDao = new UsersDAO();
@@ -191,9 +191,53 @@ public class MypageServlet extends HttpServlet {
 		}
 
 
+		//sessionスコープ再取得
+		//セッションスコープに格納したidデータを変数idに代入
+		mail_session = (Login)session.getAttribute("id");
+		mail = mail_session.getMail();
+		UsersDAO uDao = new UsersDAO();
+		List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
+
+		//背景アクティブを表示
+		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+		List<BackgroundItems> BackgroundActiveList = biDao.selectActive(new BackgroundItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("BackgroundActiveList", BackgroundActiveList);
+
+		//キャラクターアクティブを表示
+		CharacterItemsDAO ciDao = new CharacterItemsDAO();
+		List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CharacterActiveList", CharacterActiveList);
+
+		//背景所持一覧
+		List<BackgroundItems> backgroundItemsList = biDao.selectMyItem(new BackgroundItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("backgroundItemsList", backgroundItemsList);
+
+		//格言所持一覧
+		KakugenItemsDAO kiDao = new KakugenItemsDAO();
+		List<KakugenItems> KakugenItemsList = kiDao.selectMyItem(new KakugenItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("KakugenItemsList", KakugenItemsList);
+
+		//キャラクター所持一覧
+		List<CharacterItems> CharacterItemsList = ciDao.selectMyItem(new CharacterItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CharacterItemsList", CharacterItemsList);
+
+		//クーポン所持一覧
+		CouponItemsDAO coiDao = new CouponItemsDAO();
+		List<CouponItems> CouponItemsList = coiDao.selectMyItem(new CouponItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CouponItemsList", CouponItemsList);
+
+
 
 		// トップページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 	}
 

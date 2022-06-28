@@ -14,7 +14,8 @@
 	rel="stylesheet">
 </head>
 
-<body>
+<c:forEach var="e" items="${BackgroundActiveList}">
+	<body background="/anikare/img/${e.mail}">
 	<div class="wrapper">
 		<header>
 			<div id="aniheader">
@@ -59,8 +60,8 @@
 
 				<!--ポイント交換-->
 				<a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-				<c:forEach var="e" items="${cardList}">${e.point_value}
-				</c:forEach>
+				<p class="headermoji"><c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>ポイント</p>
 
 			</div>
 		</header>
@@ -78,7 +79,9 @@
 
 					<!--- キャラクター --->
 					<div class="animals">
-						<img src="img/animal_zou.png">
+						<c:forEach var="e" items="${CharacterActiveList}">
+								<img id="image_chara" src="/anikare/img/${e.mail}">
+							</c:forEach>
 					</div>
 				</div>
 
@@ -207,5 +210,5 @@
 		<script src="/anikare/js/schedule_edit.js"></script>
 	</div>
 </body>
-
+</c:forEach>
 </html>

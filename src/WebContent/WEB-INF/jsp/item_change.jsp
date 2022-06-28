@@ -11,7 +11,8 @@
 <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
 	rel="stylesheet">
 </head>
-<body>
+<c:forEach var="e" items="${BackgroundActiveList}">
+	<body background="/anikare/img/${e.mail}">
 	<div class="wrapper">
 		<header>
 			<div id="aniheader">
@@ -74,7 +75,7 @@
 				<div class="leftside">
 					<!--キャラの吹き出し-->
 					<div class="animalcomment">
-						<img scr="ma"><img scr="ma">
+
 
 						<!-- ポイント交換所の説明 -->
 						<p>
@@ -85,7 +86,9 @@
 
 					<!--- キャラクター --->
 					<div class="animals">
-						<img src="/anikare/img/animal_zou.png">
+						<c:forEach var="e" items="${CharacterActiveList}">
+								<img id="image_chara" src="/anikare/img/${e.mail}">
+							</c:forEach>
 						<!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
 					</div>
 				</div>
@@ -426,4 +429,5 @@
 	</div>
 
 </body>
+</c:forEach>
 </html>

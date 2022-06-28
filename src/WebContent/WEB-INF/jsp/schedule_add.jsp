@@ -9,9 +9,12 @@
   <link rel= "stylesheet" href="/anikare/css/all.css">
   <link rel= "stylesheet" href="/anikare/css/schedule_add.css">
   <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
+	rel="stylesheet">
 </head>
 
-<body>
+<c:forEach var="e" items="${BackgroundActiveList}">
+	<body background="/anikare/img/${e.mail}">
 <div class="wrapper">
   <header>
     <div id="aniheader">
@@ -47,12 +50,11 @@
 
 
       <!--ポイント交換-->
-        <!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
-      <!-- ポイントデータベースから引っ張ってくる -->
+
 
         <a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-				<c:forEach var="e" items="${cardList}">${e.point_value}
-				</c:forEach>
+				<p class="headermoji"><c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>ポイント</p>
     </div>
   </header>
 
@@ -70,7 +72,9 @@
 
             <!--- キャラクター --->
             <div class="animals">
-                <img src="img/animal_zou.png">
+                <c:forEach var="e" items="${CharacterActiveList}">
+								<img id="image_chara" src="/anikare/img/${e.mail}">
+							</c:forEach>
                 <!--データベースを操作して、データーベースの値を取得したのちに、その値を表示させたい-->
             </div>
         </div>
@@ -170,4 +174,5 @@
 }</script>
 </div>
 </body>
+</c:forEach>
 </html>

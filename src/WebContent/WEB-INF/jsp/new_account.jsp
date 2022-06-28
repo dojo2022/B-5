@@ -7,6 +7,8 @@
 <title>新規会員登録</title>
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 <link rel="stylesheet" type="text/css" href="/anikare/css/new_account.css">
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
+	rel="stylesheet">
 </head>
 <body>
 	<header>

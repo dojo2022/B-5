@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 <link rel="stylesheet" type="text/css"
 	href="/anikare/css/password_reset.css">
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
+	rel="stylesheet">
 </head>
 <body>
 	<header>
@@ -27,26 +29,27 @@
 
 			<div>
 				<form method="POST" action="/anikare/PasswordResetServlet" id=form>
-					<label for="Mail">メールアドレス<br>
-					 <input type="text"	class="prform" name="Mail" placeholder="メールアドレス"></label><br>
+					<label for="Mail">メールアドレス<br> <input type="text"
+						class="prform" name="Mail" placeholder="メールアドレス"></label><br>
 					<p>※登録されているメールアドレスを入力してください。</p>
 					<p>ログイン用の仮PWを発行致します。</p>
 					<input type="submit" name="submit" value="確認">
-					  <!--  onclick="return clickkakunin()"-->
-	<!-- 				<button onclick="btnClick();">確認</button>
-	 -->				<!-- onclick="return clickkakunin()" -->
+					<!--  onclick="return clickkakunin()"-->
+					<!-- 				<button onclick="btnClick();">確認</button>
+	 -->
+					<!-- onclick="return clickkakunin()" -->
 					<input type="reset" name="reset" value="クリア">
 				</form>
-		</div>
+			</div>
 
-		<a href="/anikare/LoginServlet">※ログインページはこちら</a>
+			<a href="/anikare/LoginServlet">※ログインページはこちら</a>
 		</div>
 	</main>
 	<footer class="footer">
-	<div class="footerimg">
-	<img src="img/anifooter1.png">
-	<img src="img/anifotter2.png">
-	<img src="img/anifooter3.png"></div>
+		<div class="footerimg">
+			<img src="img/anifooter1.png"> <img src="img/anifotter2.png">
+			<img src="img/anifooter3.png">
+		</div>
 		<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 		<!-- 要相談 -->
 	</footer>
@@ -58,7 +61,7 @@
 			let rand_str = '';
 			for (var i = 0; i < 8; i++) {
 				rand_str += chars.charAt(Math.floor(Math.random()
-						* chars.length));
+		 * chars.length));
 			}
 			function randomInt(num) {
 				var rand = Math.floor(Math.random() * num);
@@ -124,22 +127,23 @@
 			}
 		} */
 		//更新確認
-	/* function clickkakunin(){ */
-			/* let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-			let rand_str = '';
-			for ( var i = 0; i < 8; i++ ) {
-				rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
-			}
-			function randomInt(num){
-				  var rand = Math.floor(Math.random() * num);
+		/* function clickkakunin(){ */
+		/* let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let rand_str = '';
+		for ( var i = 0; i < 8; i++ ) {
+			rand_str += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		function randomInt(num){
+			  var rand = Math.floor(Math.random() * num);
 
-				  return rand;
-			}
-			let random_pw=randomInt(100) +rand_str +randomInt(100)
- */
- //${newpass}でデータ取り出す
-		if("${res}" == "ok"){
-			window.confirm('再設定用のパスワードはこちらです['+"${pas}"+']\nログイン後は、マイページから再設定を行ってください');
+			  return rand;
+		}
+		let random_pw=randomInt(100) +rand_str +randomInt(100)
+		 */
+		//${newpass}でデータ取り出す
+		if ("${res}" == "ok") {
+			window.confirm('再設定用のパスワードはこちらです[' + "${pas}"
+					+ ']\nログイン後は、マイページから再設定を行ってください');
 			/* if (clicked){
 			//サーブレットにpostする。
 			function postForm(value) {
@@ -163,12 +167,10 @@
 			}
 			postForm(random_pw)
 			} */
-		}
-		else if("${res}" == "miss")
-			{
+		} else if ("${res}" == "miss") {
 			window.confirm('メールアドレスに間違いがあります。');
 
-		}else{
+		} else {
 			console.log("empty");
 
 		}
