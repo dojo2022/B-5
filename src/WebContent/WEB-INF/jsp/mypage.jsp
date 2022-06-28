@@ -164,8 +164,8 @@
 										<c:forEach var="e" items="${KakugenItemsList}">
 											<td width="200px"><img width="200px" id="bg_image"
 												name="kakugen_image" src="/anikare/img/${e.kakugen_image}"><br>
-												<p>${e.genre_name}</p> <input type="hidden"
-												name="kakugen_name" value="${e.genre_name}"></td>
+												<p>${e.genre_name1}</p> <input type="hidden"
+												name="kakugen_name" value="${e.genre_name1}"></td>
 											<td><form method="POST" action="/anikare/MypageServlet"
 													id="form">
 													<input type="submit" name="kakugenchange" value="格言の変更">

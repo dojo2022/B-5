@@ -7,7 +7,7 @@ public class KakugenItems implements Serializable {
 	public String user_id;
 	public String kakugen_id;
 	public String kakugen_active;
-	public String genre_name;
+	public String genre_name1;
 	public String kakugen_image;
 	public String mail;
 
@@ -27,10 +27,10 @@ public class KakugenItems implements Serializable {
 //	}
 
 	//登録用コンストラクタ 0624清水追加
-	public KakugenItems(String user_id, String genre_name) {
+	public KakugenItems(String user_id, String genre_name1) {
 		super();
 		this.user_id = user_id;
-		this.genre_name = genre_name;
+		this.genre_name1 = genre_name1;
 	}
 
 
@@ -39,13 +39,13 @@ public class KakugenItems implements Serializable {
 		super();
 		this.id = 0;
 		this.user_id = "";
-		this.genre_name = "";
+		this.genre_name1 = "";
 	}
 
 
-	public KakugenItems(String genre_name, String kakugen_image, String kakugen_active) {
+	public KakugenItems(String genre_name1, String kakugen_image, String kakugen_active) {
 		super();
-		this.genre_name = genre_name;
+		this.genre_name1 = genre_name1;
 		this.kakugen_image = kakugen_image;
 		this.kakugen_active = kakugen_active;
 	}
@@ -87,12 +87,12 @@ public class KakugenItems implements Serializable {
 		this.kakugen_active = kakugen_active;
 	}
 
-	public String getGenre_name() {
-		return genre_name;
+	public String getGenre_name1() {
+		return genre_name1;
 	}
 
-	public void setKakugen_name(String genre_name) {
-		this.genre_name = genre_name;
+	public void setKakugen_name(String genre_name1) {
+		this.genre_name1 = genre_name1;
 	}
 
 	public String getKakugen_image() {
@@ -111,8 +111,8 @@ public class KakugenItems implements Serializable {
 		this.mail = mail;
 	}
 
-	public void setGenre_name(String genre_name) {
-		this.genre_name = genre_name;
+	public void setGenre_name1(String genre_name1) {
+		this.genre_name1 = genre_name1;
 	}
 
 }

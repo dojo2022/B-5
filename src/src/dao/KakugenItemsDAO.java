@@ -98,7 +98,7 @@ public class KakugenItemsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			//SQL文を準備する 0624清水変更　
-			String sql = "insert into kakugen_items (user_id, genre_name) values(?, ?)";
+			String sql = "insert into kakugen_items (user_id, genre_name1) values(?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文を完成させる
@@ -108,8 +108,8 @@ public class KakugenItemsDAO {
 			else {
 				pStmt.setString(1, "");
 			}
-			if (card.getGenre_name() != null && !card.getGenre_name().equals("")) {
-				pStmt.setString(2, card.getGenre_name());
+			if (card.getGenre_name1() != null && !card.getGenre_name1().equals("")) {
+				pStmt.setString(2, card.getGenre_name1());
 			}
 			else {
 				pStmt.setString(2, "");
@@ -157,9 +157,9 @@ public class KakugenItemsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
-			String sql = "select genre_name, kakugen_image, kakugen_active from kakugen_items "
+			String sql = "select genre_name1, kakugen_image, kakugen_active from kakugen_items "
 					+ "left join users on users.user_id = kakugen_ITEMS.user_id "
-					+ "left join kakugens on kakugens.genre_name = kakugen_ITEMS.genre_name "
+					+ "left join kakugens on kakugens.genre_name = kakugen_ITEMS.genre_name1 "
 					+ "where mail like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -178,7 +178,7 @@ public class KakugenItemsDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				KakugenItems card = new KakugenItems(
-						rs.getString("genre_name"),
+						rs.getString("genre_name1"),
 						rs.getString("kakugen_image"),
 						rs.getString("kakugen_active")
 						);
@@ -297,7 +297,7 @@ public class KakugenItemsDAO {
 			// SQL文を準備する<<ここに改造 WHEREの後は、なにで検索したいかどうか>>
 			String sql = "select kakugen from Kakugen_items "
 					+ "left join users on users.user_id = Kakugen_ITEMS.user_id "
-					+ "left join KakugenS on KakugenS.genre_name = Kakugen_ITEMS.genre_name "
+					+ "left join KakugenS on KakugenS.genre_name = Kakugen_ITEMS.genre_name1"
 					+ "where mail like ? and Kakugen_active like 'true'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 

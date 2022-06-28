@@ -51,7 +51,7 @@
 				<!--タイトル-->
 				<!-- <p class=""> -->
 				<h1 class="logo">
-					<a href=""><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
+					<a href="/anikare/ToppageServlet"><img src="/anikare/img/logo.png" alt="アニカレロゴ"></a>
 				</h1>
 				<!-- </p> -->
 
