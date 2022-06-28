@@ -236,6 +236,7 @@ public class MypageServlet extends HttpServlet {
 
 
 
+
 		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);

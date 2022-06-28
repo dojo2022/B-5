@@ -113,6 +113,15 @@ public class DiaryServlet extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("CharacterActiveList", CharacterActiveList);
 
+		//sessionスコープ再取得
+				//セッションスコープに格納したidデータを変数idに代入
+
+				UsersDAO uDao = new UsersDAO();
+				List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+				// 検索結果をリクエストスコープに格納する
+				request.setAttribute("cardList", cardList);
+
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
 		dispatcher.forward(request, response);
 

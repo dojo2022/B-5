@@ -271,6 +271,15 @@ TodoListsDAO tDao = new TodoListsDAO();
 			List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
 			// 検索結果をリクエストスコープに格納する
 			request.setAttribute("CharacterActiveList", CharacterActiveList);
+
+			//sessionスコープ再取得
+			//セッションスコープに格納したidデータを変数idに代入
+
+			UsersDAO uDao = new UsersDAO();
+			List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("cardList", cardList);
+
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);

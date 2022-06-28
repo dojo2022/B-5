@@ -79,6 +79,8 @@ public class DiaryAddServlet extends HttpServlet {
 			request.setAttribute("result","false");
 		}
 
+
+
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
 		dispatcher.forward(request, response);
