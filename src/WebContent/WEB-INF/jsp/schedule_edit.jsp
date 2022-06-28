@@ -179,27 +179,31 @@
 						<h2 class="h2"><img src="img/diarylogo.png" alt="今日の記録"></h2>
 
 						<form method="POST" action="/anikare/ScheduleEditServlet">
-							<table>
-								<tr>
-									<td><input type="text" class="titlefont"
-										name="diary_title" placeholder="タイトルを入力"
-										value="${diaryList[0].diary_title}"></td>
-								</tr>
-								<tr>
-									<td><input type="text" class="diarycontent"
-										name="diary_content" value="${diaryList[0].diary_content}"></td>
-									<td><input type="hidden" name="diary_date"
-										value="${diaryList[0].diary_date}"></td>
-									<td><input type="hidden" name="user_id"
-										value="${id.user_id}"></td>
-								</tr>
-							</table>
-							<div class="input_wrapper">
-								<input class="hover" type="submit" name="SUBMIT" value="記録削除">
-								<input class="hover" type="submit" name="SUBMIT" value="記録更新">
-								<input class="hover" type="submit" name="SUBMIT" value="記録登録">
-							</div>
-						</form>
+								<table>
+									<tr>
+										<td><input type="text" class="titlefont"
+											name="diary_title" placeholder="タイトルを入力"
+											value="${diaryList[0].diary_title}"></td>
+									</tr>
+									<tr>
+										<td><input type="text" class="diarycontent"
+											name="diary_content" value="${diaryList[0].diary_content}"></td>
+										<td><input type="hidden" name="diary_date"
+											value="${diaryList[0].diary_date}"></td>
+										<td><input type="hidden" name="user_id"
+											value="${id.user_id}"></td>
+									</tr>
+								</table>
+								<c:forEach var="e" items="${cardList}">
+									<input type="hidden" name="point_value"
+										value="${e.point_value}">
+								</c:forEach>
+								<div class="input_wrapper">
+									<input class="hover" type="submit" name="SUBMIT" value="記録削除">
+									<input class="hover" type="submit" name="SUBMIT" value="記録更新">
+									<input class="hover" type="submit" name="SUBMIT" value="記録登録">
+								</div>
+							</form>
 
 					</div>
 				</div>

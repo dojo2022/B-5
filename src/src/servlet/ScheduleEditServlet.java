@@ -203,7 +203,28 @@ TodoListsDAO tDao = new TodoListsDAO();
 
 				if (dDao.insert(new Diaries(diary_date,diary_title,diary_content, user_id))) { // 登録成功
 					//リクエストスコープに保存
-					request.setAttribute("res", "tok");
+					int point_value= 0;
+					point_value = Integer.parseInt(request.getParameter("point_value"));
+
+					/*UsersDAO uDao = new UsersDAO();*/
+					point_value = point_value+2;
+
+					Users userdata = new Users(user_id,point_value);
+					UsersDAO uDao=new UsersDAO();
+
+					boolean result = uDao.updatePoint(userdata);
+					if (result) {
+						//今のuser_idのpoint _valueを取得して変数に入れる
+						//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+						System.out.println("true");
+						request.setAttribute("res", "tok");
+
+					}else {
+						System.out.println("false");
+
+					}
+
+
 				} else { // 更新失敗
 					request.setAttribute("res", "tmiss");
 				}
@@ -220,6 +241,8 @@ TodoListsDAO tDao = new TodoListsDAO();
 
 				if (dDao.update(new Diaries(diary_date,diary_title,diary_content,user_id))) {	// 更新成功
 					//リクエストスコープに保存
+
+
 					request.setAttribute("res","ok");
 				}
 				else {												// 更新失敗
