@@ -422,7 +422,7 @@
 			}
 
 		</script>
-		<script type="text/javascript" src="/anikare/all.js"></script>
+		<script src="/anikare/js/all.js"></script>
 	</div>
 
 </body>
