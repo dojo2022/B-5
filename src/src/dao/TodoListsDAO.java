@@ -323,7 +323,7 @@ public class TodoListsDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 				// SQL文を準備する
-				String sql = "delete from TodoLists where user_id like ?";
+				String sql = "delete from TodoLists where task like ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる

@@ -113,7 +113,7 @@ public class DiariesDAO {
 
 			// SQL文を完成させる
 
-			
+
 			if (card.getDiary_title() != null && !card.getDiary_title().equals("")) {
 				pStmt.setString(1, card.getDiary_title());
 			} else {
@@ -228,7 +228,7 @@ public class DiariesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from Diaries where user_id like ?";
+			String sql = "delete from Diaries where diary_title like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

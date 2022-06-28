@@ -404,7 +404,7 @@ public class SchedulesDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6Data/dojo6Data", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from Schedules where user_id like ?";
+			String sql = "delete from Schedules where title like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

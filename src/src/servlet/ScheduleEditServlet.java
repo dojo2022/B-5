@@ -137,8 +137,8 @@ public class ScheduleEditServlet extends HttpServlet {
 					request.setAttribute("res", "miss");
 				}
 			}else if (request.getParameter("SUBMIT").equals("予定削除")) {
-
-				if (sDao.delete(user_id)) {		// 削除成功
+				String title = request.getParameter("title");
+				if (sDao.delete(title)) {		// 削除成功
 					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
@@ -176,7 +176,8 @@ TodoListsDAO tDao = new TodoListsDAO();
 					request.setAttribute("res", "miss");
 				}
 			}else if (request.getParameter("SUBMIT").equals("タスク削除"))  {
-				if (tDao.delete(user_id)) {	// 削除成功
+				String task = request.getParameter("task");
+				if (tDao.delete(task)) {	// 削除成功
 					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
@@ -217,7 +218,7 @@ TodoListsDAO tDao = new TodoListsDAO();
 						//今のuser_idのpoint _valueを取得して変数に入れる
 						//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
 						System.out.println("true");
-						request.setAttribute("res", "tok");
+						request.setAttribute("res", "ok");
 
 					}else {
 						System.out.println("false");
@@ -226,7 +227,7 @@ TodoListsDAO tDao = new TodoListsDAO();
 
 
 				} else { // 更新失敗
-					request.setAttribute("res", "tmiss");
+					request.setAttribute("res", "miss");
 				}
 			}else if (request.getParameter("SUBMIT").equals("記録更新")) {
 				String diary_date = request.getParameter("diary_date");
@@ -243,13 +244,14 @@ TodoListsDAO tDao = new TodoListsDAO();
 					//リクエストスコープに保存
 
 
-					request.setAttribute("res","ok");
+					request.setAttribute("res","kok");
 				}
 				else {												// 更新失敗
-					request.setAttribute("res", "miss");
+					request.setAttribute("res", "kmiss");
 				}
 			}else if (request.getParameter("SUBMIT").equals("記録削除")) {
-				if (dDao.delete(user_id)) {	// 削除成功
+				String diary_title = request.getParameter("diary_title");
+				if (dDao.delete(diary_title)) {	// 削除成功
 					request.setAttribute("res","sok");
 				}
 				else {						// 削除失敗
@@ -272,6 +274,24 @@ TodoListsDAO tDao = new TodoListsDAO();
 			// 検索結果をリクエストスコープに格納する
 			request.setAttribute("CharacterActiveList", CharacterActiveList);
 
+
+
+			List<Schedules> ScheduleList = sDao.selectMyItem(mail);
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("ScheduleList", ScheduleList);
+
+			//Todo
+
+			List<TodoLists> TodolistList = tDao.selectMyItem(mail);
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("TodolistList", TodolistList);
+
+			//日記
+
+			List<Diaries> diaryList = dDao.selectMyItem(mail);
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("diaryList", diaryList);
+
 			//sessionスコープ再取得
 			//セッションスコープに格納したidデータを変数idに代入
 
@@ -281,7 +301,7 @@ TodoListsDAO tDao = new TodoListsDAO();
 			request.setAttribute("cardList", cardList);
 
 			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
