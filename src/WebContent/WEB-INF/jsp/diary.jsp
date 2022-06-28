@@ -119,18 +119,18 @@
 
 
 										<tr class='row_count'>
-											<td>${e.diary_date}
+											<td>${diaryList[0].diary_date}
 											<input type="hidden" name="date"
-												value="${e.diary_date}">
+												value="${diaryList[0].diary_date}">
 											</td>
 											<%-- <td >
 											<div id='diary_title${status.count}' onClick="this.form.submit();">${e.diary_title}</div>
 											<a href="javascript:document.diaryPost.submit()">${e.diary_title}</a>
 											</td> --%>
 											<td>
-											${e.diary_title}
+											${diaryList[0].diary_title}
 											<input type="hidden"
-												name="title" value="${e.diary_title}">
+												name="title" value="${diaryList[0].diary_title}">
 											<input type="submit" name="submit" value="→">
 											</td>
 

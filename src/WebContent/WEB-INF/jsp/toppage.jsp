@@ -156,6 +156,7 @@
 							value="${e.point_value}">
 					</c:forEach>
 				</form>
+
 			</div>
 			<div class="black-background" id="js-black-bg"></div>
 		</div>

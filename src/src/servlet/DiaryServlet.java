@@ -72,9 +72,9 @@ public class DiaryServlet extends HttpServlet {
 
 		//Diarys
 		List<Diaries> diaryList = new ArrayList<Diaries>();
-		Diaries param = new Diaries("",date,title,"");
+		Diaries para = new Diaries("",date,title,"");
 		DiariesDAO dDao = new DiariesDAO();
-		diaryList=dDao.selectMyItem(param);
+		diaryList=dDao.selectMyItem(para);
 //		HttpSession session = request.getSession();
 		request.setAttribute("diaryList", diaryList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
