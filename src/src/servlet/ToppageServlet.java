@@ -116,7 +116,7 @@ public class ToppageServlet extends HttpServlet {
 //				}
 
 			//現在の日付を取得
-			HttpSession session = request.getSession();
+
 			LocalDate todaysDate = LocalDate.now();
 			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			String todaysDateString = todaysDate.format(dateTimeFormatter);
@@ -128,12 +128,12 @@ public class ToppageServlet extends HttpServlet {
 			//select count(*) from visits where visit_date like 'todaysDate'+'%'
 			//上の結果が1ならばログインボーナス処理
 			//2以上ならばページ遷移
-			Login mail_session = (Login)session.getAttribute("id");
+			/*Login mail_session = (Login)session.getAttribute("id");*/
 			/*String mail = mail_session.getMail();*/
 			/*UsersDAO uDao = new UsersDAO();
 			List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
 			request.setAttribute("cardList", cardList);*/
-			String user_id=mail_session.getUser_id();
+			/*String user_id=mail_session.getUser_id();*/
 			VisitsDAO vDao = new VisitsDAO();
 
 			//セッションスコープに格納したidデータを変数idに代入
@@ -147,9 +147,11 @@ public class ToppageServlet extends HttpServlet {
 		boolean re=	vDao.isVisitsOK(todaysDateString);
 			if(re){
 
-				Login point_value_session = (Login)session.getAttribute("id");
-				int point_value = point_value_session.getPoint_value();
-
+				int point_value= 0;
+				point_value = Integer.parseInt(request.getParameter("point_value"));
+				HttpSession session = request.getSession();
+				Login mail_session = (Login)session.getAttribute("id");
+				String user_id = mail_session.getUser_id();
 				/*UsersDAO uDao = new UsersDAO();*/
 				point_value = point_value+1;
 

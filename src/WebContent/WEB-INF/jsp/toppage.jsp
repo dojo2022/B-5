@@ -151,6 +151,10 @@
 				<p class="loginBonus_text">※初回ログイン時は、ログインボーナスが付与されます。</p>
 				<form method="POST" name="topPost" action="/anikare/ToppageServlet">
 					<input type="submit" name="submit" value="P取得！">
+					<c:forEach var="e" items="${cardList}">
+						<input type="hidden" name="point_value"
+							value="${e.point_value}">
+					</c:forEach>
 				</form>
 			</div>
 			<div class="black-background" id="js-black-bg"></div>
