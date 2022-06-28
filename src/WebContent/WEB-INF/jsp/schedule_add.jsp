@@ -107,11 +107,13 @@
                       <tr>
                         <td colspan="2"><input type="text" class="longtext" name="schedule_memo" placeholder="ここにメモを記入"></td>
                       </tr>
-               		</table>
+               		<tr><td>
                           <div class="input_wrapper">
                           <a href="/anikare/TopPageServlet">戻る</a>
                           <input class="" type="submit" name="submit" value="スケジュール追加" onsubmit="doSomething();return false;">
                           </div>
+                          </td></tr>
+                          </table>
 
                   </details>
                   <c:forEach var="e" items="${cardList}">
@@ -145,13 +147,14 @@
                         <tr>
                           <td colspan="2"><input type="text" class="longtext" name="todo_memo" placeholder="ここにメモを記入" ></td>
                         </tr>
-                        </table>
+                        <tr><td>
 
                             <div class="input_wrapper">
                           <a href="/anikare/TopPageServlet">戻る</a>
 
                             <input class="hover" type="submit" name="submit" value="Todo追加"></div>
-                  </details>2
+                            </td></tr></table>
+                  </details>
                   <c:forEach var="e" items="${cardList}">
 						<input type="hidden" name="point_value"
 							value="${e.point_value}">
