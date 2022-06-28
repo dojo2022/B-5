@@ -11,8 +11,9 @@ background-color: aliceblue;
 }
 /* アイテムリストの中にスクロールバーを作成 */
 .table-content {
+	display: inline-block;
     overflow-y: scroll;
-    height: 180px;
+    height: 250px;
   }
 /* 自動で折り返しさせない */
 .td-list {

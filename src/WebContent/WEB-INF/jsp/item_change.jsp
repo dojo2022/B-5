@@ -344,6 +344,7 @@
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
 												<img width="200px" src="/anikare/img/${e.coupon_image}">
+												<br>${e.coupon_name}
 												<br>${e.coupon_point}pt<br>
 												<input
 													type="hidden" name="coupon" value="${e.coupon_point}">
@@ -366,6 +367,7 @@
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
 												<img width="200px" src="/anikare/img/${e.coupon_image}">
+												<br>${e.coupon_name}
 												<br>${e.coupon_point}pt<br>
 												<input
 													type="hidden" name="coupon" value="${e.coupon_point}">
@@ -388,6 +390,7 @@
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
 												<img width="200px" src="/anikare/img/${e.coupon_image}">
+												<br>${e.coupon_name}
 												<br>${e.coupon_point}pt<br>
 												<input
 													type="hidden" name="coupon" value="${e.coupon_point}">
