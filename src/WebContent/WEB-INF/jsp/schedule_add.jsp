@@ -76,17 +76,18 @@
         </div>
 
      <div class="rightside">
-        <div class="edit">
+        <div class="add">
+
+        	<!-- 予定編集 -->
             <div class="scheduleedit">
-                <!-- 予定編集 -->
-                <h2>予定の追加</h2>
+                <h2 class="h2"><img src="img/addlogo.png" alt="予定の追加"></h2>
                 <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
 						<summary>
 								<select id="stampselect" name="stamp_id">
-												<option value="1" ${e.stamp_id == 's002' ? 'selected' : ''}><img src="img/lunch.png" alt="ランチ"></option>
-												<option value="2" ${e.stamp_id == 's003' ? 'selected' : ''}><img src="img/dentist.png" alt="歯医者"></option>
-												<option value="3" ${e.stamp_id == 's004' ? 'selected' : ''}><img src="img/baseball.png" alt="野球"></option>
+												<option value="1" ${e.stamp_id == '1' ? 'selected' : ''}>🍚</option>
+												<option value="2" ${e.stamp_id == '2' ? 'selected' : ''}>💛</option>
+												<option value="3" ${e.stamp_id == '3' ? 'selected' : ''}>⛰</option>
 											</select>
 					<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
                     <table>
@@ -114,7 +115,7 @@
 
             <!-- ToDo編集 -->
             <div class="todoedit">
-                <h2>ToDoの追加</h2>
+                <h2 class="h2"><img src="img/todoaddlogo.png" alt="ToDo追加"></h2>
                 <form method="POST" action="/anikare/ScheduleAddServlet">
                   <details>
                     <summary>

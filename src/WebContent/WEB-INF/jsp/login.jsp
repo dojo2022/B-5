@@ -31,11 +31,11 @@
 		<main>
 			<div class="main">
 				<h2>ログイン</h2>
-				<div>
+				<div class="loginform">
 					<form method="POST" action="/anikare/LoginServlet" id="form">
 						<label for="Mail">メールアドレス<br> <input type="text"
-							name="mail" placeholder="メールアドレス"></label><br> <label
-							for="login_pw">Password<br> <input type="password"
+							 class="loginform1" name="mail" placeholder="メールアドレス"></label><br> <label
+							for="login_pw">Password<br> <input type="password" class="loginform1"
 							name="login_pw" placeholder="Password"></label><br> <input
 							type="submit" name="submit" value="ログイン"> <input
 							type="reset" name="reset" value="クリア">
@@ -44,18 +44,21 @@
                     間違っていた場合はエラーの表示をjsで表示する -->
 				</div>
 			</div>
-			<div>
+			<div class="nalink">
 				<a href="/anikare/NewAccountServlet">※新規会員登録はこちら</a>
 				<!-- リンクを貼り忘れない -->
 			</div>
-			<div>
+			<div class="prlink">
 				<a href="/anikare/PasswordResetServlet">※パスワードを忘れた方はこちら</a>
 				<!-- リンクを貼り忘れない -->
 			</div>
 		</main>
 
 		<footer class="footer">
-		<hr>
+		<div class="footerimg">
+	<img src="img/anifooter1.png">
+	<img src="img/anifotter2.png">
+	<img src="img/anifooter3.png"></div>
 			<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 			<!-- 要相談 -->
 		</footer>

@@ -1,26 +1,61 @@
 @charset "UTF-8";
 /* font settings */
 @import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
+
 /* background settings */
-main {
+
+/*main {
     font-family: serif;
     color:rgb(0, 0, 0);
-    /* all.cssで指定済みのためいらない */
-    /* background-color: rgb(102, 209, 212); */
+     all.cssで指定済みのためいらない
+     background-color: rgb(102, 209, 212);
     margin: 0 auto 0 auto;
-    /* all.cssでbodyタグ内で指定済 */
-    /* max-width: 1080px; */
+     all.cssでbodyタグ内で指定済
+     max-width: 1080px;
     text-align: center;
-}
+} */
+
 
 .main {
     background-color:rgba(255, 255, 255, 0.9);
     border-radius:10px;
     font-family: "Nico Moji";
+    font-size: 24px;
+    line-height: 1.5em;
+    color: rgb(0,0,0);
     max-width: 540px;
     min-height: 200px;
     text-align: center;
+    padding: 10px;
     margin: 0 auto 0 auto;
+}
+
+.main h2{
+	font-size: 32px;
+}
+form{
+	background-color:rgba(167,210,141,0.9);
+
+}
+
+.loginform1{
+	width:200px;
+	height:20px;
+	font-size:16px;
+	border: none;
+    background: rgba(219,235,196,0.9);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.nalink{
+	text-align: center;
+}
+.prlink{
+	text-align: center;
 }
 /*ロゴ中央寄せ*/
 .logo{
@@ -31,3 +66,34 @@ main {
     background-color: rgb(238, 26, 26);
     width:autoi
 } */
+
+a:link{						/*疑似クラス・href属性が指定されている*/
+  color: #001e43;
+  text-decoration: none;
+}
+a:visited{					/*疑似クラス・リンク先が訪問済み*/
+  color: #001e43;
+  text-decoration: none;
+}
+a:hover{					/*疑似クラス・マウスポインタがリンクに載っている*/
+  color: #f39800;
+  text-decoration: none;
+}
+a:active{					/*疑似クラス・マウスボタンが押されている*/
+  color: #f39800;
+  text-decoration: none;
+}
+
+.footerimg{
+	display :flex;				/*画像横並び*/
+	justify-content: center;	/*画像中央寄せ*/
+}
+
+.footerimg img{
+	width:420px;
+	height: 120px;
+}
+
+.footer p{
+	color: #fff;
+}

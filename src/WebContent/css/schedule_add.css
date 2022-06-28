@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-/* 編集ページ */
-  .edit{
+/* 追加ページ */
+  .add{
     display: flex;
   }
 
@@ -73,8 +73,8 @@ details[open] {
 
   .longtext{
  	font-size: 12px;
-    width: 200px;
-    height: 80px;
+    width: 300px;
+    height: 40px;
     margin: 5px;
     padding: 5px;
     background: rgba(255, 255, 255, 0.8);
@@ -86,3 +86,7 @@ details[open] {
     appearance: none;
   }
 
+.h2 img{
+	width:300px;
+	height:100px;
+}

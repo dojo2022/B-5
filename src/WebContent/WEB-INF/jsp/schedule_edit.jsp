@@ -86,7 +86,7 @@
 					<div class="edit">
 						<!-- 予定編集 -->
 						<div class="scheduleedit">
-							<h2>今日の予定</h2>
+							<h2 class="h2"><img src="img/todaylogo.png" alt="今日の予定"></h2>
 							<c:forEach var="e" items="${ScheduleList}" varStatus='status'>
 								<form method="POST" action="/anikare/ScheduleEditServlet">
 
@@ -101,10 +101,6 @@
 										</summary>
 										<table>
 											<tr>
-												<td><input type="hidden" name="user_id"
-													value="${e.user_id}"></td>
-												<td><input type="hidden" name="schedule_date"
-													value="${e.schedule_date}"></td>
 												<td><input type="text" class="shorttext"
 													name="start_time" placeholder="12:00"
 													value="${e.start_time}">～</td>
@@ -114,6 +110,9 @@
 											<tr>
 												<td><input type="text" class="shorttext" name="place"
 													placeholder="場所" value="${e.place}"></td>
+													<td><input type="hidden" name="user_id"
+													value="${e.user_id}"><input type="hidden" name="schedule_date"
+													value="${e.schedule_date}"></td>
 											</tr>
 											<tr>
 												<td colspan="2"><input type="text" class="longtext"
@@ -132,7 +131,7 @@
 
 						<!-- ToDo編集 -->
 						<div class="todoedit">
-							<h2>ToDoリスト</h2>
+							<h2 class="h2"><img src="img/todologo.png" alt="ToDoリスト"></h2>
 							<c:forEach var="e" items="${TodolistList}" varStatus='status'>
 								<form method="POST" action="/anikare/ScheduleEditServlet">
 									<details>
@@ -173,7 +172,7 @@
 
 					<!-- 日記記入 -->
 					<div class="diaryedit">
-						<h2>今日の記録</h2>
+						<h2 class="h2"><img src="img/diarylogo.png" alt="今日の記録"></h2>
 
 						<form method="POST" action="/anikare/ScheduleEditServlet">
 							<table>

@@ -28,7 +28,7 @@
 			<div>
 				<form method="POST" action="/anikare/PasswordResetServlet" id=form>
 					<label for="Mail">メールアドレス<br>
-					 <input type="text"	name="Mail" placeholder="メールアドレス"></label><br>
+					 <input type="text"	class="prform" name="Mail" placeholder="メールアドレス"></label><br>
 					<p>※登録されているメールアドレスを入力してください。</p>
 					<p>ログイン用の仮PWを発行致します。</p>
 					<input type="submit" name="submit" value="確認">
@@ -38,11 +38,15 @@
 					<input type="reset" name="reset" value="クリア">
 				</form>
 		</div>
-		</div>
+
 		<a href="/anikare/LoginServlet">※ログインページはこちら</a>
+		</div>
 	</main>
 	<footer class="footer">
-	<hr>
+	<div class="footerimg">
+	<img src="img/anifooter1.png">
+	<img src="img/anifotter2.png">
+	<img src="img/anifooter3.png"></div>
 		<p>&copy;Copyright AnimalCalender All rights reserved.</p>
 		<!-- 要相談 -->
 	</footer>
