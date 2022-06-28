@@ -114,6 +114,10 @@
                           </div>
 
                   </details>
+                  <c:forEach var="e" items="${cardList}">
+						<input type="hidden" name="point_value"
+							value="${e.point_value}">
+				  </c:forEach>
                 </form>
             </div>
 
@@ -147,7 +151,11 @@
                           <a href="/anikare/TopPageServlet">戻る</a>
 
                             <input class="hover" type="submit" name="submit" value="Todo追加"></div>
-                  </details>
+                  </details>2
+                  <c:forEach var="e" items="${cardList}">
+						<input type="hidden" name="point_value"
+							value="${e.point_value}">
+				  </c:forEach>
                 </form>
             </div>
         </div>

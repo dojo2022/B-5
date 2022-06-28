@@ -123,7 +123,28 @@ public class ScheduleAddServlet extends HttpServlet {
 			if (sDAO.insert(new Schedules(title, schedule_date, start_time, end_time,
 					stamp_id, schedule_memo, place, user_id))) { // 登録成功
 				//リクエストスコープに保存
-				request.setAttribute("res", "ok");
+				int point_value= 0;
+				point_value = Integer.parseInt(request.getParameter("point_value"));
+
+
+
+				/*UsersDAO uDao = new UsersDAO();*/
+				point_value = point_value+1;
+
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+					//今のuser_idのpoint _valueを取得して変数に入れる
+					//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
+					request.setAttribute("res", "ok");
+				}else {
+					System.out.println("false");
+
+				}
+
 			} else { // 更新失敗
 				request.setAttribute("res", "miss");
 			}
@@ -138,8 +159,28 @@ public class ScheduleAddServlet extends HttpServlet {
 
 			if (tDAO.insert(new TodoLists(todo_deadline, task, importance, todo_memo, user_id))) { // 登録成功
 
-				//リクエストスコープに保存
-				request.setAttribute("res", "ok");
+				int point_value= 0;
+				point_value = Integer.parseInt(request.getParameter("point_value"));
+
+
+
+				/*UsersDAO uDao = new UsersDAO();*/
+				point_value = point_value+1;
+
+				Users userdata = new Users(user_id,point_value);
+				UsersDAO uDao=new UsersDAO();
+
+				boolean result = uDao.updatePoint(userdata);
+				if (result) {
+					//今のuser_idのpoint _valueを取得して変数に入れる
+					//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+					System.out.println("true");
+					request.setAttribute("res", "ok");
+				}else {
+					System.out.println("false");
+
+				}
+
 			} else { // 更新失敗
 				request.setAttribute("res", "miss");
 			}
