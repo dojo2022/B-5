@@ -155,8 +155,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.bg_image}<br>${e.bg_point}pt<br>
 												<img width="200px" src="/anikare/img/${e.bg_image}">
+												<br>${e.bg_point}pt<br>
 												<input
 													type="hidden" name="background" value="${e.bg_point}">
 												<input type="hidden" name="background_id"
@@ -187,8 +187,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
+												<img width="200px" src="/anikare/img/${e.kakugen_image}"><br>
 												${e.genre_name}<br>${e.kakugen_point}pt<br>
-												<img width="200px" src="/anikare/img/${e.kakugen_image}">
 												<input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
 												<input type="hidden" name="genre_name"
@@ -209,8 +209,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.genre_name}<br>${e.kakugen_point}<br>
-												<img width="200px" src="/anikare/img/${e.kakugen_image}">
+												<img width="200px" src="/anikare/img/${e.kakugen_image}"><br>
+												${e.genre_name}<br>${e.kakugen_point}pt<br>
 												<input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
 												<input type="hidden" name="genre_name"
@@ -232,8 +232,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.genre_name}<br>${e.kakugen_point}<br>
-												<img width="200px" src="/anikare/img/${e.kakugen_image}">
+												<img width="200px" src="/anikare/img/${e.kakugen_image}"><br>
+												${e.genre_name}<br>${e.kakugen_point}pt<br>
 												<input
 													type="hidden" name="kakugen" value="${e.kakugen_point}">
 												<input type="hidden" name="genre_name"
@@ -264,8 +264,9 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.character_image}<br>${e.character_point}<br>
 												<img width="200px" src="/anikare/img/${e.character_image}">
+												<br>${e.character_name}
+												<br>${e.character_point}pt<br>
 												<input
 													type="hidden" name="character" value="${e.character_point}">
 												<input type="hidden" name="character_id"
@@ -286,8 +287,9 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.character_image}<br>${e.character_point}<br>
 												<img width="200px" src="/anikare/img/${e.character_image}">
+												<br>${e.character_name}
+												<br>${e.character_point}pt<br>
 												<input
 													type="hidden" name="character" value="${e.character_point}">
 												<input type="hidden" name="character_id"
@@ -308,8 +310,9 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.character_image}<br>${e.character_point}<br>
 												<img width="200px" src="/anikare/img/${e.character_image}">
+												<br>${e.character_name}
+												<br>${e.character_point}pt<br>
 												<input
 													type="hidden" name="character" value="${e.character_point}">
 												<input type="hidden" name="character_id"
@@ -340,8 +343,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.coupon_image}<br>${e.coupon_point}<br>
 												<img width="200px" src="/anikare/img/${e.coupon_image}">
+												<br>${e.coupon_point}pt<br>
 												<input
 													type="hidden" name="coupon" value="${e.coupon_point}">
 												<input type="hidden" name="coupon_id" value="${e.coupon_id}">
@@ -362,8 +365,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.coupon_image}<br>${e.coupon_point}<br>
 												<img width="200px" src="/anikare/img/${e.coupon_image}">
+												<br>${e.coupon_point}pt<br>
 												<input
 													type="hidden" name="coupon" value="${e.coupon_point}">
 												<input type="hidden" name="coupon_id" value="${e.coupon_id}">
@@ -384,8 +387,8 @@
 										<td id="list">
 											<form id="sub" method="POST"
 												action="/anikare/ItemChangeServlet">
-												${e.coupon_image}<br>${e.coupon_point}<br>
 												<img width="200px" src="/anikare/img/${e.coupon_image}">
+												<br>${e.coupon_point}pt<br>
 												<input
 													type="hidden" name="coupon" value="${e.coupon_point}">
 												<input type="hidden" name="coupon_id" value="${e.coupon_id}">
