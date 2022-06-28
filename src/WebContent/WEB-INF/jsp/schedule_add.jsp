@@ -50,9 +50,9 @@
         <!-- <a href ="item_change.jsp">ポイント交換</a></p> -->
       <!-- ポイントデータベースから引っ張ってくる -->
 
-        <a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-      <p class="headermoji">ポイント</p>
-
+        <a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
+				<c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>
     </div>
   </header>
 
@@ -92,7 +92,7 @@
 					<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
                     <table>
 
-                    <tr><td><input type="text" class="shorttext" name="schedule_date" placeholder="日付"></td></tr>
+                    <tr><td><input type="text" class="shorttext" name="schedule_date" placeholder="2022-06-30"></td></tr>
                       <tr>
                         <td><input type="text" class="shorttext" name="start_time" placeholder="12:00">～</td>
 						<td><input type="text" class="shorttext" name="end_time" placeholder="14:00"></td>

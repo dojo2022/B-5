@@ -58,8 +58,9 @@
 				</h1>
 
 				<!--ポイント交換-->
-				<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-				<p class="headermoji">ポイント</p>
+				<a href="/anikare/ItemChangeServlet" class="pointbtn btn-flat"><span>ポイント交換</span></a>
+				<c:forEach var="e" items="${cardList}">${e.point_value}
+				</c:forEach>
 
 			</div>
 		</header>
