@@ -71,7 +71,7 @@ public class DiaryServlet extends HttpServlet {
 	}
 
 
-		/*DiariesDAO dDao = new DiariesDAO();
+	/*DiariesDAO dDao = new DiariesDAO();
 		List<Diaries> cardList = dDao.select(new Diaries("","","",""));
 
 		// 検索結果をリクエストスコープに格納する
@@ -86,16 +86,33 @@ public class DiaryServlet extends HttpServlet {
 
 
 		request.setCharacterEncoding("UTF-8");
+
 		String date = request.getParameter("date");
 		String title = request.getParameter("title");
+		HttpSession session = request.getSession();
+		Login mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getMail();
 
 		//Diarys
 		List<Diaries> diaryList = new ArrayList<Diaries>();
 		Diaries para = new Diaries("",date,title,"");
 		DiariesDAO dDao = new DiariesDAO();
 		diaryList=dDao.selectMyItem(para);
-//		HttpSession session = request.getSession();
+		//		HttpSession session = request.getSession();
 		request.setAttribute("diaryList", diaryList);
+
+		//背景アクティブを表示
+		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+		List<BackgroundItems> BackgroundActiveList = biDao.selectActive(new BackgroundItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("BackgroundActiveList", BackgroundActiveList);
+
+		//キャラクターアクティブを表示
+		CharacterItemsDAO ciDao = new CharacterItemsDAO();
+		List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CharacterActiveList", CharacterActiveList);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_edit.jsp");
 		dispatcher.forward(request, response);
 

@@ -233,6 +233,21 @@ TodoListsDAO tDao = new TodoListsDAO();
 					request.setAttribute("res", "smiss");
 				}
 			}
+
+
+			String mail = mail_session.getMail();
+
+			//背景アクティブを表示
+			BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+			List<BackgroundItems> BackgroundActiveList = biDao.selectActive(new BackgroundItems(mail));
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("BackgroundActiveList", BackgroundActiveList);
+
+			//キャラクターアクティブを表示
+			CharacterItemsDAO ciDao = new CharacterItemsDAO();
+			List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("CharacterActiveList", CharacterActiveList);
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 			dispatcher.forward(request, response);

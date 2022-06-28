@@ -60,10 +60,10 @@ public class ScheduleAddServlet extends HttpServlet {
 		List<Users> cardList = uDao.select(mail);
 
 		//セッションスコープに格納したidデータを変数idに代入
-//				Login mail_session = (Login)session.getAttribute("id");
-//				String mail = mail_session.getMail();
-//				UsersDAO uDao = new UsersDAO();
-//				List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
+		//				Login mail_session = (Login)session.getAttribute("id");
+		//				String mail = mail_session.getMail();
+		//				UsersDAO uDao = new UsersDAO();
+		//				List<Users> cardList = uDao.select(new Users("", "", mail, "", 0));
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("cardList", cardList);
@@ -99,19 +99,19 @@ public class ScheduleAddServlet extends HttpServlet {
 		//予定の追加
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-//		String id = request.getParameter("id");
+		//		String id = request.getParameter("id");
 		//value
 
 		HttpSession session = request.getSession();
 		Login user = (Login) session.getAttribute("id");
 		String user_id = user.getUser_id();
-//		int point = 0;
+		//		int point = 0;
 
 		// 登録処理を行う(diary)
 		SchedulesDAO sDAO = new SchedulesDAO();
 		TodoListsDAO tDAO = new TodoListsDAO();
 		if (request.getParameter("submit").equals("スケジュール追加")) {
-//			point=100;
+			//			point=100;
 			String title = request.getParameter("title");
 			String schedule_date = request.getParameter("schedule_date");
 			String start_time = request.getParameter("start_time");
@@ -128,9 +128,9 @@ public class ScheduleAddServlet extends HttpServlet {
 				request.setAttribute("res", "miss");
 			}
 		} else {	//todoの追加
-//			point = 50;
+			//			point = 50;
 			//value
-//			String checkbox = request.getParameter("checkbox");
+			//			String checkbox = request.getParameter("checkbox");
 			String importance = request.getParameter("importance");
 			String task = request.getParameter("task");
 			String todo_deadline = request.getParameter("todo_deadline");
@@ -145,29 +145,45 @@ public class ScheduleAddServlet extends HttpServlet {
 			}
 		}
 		//point add
-				//SELECT point_value  FROM USERS  where user_id='user_id'を実行するdaoを作成する
-				//取得した値に付与するポイント(変数pointの値)をプラスする
-				//UPDATE users SET point_value= ポイント付与後の値 を実行するdaoを作成する
-//		int point_value= 0;
-//		point_value = Integer.parseInt(request.getParameter("point_value"));
-//		Login mail_session = (Login)session.getAttribute("id");
-//
-//
-//		point_value = point_value;
-//
-//		Users userdata = new Users(user_id,point_value);
-//		UsersDAO uDao=new UsersDAO();
-//
-//		boolean result = uDao.updatePoint(userdata);
-//		if (result) {
-//		//今のuser_idのpoint _valueを取得して変数に入れる
-//		//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
-//			System.out.println("true");
-//
-//		}else {
-//			System.out.println("false");
-//
-//		}
+		//SELECT point_value  FROM USERS  where user_id='user_id'を実行するdaoを作成する
+		//取得した値に付与するポイント(変数pointの値)をプラスする
+		//UPDATE users SET point_value= ポイント付与後の値 を実行するdaoを作成する
+		//		int point_value= 0;
+		//		point_value = Integer.parseInt(request.getParameter("point_value"));
+		//		Login mail_session = (Login)session.getAttribute("id");
+		//
+		//
+		//		point_value = point_value;
+		//
+		//		Users userdata = new Users(user_id,point_value);
+		//		UsersDAO uDao=new UsersDAO();
+		//
+		//		boolean result = uDao.updatePoint(userdata);
+		//		if (result) {
+		//		//今のuser_idのpoint _valueを取得して変数に入れる
+		//		//セッションスコープのpoint_valueを上書きするsession.setAttribute(,変数)
+		//			System.out.println("true");
+		//
+		//		}else {
+		//			System.out.println("false");
+		//
+		//		}
+
+		Login mail_session = (Login)session.getAttribute("id");
+		String mail = mail_session.getMail();
+
+		//背景アクティブを表示
+		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
+		List<BackgroundItems> BackgroundActiveList = biDao.selectActive(new BackgroundItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("BackgroundActiveList", BackgroundActiveList);
+
+		//キャラクターアクティブを表示
+		CharacterItemsDAO ciDao = new CharacterItemsDAO();
+		List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("CharacterActiveList", CharacterActiveList);
+
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/schedule_add.jsp");
 		dispatcher.forward(request, response);
