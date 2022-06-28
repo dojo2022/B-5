@@ -15,12 +15,14 @@ import javax.servlet.http.HttpSession;
 
 import dao.BackgroundItemsDAO;
 import dao.CharacterItemsDAO;
+import dao.KakugenItemsDAO;
 import dao.SchedulesDAO;
 import dao.TodoListsDAO;
 import dao.UsersDAO;
 import dao.VisitsDAO;
 import model.BackgroundItems;
 import model.CharacterItems;
+import model.KakugenItems;
 import model.Login;
 import model.Schedules;
 import model.TodoLists;
@@ -90,6 +92,11 @@ public class ToppageServlet extends HttpServlet {
 		List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("CharacterActiveList", CharacterActiveList);
+		//格言アクティブを表示
+		KakugenItemsDAO kiDao = new KakugenItemsDAO();
+		List<KakugenItems> KakugenActiveList = kiDao.selectActive(new KakugenItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("KakugenActiveList", KakugenActiveList);
 		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
 		dispatcher.forward(request, response);
@@ -173,6 +180,18 @@ public class ToppageServlet extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("cardList", cardList);
 
+		//予定
+		SchedulesDAO sDao = new SchedulesDAO();
+		List<Schedules> ScheduleList = sDao.selectMyItem(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("ScheduleList", ScheduleList);
+
+		//Todo
+		TodoListsDAO tDao = new TodoListsDAO();
+		List<TodoLists> TodolistList = tDao.selectMyItem(mail);
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("TodolistList", TodolistList);
+
 		//背景アクティブを表示
 		BackgroundItemsDAO biDao = new BackgroundItemsDAO();
 		List<BackgroundItems> BackgroundActiveList = biDao.selectActive(new BackgroundItems(mail));
@@ -184,6 +203,12 @@ public class ToppageServlet extends HttpServlet {
 		List<CharacterItems> CharacterActiveList = ciDao.selectActive(new CharacterItems(mail));
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("CharacterActiveList", CharacterActiveList);
+
+		//格言アクティブを表示
+		KakugenItemsDAO kiDao = new KakugenItemsDAO();
+		List<KakugenItems> KakugenActiveList = kiDao.selectActive(new KakugenItems(mail));
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("KakugenActiveList", KakugenActiveList);
 
 		// トップページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/toppage.jsp");
