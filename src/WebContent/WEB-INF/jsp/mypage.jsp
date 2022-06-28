@@ -9,6 +9,8 @@
 <title>マイページ</title>
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
 </head>
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
+	rel="stylesheet">
 <c:forEach var="e" items="${BackgroundActiveList}">
 	<body background="/anikare/img/${e.mail}">
 
@@ -62,7 +64,8 @@
 					<!-- ポイントデータベースから引っ張ってくる -->
 
 					<a href="" class="pointbtn btn-flat"><span>ポイント交換</span></a>
-					<p class="headermoji">ポイント</p>
+					<p class="headermoji"><c:forEach var="e" items="${cardList}">${e.point_value}ポイント
+				</c:forEach></p>
 
 				</div>
 			</header>
@@ -190,10 +193,11 @@
 											<td width="200px"><img width="200px"
 												id="character_image" name="character_image"
 												src="/anikare/img/${e.character_image}"><br>
-												${e.character_name} <input type="hidden"
-												name="character_name" value="${e.character_name}"></td>
+												${e.character_name} </td>
 											<td><form method="POST" action="/anikare/MypageServlet"
 													id="form">
+													<input type="hidden"
+												name="character_name" value="${e.character_name}">
 													<input id="${status.index}" type="submit"
 														name="characterchange" value="キャラクターの変更">
 												</form></td>
