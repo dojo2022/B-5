@@ -5,10 +5,17 @@
     display: flex;
   }
 
+  .addtitle{
+  	display: flex;
+  }
+
  table{
    padding: 5px;
    margin: 5px;
    table-layout: fixed;
+   border-style: dotted;
+   border-color:#fff;
+   border-width:5px;
  }
 
  .scheduleedit{
@@ -19,30 +26,9 @@
  	margin:10px;
  }
 
-/*アコーディオンのタイトル部分*/
-  summary {
-  /*display: block;*/
-  cursor: pointer;
-  transition: 0.2s; /* 変化を滑らかに */
-}
 
-summary:hover {
-  cursor: pointer; /* カーソルを指マークに */
-  background-color: #EFEFEF;
-}
- /*アコーディオンの中身*/
- details {
-  height: 20px;
-  transition: .5s;
-}
-details[open] {
-  /*height:250px;*/
-  background: #afeeee;
-}
 
-table{
-	padding: 10px;
-}
+
   .titlefont{
     font-size:18px;
     width:230px;
@@ -92,4 +78,21 @@ table{
 .h2 img{
 	width:300px;
 	height:100px;
+}
+
+a:link{						/*疑似クラス・href属性が指定されている*/
+  color: #fff;
+  text-decoration: none;
+}
+a:visited{					/*疑似クラス・リンク先が訪問済み*/
+  color: #fff;
+  text-decoration: none;
+}
+a:hover{					/*疑似クラス・マウスポインタがリンクに載っている*/
+  color: #f39800;
+  text-decoration: none;
+}
+a:active{					/*疑似クラス・マウスボタンが押されている*/
+  color: #f39800;
+  text-decoration: none;
 }

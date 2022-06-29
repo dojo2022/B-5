@@ -31,7 +31,7 @@
 				<p class="login_text">ログインしてくれてありがとう！</p>
 				<p class="loginBonus_text">※初回ログイン時は、ログインボーナスが付与されます。</p>
 				<form method="POST" name="topPost" action="/anikare/ToppageServlet">
-					<input type="submit" name="submit" value="P取得！">
+					<input type="submit"  class="pointget" name="submit" value="P取得！">
 					<c:forEach var="e" items="${cardList}">
 						<input type="hidden" name="point_value"
 							value="${e.point_value}">
@@ -163,4 +163,13 @@
 
 </body>
 </c:forEach>
+<footer class="footer">
+		<div class="footerimg">
+	<img src="img/anifooter1.png">
+	<img src="img/anifotter2.png">
+	<img src="img/anifooter3.png"></div>
+			<p>&copy;Copyright AnimalCalender All rights reserved.</p>
+			<!-- 要相談 -->
+		</footer>
+<script src="/anikare/js/all.js"></script>
 </html>

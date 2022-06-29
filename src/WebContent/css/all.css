@@ -235,6 +235,10 @@ a.btn-border {
     transform: translateX(-9%) translateY(-25%) rotate(45deg);
   }
 
+.headermoji{
+	background-color: rgba(255,255,255,0.9);
+	font-size: 30px;
+}
 
 
 .logo img{
@@ -316,3 +320,19 @@ a.btn-border {
     position: relative;
   	left: 5px;
   }
+
+
+ /*フッター*/
+  .footerimg{
+	display :flex;				/*画像横並び*/
+	justify-content: center;	/*画像中央寄せ*/
+}
+
+.footerimg img{
+	width:420px;
+	height: 120px;
+}
+
+.footer p{
+	color: #fff;
+}

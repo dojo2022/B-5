@@ -235,7 +235,14 @@
 				</div>
 
 			</main>
-			<footer> </footer>
+			<footer class="footer">
+		<div class="footerimg">
+	<img src="img/anifooter1.png">
+	<img src="img/anifotter2.png">
+	<img src="img/anifooter3.png"></div>
+			<p>&copy;Copyright AnimalCalender All rights reserved.</p>
+			<!-- 要相談 -->
+		</footer>
 			<script src="/anikare/js/all.js">
 
 			</script>

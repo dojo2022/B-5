@@ -86,14 +86,13 @@
             <div class="scheduleedit">
                 <h2 class="h2"><img src="img/addlogo.png" alt="予定の追加"></h2>
                 <form method="POST" action="/anikare/ScheduleAddServlet">
-                  <details>
-						<summary>
+                <div class="addtitle">
 								<select id="stampselect" name="stamp_id">
 												<option value="1" ${e.stamp_id == '1' ? 'selected' : ''}>🍚</option>
 												<option value="2" ${e.stamp_id == '2' ? 'selected' : ''}>💛</option>
 												<option value="3" ${e.stamp_id == '3' ? 'selected' : ''}>⛰</option>
 											</select>
-					<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></summary>
+					<input type="text" class="titlefont" name="title" placeholder="タイトルを入力"></div>
                     <table>
 
                     <tr><td><input type="text" class="shorttext" name="schedule_date" placeholder="2022-06-30"></td></tr>
@@ -115,7 +114,7 @@
                           </td></tr>
                           </table>
 
-                  </details>
+
                   <c:forEach var="e" items="${cardList}">
 						<input type="hidden" name="point_value"
 							value="${e.point_value}">
@@ -127,11 +126,10 @@
             <div class="todoedit">
                 <h2 class="h2"><img src="img/todoaddlogo.png" alt="ToDo追加"></h2>
                 <form method="POST" action="/anikare/ScheduleAddServlet">
-                  <details>
-                    <summary>
+                  <div class="addtitle">
                     	<input type="checkbox" id="checkselect" name="checkbox" value="missioncomplete">
-                    	<input type="text" class="titlefont" name="task" placeholder="タスク名を入力" >
-                    </summary>
+                    	<input type="text" class="titlefont" name="task" placeholder="タスク名を入力" ></div>
+
                       <table>
                       <tr>
                           <td><input type="text" class="shorttext" name="todo_deadline" placeholder="締め切り時間を入力"></td>
@@ -154,7 +152,7 @@
 
                             <input class="hover" type="submit" name="submit" value="Todo追加"></div>
                             </td></tr></table>
-                  </details>
+
                   <c:forEach var="e" items="${cardList}">
 						<input type="hidden" name="point_value"
 							value="${e.point_value}">
@@ -167,9 +165,14 @@
 
 
 </main>
-    <footer>
-
-    </footer>
+    <footer class="footer">
+		<div class="footerimg">
+	<img src="img/anifooter1.png">
+	<img src="img/anifotter2.png">
+	<img src="img/anifooter3.png"></div>
+			<p>&copy;Copyright AnimalCalender All rights reserved.</p>
+			<!-- 要相談 -->
+		</footer>
     <script src="/anikare/js/all.js"></script>
     <script type="text/javascript">
     if("${res}" == "ok"){

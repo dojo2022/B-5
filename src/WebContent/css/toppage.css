@@ -208,6 +208,10 @@ td.today {
 	text-align: center;
 }
 
+.pointget{
+	text-align : center ;
+}
+
 /* ▼タブ(共通装飾＋非選択状態の装飾) */
 .tab {
 	display: inline-block; /* インラインブロック化 */

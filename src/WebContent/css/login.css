@@ -84,16 +84,3 @@ a:active{					/*疑似クラス・マウスボタンが押されている*/
   text-decoration: none;
 }
 
-.footerimg{
-	display :flex;				/*画像横並び*/
-	justify-content: center;	/*画像中央寄せ*/
-}
-
-.footerimg img{
-	width:420px;
-	height: 120px;
-}
-
-.footer p{
-	color: #fff;
-}
