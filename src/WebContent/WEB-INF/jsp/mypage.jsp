@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>マイページ</title>
 <link rel="stylesheet" type="text/css" href="/anikare/css/all.css">
+<link rel="stylesheet" type="text/css" href="/anikare/css/mypage.css">
 </head>
 <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css"
 	rel="stylesheet">
