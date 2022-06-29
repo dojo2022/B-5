@@ -1,0 +1,96 @@
+CREATE TABLE users (
+    id INT(100) auto_increment PRIMARY KEY, 
+    user_id VARCHAR(10), 
+    user_name VARCHAR(20) NOT NULL, 
+    mail VARCHAR(30) NOT NULL　UNIQUE,
+    login_pw VARCHAR(20) NOT NULL,
+    point_value int (9999) DEFAULT 0 NOT NULL 
+);
+CREATE TABLE todolists (
+  id INT(100) auto_increment PRIMARY KEY,
+  user_id VARCHAR(10) NOT NULL,
+  todo_deadline VARCHAR(20),
+  task VARCHAR(30) NOT NULL,
+  importance INT(3) NOT NULL,
+  todo_memo VARCHAR(100)
+);
+CREATE TABLE schedules (
+  id INT(100) auto_increment PRIMARY KEY,
+  user_id VARCHAR(20) NOT NULL,
+  title VARCHAR(20) NOT NULL,
+  schedule_date VARCHAR(20) NOT NULL,
+  start_time VARCHAR(20) NOT NULL,
+  end_time VARCHAR(20),
+  stamp_id VARCHAR(20) NOT NULL,
+  schedule_memo VARCHAR(100),
+  place VARCHAR(30)
+);
+CREATE TABLE kakugens (
+  id INT(100) auto_increment PRIMARY KEY,
+  kakugen VARCHAR(100) NOT NULL,
+  genre_name VARCHAR(100) NOT NULL,
+  kakugen_point INT(9999) NOT NULL,
+  kakugen_image VARCHAR(50) NOT NULL
+);
+CREATE TABLE kakugen_items (
+    id INT(100) auto_increment  PRIMARY KEY,
+    user_id VARCHAR(100)NOT NULL,
+    genre_name VARCHAR(100) NOT NULL,
+    kakugen_active VARCHAR(10) DEFAULT false NOT NULL
+    );
+CREATE TABLE characters (
+    id INT(100) auto_increment  PRIMARY KEY,
+    user_id VARCHAR(100) NOT NULL,
+    character_name VARCHAR(20) NOT NULL,
+    character_status INT(10) NOT NULL,
+    character_image VARCHAR(50) NOT NULL,
+    character_point INT(9999) NOT NULL,
+    character_id VARCHAR(10) NOT NULL
+    );
+CREATE TABLE character_items (
+    id INT(100) auto_increment PRIMARY KEY,
+    user_id VARCHAR(10) NOT NULL,
+    character_id VARCHAR(10) NOT NULL,
+    character_active VARCHAR(10) DEFAULT false NOT NULL
+    );
+CREATE TABLE diaries (
+    id INT(100) auto_increment PRIMARY KEY,
+    diary_date VARCHAR(15) NOT NULL,
+    diary_title VARCHAR(30) NOT NULL,
+    diary_content VARCHAR(200) NOT NULL,
+    user_id VARCHAR(10)
+    );
+CREATE TABLE backgrounds (
+    id INT(100) auto_increment  PRIMARY KEY,
+    bg_name VARCHAR(50) NOT NULL,
+    bg_image VARCHAR(50) NOT NULL,
+    bg_point INT(9999) NOT NULL,
+    background_id VARCHAR(10) NOT NULL
+    );
+create table Background_items (
+    id INT(100) AUTO_INCREMENT PRIMARY KEY, 
+    user_id varchar(100) not null,
+     background_id varchar(100) not null,
+    background_active VARCHAR(10) DEFAULT false NOT NULL
+);
+create table Coupons (
+    id INT(100) AUTO_INCREMENT PRIMARY KEY,
+     coupon_id varchar(100) not null, 
+     coupon_name varchar(30) not null,
+     coupon_image varchar(50) not null,
+     coupon_point int(9999) not null
+);
+create table Coupon_items (
+    id INT(100) AUTO_INCREMENT PRIMARY KEY ,
+    user_id varchar(100) not null,
+    coupon_id varchar(100) not null, 
+    coupon_num varchar(100) DEFAULT 0 not null 
+);
+create table Stamps (
+    id INT(100) AUTO_INCREMENT PRIMARY KEY,
+    user_id varchar(100) not null, 
+    stamp_id varchar(100) not null, 
+    stamp_image varchar(100) not null
+);
+create table visits (id int  auto_increment primary key,user_id varchar(10) not null,visit_date timestamp default current_timestamp);
+alter table Kakugen_items rename column genre_name to genre_name1;

@@ -1,0 +1,146 @@
+INSERT INTO todolists (id, user_id, todo_deadline, task, importance, todo_memo) 
+        VALUES ('2','u1', '0704', '借りた本を返す','3','');
+
+INSERT INTO users (id, user_id, user_name, mail, login_pw, point_value) 
+        VALUES ('1','u1','watanabe','watanabe001@sample.com','wata001', 5000);
+
+INSERT INTO todolists (id, user_id, todo_deadline, task, importance, todo_memo) 
+        VALUES ('2','u1', '0704', '借りた本を返す','3','');
+INSERT INTO todolists (id, user_id, todo_deadline, task, importance, todo_memo) 
+        VALUES ('3','u1', '0706', '書類作成','2','');
+INSERT INTO todolists (id, user_id, todo_deadline, task, importance, todo_memo) 
+        VALUES ('4','u1', '0710', 'パワーポイント作成','2','見やすく作成！');
+INSERT INTO todolists (id, user_id, todo_deadline, task, importance, todo_memo) 
+        VALUES ('5','u1', '0714', 'お米買う','3','');
+
+
+INSERT INTO schedules (id, user_id, title,schedule_date, start_time, end_time, stamp_id, schedule_memo,place)
+        VALUES ('2','u1', '打ち合わせ', '0629','11:00','13:00','s001','','関内本社');
+INSERT INTO schedules (id, user_id, title,schedule_date, start_time, end_time, stamp_id, schedule_memo,place)
+        VALUES ('3','u1', '面談', '0704','15:00','16:00','s001','','');
+INSERT INTO schedules (id, user_id, title,schedule_date, start_time, end_time, stamp_id, schedule_memo,place)
+        VALUES ('4','u1', 'ジムに行く', '0703','18:00','20:00','s001','','anytime fitness 麹町');
+INSERT INTO schedules (id, user_id, title,schedule_date, start_time, end_time, stamp_id, schedule_memo,place)
+        VALUES ('1','u1', '飲み会', '0629','20:30','22:00','s001','','麹町');
+
+INSERT INTO kakugen_items (id, user_id, genre_name1, kakugen_active)
+    VALUES ('1','u1','normal', 'true');
+
+INSERT INTO character_items (id, user_id, character_id, character_active)
+    VALUES ('1','u1','c001', 'true');
+INSERT INTO character_items (id, user_id, character_id, character_active)
+    VALUES ('2','u1','c002', 'false');
+
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('1','0619','お寿司','寿司食べた','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('2','0620','大変な打ち合わせ','すごく疲れた','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('3','0621','思いっきり遊んだ日','仕事休みだったから思いっきり楽しんだ！','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('4','0622','充実した一日','ジム、散歩、自炊、洗濯、買い物のすべてできたお','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('5','0623','波乱な一日','すごく疲れた','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('6','0624','仕事でミスした','すごく疲れた','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('7','0625','令和４年の５００円玉手に入れた','ピッカピカ','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('8','0626','親切にした一日','お年寄りに席をゆずった','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('9','0627','ワクワクした一日','宝くじかった。あたるといいなあ','u1');
+INSERT INTO diaries (id, diary_date, diary_title, diary_content, user_id)
+    VALUES ('10','0628','おいしいものを食べすぎた日','ほんとに食べ過ぎた。太りそう。','u1');
+
+
+INSERT INTO background_items(id, user_id, background_id, background_active) 
+        VALUES(1, 'u1', 'b001', 'true');
+
+INSERT INTO coupon_items(id, user_id, coupon_id, coupon_num) 
+        VALUES(1, 'u1', 'cou001', 2);
+
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image) 
+        VALUES(1, 'u1', 's001', 'lunch.jpg');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(2, 'u1', 's002', 'lunch.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(3, 'u1', 's003', 'dentist.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(4, 'u1', 's004', 'baseball.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(5, 'u1', 's005', 'golf.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(6, 'u1', 's006', 'money.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(7, 'u1', 's007', 'car.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(8, 'u1', 's008', 'muscle.png');
+INSERT INTO stamps(id, user_id, stamp_id, stamp_image)
+        VALUES(9, 'u1', 's009', 'ghost.png');
+
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('1','モノトーン','monotone.png','50','b001');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('2','はっぱ','reaf.png','50','b002');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('3','水玉','mizutama.png','50','b003');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('4','竹','take.png','50','b004');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('5','シンプルな黒','black.jpg','50','b005');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('6','レンガ','block.jpg','50','b006');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('7','木目調','tree.jpg','50','b007');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('8','岩','rock.jpg','50','b008');
+INSERT INTO backgrounds (id, bg_name, bg_image, bg_point, background_id)
+    VALUES ('9','奇抜なペイント','paint.jpg','50','b009');
+
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('1','u1','おやすみねこ','0','cat.jpg','100','c001');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('2','u1','ひといきねこ','0','cat2.jpg','100','c002');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('3','u1','おてがみねこ','0','cat3.jpg','100','c003');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('4','u1','たびするねこ','0','cat4.jpg','100','c004');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('5','u1','かっぷわんこ','0','dog.jpg','100','c005');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('6','u1','とりわんこ','0','dog2.jpg','100','c006');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('7','u1','マフラーわんこ','0','dog3.jpg','100','c007');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('8','u1','きつね','0','kitsune.jpg','100','c008');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('9','u1','紅葉きつね','0','kitsune2.jpg','100','c009');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('10','u1','はっぱきつね','0','kitsune3.jpg','100','c010');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('11','u1','幸運くま','0','kuma.jpg','100','c011');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('12','u1','読書くま','0','kuma2.jpg','100','c012');
+INSERT INTO characters (id, user_id, character_name, character_status, character_image,character_point, character_id)
+    VALUES ('13','u1','お花くま','0','kuma3.jpg','100','c013');
+
+INSERT INTO coupons(id, coupon_id, coupon_name, coupon_image, coupon_point) 
+        VALUES(1, 'cou002', 'コーヒー券', 'coupon.png', 200);
+INSERT INTO coupons(id, coupon_id, coupon_name, coupon_image, coupon_point) 
+        VALUES(2, 'cou003', 'アイス引換券', 'coupon2.png', 200);
+INSERT INTO coupons(id, coupon_id, coupon_name, coupon_image, coupon_point) 
+        VALUES(3, 'cou004', 'SEデパート割引券', 'coupon3.png', 200);
+INSERT INTO coupons(id, coupon_id, coupon_name, coupon_image, coupon_point) 
+        VALUES(4, 'cou001', 'ソフトクリーム引換券', 'coupon.png', 200);
+
+INSERT INTO kakugens　(id, kakugen, genre_name, kakugen_point, kakugen_image) 
+        VALUES ('1','諦めないを諦めるな','normal', 100, 'kakugen.jpg');
+INSERT INTO kakugens　(id, kakugen, genre_name, kakugen_point, kakugen_image) 
+        VALUES ('2','アサガオ　「はかない恋」「固い絆」「愛情」','花言葉', 100, 'flower.jpg');
+INSERT INTO kakugens　(id, kakugen, genre_name, kakugen_point, kakugen_image) 
+        VALUES ('3','キーパーの優秀と役立たずは紙一重','スポーツ', 100, 'sports.jpg');
+INSERT INTO kakugens　(id, kakugen, genre_name, kakugen_point, kakugen_image) 
+        VALUES ('4','慢心は人間の最大の敵だ。','偉人の名言', 100, 'izin.jpg');
+INSERT INTO kakugens　(id, kakugen, genre_name, kakugen_point, kakugen_image) 
+        VALUES ('5','ブラジルの首都はサンパウロでもリオデジャネイロでもなく「ブラジリア」
+','豆知識', 100, 'mametisiki.png');
