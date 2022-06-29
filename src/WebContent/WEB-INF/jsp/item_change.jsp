@@ -282,7 +282,8 @@
 									</c:forEach>
 								</tr>
 								<tr>
-									<c:forEach var="e" items="${charactersList}" begin="4" end="7">
+									<c:forEach var="e" items="${charactersList}" begin="4" end="7"
+									varStatus="status">
 										<!-- 後でクラス指定して一括で画像サイズを固定 -->
 										<td id="list">
 											<form id="sub" method="POST"
@@ -305,7 +306,8 @@
 									</c:forEach>
 								</tr>
 								<tr>
-									<c:forEach var="e" items="${charactersList}" begin="8" end="11">
+									<c:forEach var="e" items="${charactersList}" begin="8" end="11"
+									varStatus="status">
 										<!-- 後でクラス指定して一括で画像サイズを固定 -->
 										<td id="list">
 											<form id="sub" method="POST"
